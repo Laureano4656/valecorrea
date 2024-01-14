@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Footer from "../components/footer";
 import NavBar from "../components/home/nav-bar";
 import Image from "next/image";
-import sobreMi from "../static/images/Foto Sobre Mi.png";
+import sobreMi from "../static/images/foto Sobre Mi.png";
 const myInfo = () => {
   // const [topValue, setTopValue] = useState("-24%");
 

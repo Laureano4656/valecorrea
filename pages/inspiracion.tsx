@@ -4,7 +4,7 @@ import LayoutHScreen from "../components/utils/LayoutHScreen";
 import Footer from "../components/footer";
 import Image from "next/image";
 
-import sobreMi from "../static/images/Foto Sobre Mi.png";
+import sobreMi from "../static/images/foto Sobre Mi.png";
 
 const inspiración = () => {
   const images = [sobreMi, sobreMi, sobreMi, sobreMi, sobreMi];
