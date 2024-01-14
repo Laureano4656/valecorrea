@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/rjDTi4DgjFtKiKkd9oLHq/_buildManifest.js",
-    "static/rjDTi4DgjFtKiKkd9oLHq/_ssgManifest.js"
+    "static/7efgiyppluTC7WHxHWuZE/_buildManifest.js",
+    "static/7efgiyppluTC7WHxHWuZE/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -71,7 +71,7 @@
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/873-871d16a59b3a4c67.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/inspiracion-e794b547bc58fc56.js"
+      "static/chunks/pages/inspiracion-3edb11ea62b4cb1d.js"
     ],
     "/psicologia": [
       "static/chunks/webpack-fa99431b15635937.js",
@@ -88,7 +88,7 @@
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/873-871d16a59b3a4c67.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/sobre-mi-f054c51f7551ef36.js"
+      "static/chunks/pages/sobre-mi-a0a5858ed248fa8a.js"
     ],
     "/visual": [
       "static/chunks/webpack-fa99431b15635937.js",
