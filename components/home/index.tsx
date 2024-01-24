@@ -91,8 +91,8 @@ const IconsTouch = () => {
         >
           <Ligth size="65%" />
         </IconMenu>
-        <div className="w-[10vw] mx-auto">
-          <Favicon />
+        <div className="w-[10vw] mx-auto contenedor">
+          <Favicon background="#c16f38"  />
         </div>
       </div>
       <TextCarousel texts={listOfBanner} />

@@ -1,8 +1,14 @@
 import React from "react";
 import { iconType } from "./iconTypes";
-export const Favicon: React.FC<iconType> = ({ size, color, background }) => {
+export const Favicon: React.FC<iconType> = ({
+  size,
+  color,
+  background,
+  className,
+}) => {
   return (
     <svg
+      className={className ? className : ""}
       height={size ? size : "100%"}
       width={size ? size : "100%"}
       xmlns="http://www.w3.org/2000/svg"

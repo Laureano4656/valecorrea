@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/7efgiyppluTC7WHxHWuZE/_buildManifest.js",
-    "static/7efgiyppluTC7WHxHWuZE/_ssgManifest.js"
+    "static/aJJJzcsz054UMJEI2_OvS/_buildManifest.js",
+    "static/aJJJzcsz054UMJEI2_OvS/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -17,13 +17,13 @@
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/417-521c8b1b4bc1ada1.js",
       "static/css/4df78f2cd73d6b26.css",
-      "static/chunks/pages/index-35b1c1cebda879cb.js"
+      "static/chunks/pages/index-1c7572c0cbf7bcc3.js"
     ],
     "/_app": [
       "static/chunks/webpack-fa99431b15635937.js",
       "static/chunks/framework-bbecb7d54330d002.js",
       "static/chunks/main-bdfcfc23ca93d033.js",
-      "static/css/92ebc6706b0878dd.css",
+      "static/css/d83334c2f3eb6981.css",
       "static/chunks/pages/_app-9bf6ea6df7439cf8.js"
     ],
     "/_error": [
@@ -38,7 +38,7 @@
       "static/chunks/main-bdfcfc23ca93d033.js",
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/bienestar-3808ab2787464cc2.js"
+      "static/chunks/pages/bienestar-808acb658a99e30b.js"
     ],
     "/derecho": [
       "static/chunks/webpack-fa99431b15635937.js",
@@ -46,7 +46,7 @@
       "static/chunks/main-bdfcfc23ca93d033.js",
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/derecho-af3855bcf5ba125d.js"
+      "static/chunks/pages/derecho-c61106ee740580de.js"
     ],
     "/derecho/[ID]": [
       "static/chunks/webpack-fa99431b15635937.js",
@@ -54,7 +54,7 @@
       "static/chunks/main-bdfcfc23ca93d033.js",
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/derecho/[ID]-33b0cecf6e1683d6.js"
+      "static/chunks/pages/derecho/[ID]-1b45f6a74d17a295.js"
     ],
     "/filosofia": [
       "static/chunks/webpack-fa99431b15635937.js",
@@ -62,7 +62,7 @@
       "static/chunks/main-bdfcfc23ca93d033.js",
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/filosofia-202aa23ef1b52868.js"
+      "static/chunks/pages/filosofia-1875920a3c034627.js"
     ],
     "/inspiracion": [
       "static/chunks/webpack-fa99431b15635937.js",
@@ -71,7 +71,7 @@
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/873-871d16a59b3a4c67.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/inspiracion-3edb11ea62b4cb1d.js"
+      "static/chunks/pages/inspiracion-16ee859884e21947.js"
     ],
     "/psicologia": [
       "static/chunks/webpack-fa99431b15635937.js",
@@ -79,7 +79,7 @@
       "static/chunks/main-bdfcfc23ca93d033.js",
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/psicologia-02e3e49685ce5094.js"
+      "static/chunks/pages/psicologia-01e02757f3fa63b7.js"
     ],
     "/sobre-mi": [
       "static/chunks/webpack-fa99431b15635937.js",
@@ -88,7 +88,7 @@
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/873-871d16a59b3a4c67.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/sobre-mi-a0a5858ed248fa8a.js"
+      "static/chunks/pages/sobre-mi-efd17e153fc761b2.js"
     ],
     "/visual": [
       "static/chunks/webpack-fa99431b15635937.js",
@@ -96,7 +96,7 @@
       "static/chunks/main-bdfcfc23ca93d033.js",
       "static/chunks/664-8c5a4c082990d0a6.js",
       "static/chunks/953-8e5e574e7998b868.js",
-      "static/chunks/pages/visual-8b641c3ea1b31c96.js"
+      "static/chunks/pages/visual-32fdbf0c467f31d6.js"
     ]
   },
   "ampFirstPages": []

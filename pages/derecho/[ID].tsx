@@ -7,20 +7,33 @@ import Book from "../../components/icons/Book";
 
 const DerechoId = () => {
   const router = useRouter();
-  const [content, setContent] = useState([
-    {
-      id: 0,
-      title: "ONU y los Derechos Humanos",
-      description:
-        "Los derechos humanos son derechos inherentes a todos los seres humanos, sin\n distinción alguna de raza, sexo, nacionalidad, origen étnico, lengua, religión o \n cualquier otra condición.",
-    },
-  ]);
+  const [content, setContent] = useState([]);
   useEffect(() => {
+    if (router?.query?.ID === "0") {
+      setContent([
+        {
+          id: 0,
+          title: "ONU y los Derechos Humanos",
+          description:
+            "Los derechos humanos son derechos inherentes a todos los seres humanos, sin\n distinción alguna de raza, sexo, nacionalidad, origen étnico, lengua, religión o \n cualquier otra condición.",
+        },
+      ]);
+    }
+    if (router?.query?.ID === "1") {
+      setContent([
+        {
+          id: 1,
+          title:
+            "DELITOS DE LESA HUMANIDAD / Dominio de la voluntad por aparatos organizados de poder de Clauss Roxin.",
+          description: "",
+        },
+      ]);
+    }
     // traerDatosdelid
   }, []);
   return (
     <NavBarFooter>
-      <div className="flex flex-col items-center justify-center h-full mx-auto max-w-3/5 gap-9">
+      <div className="flex flex-col items-center justify-center w-10/12 h-full mx-auto max-w-3/5 gap-9">
         {content.map((e) => (
           <>
             <h1 className="text-5xl text-gray-600 font-playfair">{e.title}</h1>

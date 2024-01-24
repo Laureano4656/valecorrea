@@ -22,7 +22,10 @@ const Welcome = () => {
               <Favicon size="100%" />
             </span>
             <span className="absolute h-[95%] w-[95%] flex items-center justify-center  -translate-x-1/2 favicon-block left-1/2">
-              <Favicon size="100%" background="#c16f38" />
+              <Favicon
+                size="100%"
+                background="#c16f38"
+              />
             </span>
           </div>
           <h2 className="text-9xl font-playfair favicon-welcome">VCORREA</h2>
