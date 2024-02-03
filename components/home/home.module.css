@@ -43,3 +43,71 @@
         /* Cambiar color o agregar otros estilos aquí... */
     }
 }
+
+.sliderContainer {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider, .slider2, .slider3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50%);
+}
+
+.slider {
+    right: 0;
+    animation: slide 10s linear infinite;
+}
+
+.slider2 {
+    right: -100%;
+}
+
+.slider3 {
+    right: -200%;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes slide {
+    0% {
+        right: 0;
+    }
+
+    100% {
+        right: 100%;
+
+    }
+}
+
+@keyframes slide2 {
+    0% {
+        right: -100%;
+    }
+
+    100% {
+        right: 100%;
+    }
+}
+
+@keyframes slide3 {
+    0% {
+        right: -200%;
+    }
+
+    100% {
+        right: 100%;
+    }
+}

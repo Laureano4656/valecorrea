@@ -7,13 +7,40 @@ interface Props {
 }
 const TextCarousel: React.FC<Props> = ({ texts }) => {
   const generateResponsiveSettings = () => {
+    // const settings = {
+    //   infinite: true,
+    //   speed: 500,
+    //   slidesToShow: 1,
+    //   slidesToScroll: 1,
+    //   autoplay: true,
+    //   autoplaySpeed: 5000, // Ajusta la velocidad de reproducción según tus preferencias
+    //   fade: true, // Activa el efecto de fundido
+    //   cssEase: "linear", // Puedes ajustar el tipo de transición (ease, linear, etc.)
+    // };
+    // const settings = {
+    //   infinite: true,
+    //   speed: 500,
+    //   slidesToShow: 10,
+    //   slidesToScroll: 1,
+    //   autoplay: true,
+    //   autoplaySpeed: 5000,
+    //   responsive: [],
+    //   fade: true,
+    //   cssEase: "linear",
+    // };
     const settings = {
       infinite: true,
-      speed: 500,
-      slidesToShow: 10,
+      speed: 1000,
+      slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 500,
+      autoplaySpeed: 0,
+      cssEase: "linear",
+      variableWidth: true,
+      centerMode: true,
+      draggable: false,
+      pauseOnHover: false,
+      useTransform: false,
       responsive: [],
     };
 
@@ -37,7 +64,9 @@ const TextCarousel: React.FC<Props> = ({ texts }) => {
         <Slider {...settings}>
           {texts.map((text, index) => (
             <div key={index}>
-              <h3 className="text-4xl leading-none text-center font-playfair">{text}</h3>
+              <h3 className="px-2 text-4xl leading-none text-center font-playfair">
+                {text}
+              </h3>
             </div>
           ))}
         </Slider>

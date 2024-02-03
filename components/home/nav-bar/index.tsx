@@ -53,9 +53,10 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
 
   return (
     <div
-      className={`${
-        maxWhith && "px-[5%] "
-      } flex items-center justify-between  mx-auto px-8 h-[150px] w-full  relative`}
+      // ${
+      //   maxWhith && ""
+      // }
+      className={` flex items-center justify-between  mx-auto  px-[4%]  h-[150px] w-full  relative`}
     >
       <IconNavbar />
       <div className="w-full mx-auto">
@@ -63,7 +64,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
           {menuItems.map((item) => (
             <li key={item.href} className={`w-max relative  `}>
               <Link
-                className={`text-gray-600  text-2xl ${
+                className={`text-gray-600  text-2xl font-playfair ${
                   router.pathname.replace("/[ID]", "") === `/${item.href}` &&
                   "font-playfairSemiBold text-4xl text-black  "
                 }`}

@@ -15,37 +15,37 @@ const IconNavbar = () => {
   const iconMap = {
     derecho: (
       <div className={styles}>
-        <Hammer color="#fff" size="90%" background={"p-2"} />
+        <Hammer color="#fff" size="65%" />
       </div>
     ),
     psicologia: (
       <div className={styles}>
-        <Book color="#fff" size="90%" background={"p-2"} />
+        <Book color="#fff" size="65%" />
       </div>
     ),
     "sobre-mi": (
       <div className={styles}>
-        <ValeCorrea color="#fff" size="90%" background={"p-2"} />
+        <ValeCorrea color="#fff" size="65%" />
       </div>
     ),
     filosofia: (
       <div className={styles}>
-        <Ligth color="#fff" size="90%" background={"p-2"} />
+        <Ligth color="#fff" size="65%" />
       </div>
     ),
     visual: (
       <div className={styles}>
-        <Camera color="#fff" size="90%" background={"p-2"} />
+        <Camera color="#fff" size="65%" />
       </div>
     ),
     inspiracion: (
       <div className={styles}>
-        <Hammer color="#fff" size="90%" background={"p-2"} />
+        <Hammer color="#fff" size="65%" />
       </div>
     ),
     bienestar: (
       <div className={styles}>
-        <Hammer color="#fff" size="90%" background={"p-2"} />
+        <Hammer color="#fff" size="65%" />
       </div>
     ),
   };

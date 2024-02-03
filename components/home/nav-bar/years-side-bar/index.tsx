@@ -87,7 +87,7 @@ const YearSideBar = () => {
                   {category.subcategories.map((subcategory) => (
                     <p
                       key={subcategory.subTitle}
-                      className="h-full text-2xl text-gray-600"
+                      className="h-full text-2xl text-gray-600 font-playfair"
                     >
                       {subcategory.subTitle}
                     </p>

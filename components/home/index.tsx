@@ -11,7 +11,10 @@ import IconMenu from "./IconMenu";
 import listOfBanner from "./listOfBanner.json";
 import TextCarousel from "./components/TextCarousel";
 import Inspiration from "../icons/Inspiration";
-
+import styleCarrousel from "./home.module.css";
+import sobreMi from "../../static/images/foto Sobre Mi.png";
+import Image from "next/image";
+const sobremi = sobreMi;
 const IconsTouch = () => {
   const texts = [
     "contextogrande",
@@ -92,9 +95,21 @@ const IconsTouch = () => {
           <Ligth size="65%" />
         </IconMenu>
         <div className="w-[10vw] mx-auto contenedor">
-          <Favicon background="#c16f38"  />
+          <Favicon background="#c16f38" />
         </div>
       </div>
+      {/* <div className={styleCarrousel.sliderContainer}>
+        <div className={styleCarrousel.slider}>
+          <Image src={sobreMi} alt="sobremi" className={styleCarrousel.img} />
+        </div>
+        <div className={styleCarrousel.slider2}>
+          <Image src={sobreMi} alt="sobremi" className={styleCarrousel.img} />
+        </div>
+        <div className={styleCarrousel.slider3}>
+          <Image src={sobreMi} alt="sobremi" className={styleCarrousel.img} />
+        </div>
+      </div> */}
+
       <TextCarousel texts={listOfBanner} />
     </div>
   );
