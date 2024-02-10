@@ -5,14 +5,13 @@ import { AppProvider } from "../utils/AppProvider";
 
 const NavBarFooter = ({ children }) => {
   return (
-    <AppProvider>
-      {/* h-screen */}
-      <div className="flex flex-col justify-between w-full min-h-screen ">
+    <>
+      <div className="flex flex-col justify-between w-full min-h-calcNavFooter">
         <NavBar maxWhith={true} />
         {children}
-        <Footer />
       </div>
-    </AppProvider>
+      <Footer />
+    </>
   );
 };
 

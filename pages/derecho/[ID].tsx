@@ -31,7 +31,7 @@ const DerechoId = () => {
   }, []);
   return (
     <NavBarFooter>
-      <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 ">
+      <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 pt-14 ">
         <div className="flex flex-col items-center justify-center w-3/6 h-full mx-auto max-w-3/5 gap-9">
           {content.map((e) => (
             <>

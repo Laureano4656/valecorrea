@@ -13,10 +13,12 @@ module.exports = {
       width: {
         50: "50px",
       },
-      heigth: {
+      minHeight: {
+        calcNavFooter: "calc(100vh - 265px)",
+      },
+      height: {
         50: "50px",
         115: "115px",
-        calcNavFooter: "calc(100vh - 265px)",
       },
       fontSize: {
         17: "23px",

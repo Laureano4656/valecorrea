@@ -22,6 +22,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/bienestar": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/bienestar.js"
+    ],
     "/derecho": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -31,6 +36,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/derecho/[ID].js"
+    ],
+    "/psicologia": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/psicologia.js"
+    ],
+    "/sobre-mi": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/sobre-mi.js"
     ]
   },
   "ampFirstPages": []
