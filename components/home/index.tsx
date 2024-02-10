@@ -43,56 +43,56 @@ const IconsTouch = () => {
           title={"Psicologia"}
           className="left-[50%]  top-[-30%] translate-x-[-50%]"
         >
-          <Book size="65%" />
+          <Book size="60%" />
         </IconMenu>
         <IconMenu
           link={"bienestar"}
           title={"Bienestar"}
           className="top-[-10%] right-[-15%] "
         >
-          <Heart size="65%" />
+          <Heart size="60%" />
         </IconMenu>
         <IconMenu
           link={"inspiracion"}
           title={"Inspiracion"}
           className="right-[-30%]  top-[50%] translate-y-[-50%]"
         >
-          <Inspiration size="65%" />
+          <Inspiration size="60%" />
         </IconMenu>
         <IconMenu
           link={"derecho"}
           title={"Derecho"}
           className="bottom-[-15%] right-[-15%]"
         >
-          <Camera size="65%" />
+          <Camera size="60%" />
         </IconMenu>
         <IconMenu
           link={"derecho"}
           title={"Derecho"}
           className="right-[50%]  bottom-[-30%] translate-x-[50%]"
         >
-          <Play size="65%" />
+          <Play size="60%" />
         </IconMenu>
         <IconMenu
           link={"derecho"}
           title={"Derecho"}
           className="top-[-10%] left-[-10%] "
         >
-          <Hammer size="65%" />
+          <Hammer size="60%" />
         </IconMenu>
         <IconMenu
           link={"sobre-mi"}
           title={"Sobre mi"}
           className="left-[-30%]  bottom-[50%] translate-y-[50%] "
         >
-          <ValeCorrea size="65%" />
+          <ValeCorrea size="60%" />
         </IconMenu>
         <IconMenu
           link={"filosofia"}
           title={"Filosofia"}
           className="bottom-[-10%] left-[-10%] "
         >
-          <Ligth size="65%" />
+          <Ligth size="60%" />
         </IconMenu>
         <div className="w-[10vw] mx-auto contenedor">
           <Favicon background="#c16f38" />

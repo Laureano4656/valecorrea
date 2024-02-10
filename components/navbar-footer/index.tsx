@@ -6,7 +6,8 @@ import { AppProvider } from "../utils/AppProvider";
 const NavBarFooter = ({ children }) => {
   return (
     <AppProvider>
-      <div className="flex flex-col justify-center w-full h-screen min-h-screen ">
+      {/* h-screen */}
+      <div className="flex flex-col justify-between w-full min-h-screen ">
         <NavBar maxWhith={true} />
         {children}
         <Footer />

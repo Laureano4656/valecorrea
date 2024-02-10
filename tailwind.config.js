@@ -10,6 +10,17 @@ module.exports = {
       translate: {
         translate50: "-50%",
       },
+      width: {
+        50: "50px",
+      },
+      heigth: {
+        50: "50px",
+        115: "115px",
+        calcNavFooter: "calc(100vh - 265px)",
+      },
+      fontSize: {
+        17: "23px",
+      },
       fontFamily: {
         playfair: ["PlayfairDisplay-Regular", "sans"],
         playfairBold: ["PlayfairDisplay-Bold", "sans"],

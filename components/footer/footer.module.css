@@ -1,0 +1,18 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background: #000;
+    height: 115px;
+}
+.footerFixed{
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+}
+.link{
+    color: #fff;
+    font-size: 20px;
+}

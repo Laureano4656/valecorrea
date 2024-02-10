@@ -1,0 +1,32 @@
+.backGroundSobremi {
+    background-image: url("../../../static/images/foto\ sobre\ mi\ 2.webp");
+    height: 190%;
+    width: 100%;
+    left: 0%;
+    background-position: 50% 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-size: cover;
+    border-radius: 100% 0 0 100%;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+}
+
+.title {
+    font-size: 96px;
+    line-height: 1;
+}
+
+@media (max-width: 1550px) {
+    .header {
+        grid-template-columns: 30% 1fr;
+    }
+
+    /* .title {
+        font-size: 24px;
+    } */
+
+}

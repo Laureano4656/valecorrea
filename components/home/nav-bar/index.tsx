@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import IconNavbar from "./IconNavbar";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAppContext } from "../../utils/AppProvider";
-
+import useCategoryStore from "../../utils/useCategoryStore";
+import useAdComplete from "../../utils/useAdComplete";
 interface props {
   maxWhith?: boolean;
 }
@@ -17,11 +17,11 @@ interface SubCategory {
   sub: SubCategoryIds[];
 }
 const NavBar: React.FC<props> = ({ maxWhith }) => {
-  const { state, dispatch } = useAppContext();
+  const { selectedCategory, setSelectedCategory } = useCategoryStore();
+  const { adCategoryComplete, setAdCategoryComplete } = useAdComplete();
 
-  const handleCategoryClick = (category) => {
-    dispatch({ type: "SET_ACTIVE_CATEGORY", payload: category });
-  };
+  const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
+
   const router = useRouter();
   const menuItems = [
     { label: "sobre mi", href: "sobre-mi" },
@@ -32,9 +32,11 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
     { label: "visual", href: "visual" },
     { label: "inspiración", href: "inspiracion" },
   ];
-  const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
   useEffect(() => {
-    if (router.pathname.includes("derecho")) {
+    if (
+      router.pathname.includes("derecho") &&
+      router?.pathname !== "/derecho/[ID]"
+    ) {
       setSetsubCategory([
         {
           id: 0,
@@ -47,9 +49,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
         },
       ]);
     }
-
-    dispatch({ type: "SET_ACTIVE_CATEGORY", payload: "salud" });
-  }, [dispatch, router.pathname, router.query.ID]);
+  }, [selectedCategory, router.pathname, router.query.ID]);
 
   return (
     <div
@@ -64,9 +64,10 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
           {menuItems.map((item) => (
             <li key={item.href} className={`w-max relative  `}>
               <Link
-                className={`text-gray-600  text-2xl font-playfair ${
-                  router.pathname.replace("/[ID]", "") === `/${item.href}` &&
-                  "font-playfairSemiBold text-4xl text-black  "
+                className={`${
+                  router.pathname.replace("/[ID]", "") === `/${item.href}`
+                    ? "font-playfairSemiBold  opacity-100 text-2xl text-black"
+                    : "text-black opacity-60  text-base font-playfair "
                 }`}
                 href={`/${item.href}`}
               >
@@ -83,18 +84,13 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
                         {e.sub.map((subItem) => (
                           <li
                             className={` ${
-                              state.activeCategory !== null &&
-                              state.activeCategory.includes(subItem.item)
+                              selectedCategory !== null &&
+                              selectedCategory.includes(subItem.item)
                                 ? "text-black"
                                 : "text-gray-500"
-                            } text-2xl cursor-pointer font-playfair `}
+                            } text-base cursor-pointer font-playfair `}
                             key={subItem.id}
-                            onClick={() =>
-                              dispatch({
-                                type: "SET_ACTIVE_CATEGORY",
-                                payload: subItem.item,
-                              })
-                            }
+                            onClick={() => setSelectedCategory(subItem.item)}
                           >
                             *{subItem.item}
                           </li>

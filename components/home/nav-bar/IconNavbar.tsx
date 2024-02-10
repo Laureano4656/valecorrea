@@ -6,46 +6,43 @@ import Heart from "../../icons/Heart";
 import Ligth from "../../icons/Ligth";
 import Camera from "../../icons/Camera";
 import ValeCorrea from "../../icons/ValeCorrea";
-
+import styles from "./styles/iconNavbar.module.css";
 const IconNavbar = () => {
   const router = useRouter();
-  const styles =
-    "w-[70px] min-w-[70px] rounded-full flex justify-center items-center bg-black h-[70px]";
-
   const iconMap = {
     derecho: (
-      <div className={styles}>
-        <Hammer color="#fff" size="65%" />
+      <div className={styles.iconNavbar}>
+        <Hammer color="#fff" size="45%" />
       </div>
     ),
     psicologia: (
-      <div className={styles}>
-        <Book color="#fff" size="65%" />
+      <div className={styles.iconNavbar}>
+        <Book color="#fff" size="45%" />
       </div>
     ),
     "sobre-mi": (
-      <div className={styles}>
-        <ValeCorrea color="#fff" size="65%" />
+      <div className={styles.iconNavbar}>
+        <ValeCorrea color="#fff" size="45%" />
       </div>
     ),
     filosofia: (
-      <div className={styles}>
-        <Ligth color="#fff" size="65%" />
+      <div className={styles.iconNavbar}>
+        <Ligth color="#fff" size="45%" />
       </div>
     ),
     visual: (
-      <div className={styles}>
-        <Camera color="#fff" size="65%" />
+      <div className={styles.iconNavbar}>
+        <Camera color="#fff" size="45%" />
       </div>
     ),
     inspiracion: (
-      <div className={styles}>
-        <Hammer color="#fff" size="65%" />
+      <div className={styles.iconNavbar}>
+        <Hammer color="#fff" size="45%" />
       </div>
     ),
     bienestar: (
-      <div className={styles}>
-        <Hammer color="#fff" size="65%" />
+      <div className={styles.iconNavbar}>
+        <Hammer color="#fff" size="45%" />
       </div>
     ),
   };
