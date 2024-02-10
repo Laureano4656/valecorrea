@@ -6,6 +6,7 @@ import Book from "../../components/icons/Book";
 import adComplete from "../../mooks/all-ads.json";
 import penalImage from "../../static/penal/Manual de marca Valeria Correa.jpg";
 import Image from "next/image";
+import axios from "axios";
 
 const DerechoId = () => {
   const router = useRouter();
@@ -21,6 +22,13 @@ const DerechoId = () => {
   const getImage = (value) => {
     return penalImage;
   };
+  useEffect(() => {
+    const apiUrl = "https://api.alohar.me/auth/public";
+    axios.get(apiUrl).then((response) => {
+      console.log("response.data");
+      console.log(response.data);
+    });
+  }, []);
   return (
     <NavBarFooter>
       <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 ">
@@ -29,7 +37,7 @@ const DerechoId = () => {
             <>
               {e.image.length > 0 && (
                 <Image
-                  style={{ objectFit: "cover", width: "100%",height:"400px" }}
+                  style={{ objectFit: "cover", width: "100%", height: "400px" }}
                   src={getImage(e.image)}
                   alt={"Imagen"}
                 />
