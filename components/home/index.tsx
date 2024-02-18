@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Favicon from "../icons/Favicon";
 import Hammer from "../icons/Hammer";
 import Camera from "../icons/Camera";
@@ -13,8 +13,11 @@ import TextCarousel from "./components/TextCarousel";
 import Inspiration from "../icons/Inspiration";
 import styleCarrousel from "./home.module.css";
 import sobreMi from "../../static/images/foto Sobre Mi.png";
+import bannerImg from "../../static/home/banner.svg";
 import Image from "next/image";
+import Marquee from "react-fast-marquee";
 const sobremi = sobreMi;
+
 const IconsTouch = () => {
   const texts = [
     "contextogrande",
@@ -34,7 +37,14 @@ const IconsTouch = () => {
     "contextogrande",
     "Texto 3",
   ];
+  const [currentSlide, setCurrentSlide] = useState(1);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev % 3) + 1);
+    }, 10000); // Cambia este valor según la duración de la animación
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div className="flex flex-col justify-between w-full min-h-[90vh]">
       <div className=" mt-36 relative w-[20vw] h-[20vw] mx-auto my-1 flex justify-center items-center">
@@ -98,19 +108,47 @@ const IconsTouch = () => {
           <Favicon background="#c16f38" />
         </div>
       </div>
+
+      {/* <div className={styleCarrousel.scrollingContainer}>
+        <div className={styleCarrousel.scrollingContent}>
+          {listOfBanner.map((e) => (
+            <p style={{ padding: "4px", display: "inline-block" }}>{e}</p>
+          ))}
+        </div>
+      </div> */}
+      {/* <section id={styleCarrousel.marquee}>
+        <div className={styleCarrousel.container}>
+          {listOfBanner.map((e, index) => (
+            <div className={styleCarrousel["pic-container"]} key={index}>
+              <div className={styleCarrousel.pic}>
+                <Image
+                  src={bannerImg}
+                  alt={`img ${index + 1}`}
+                  className={styleCarrousel.img}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section> */}
       {/* <div className={styleCarrousel.sliderContainer}>
         <div className={styleCarrousel.slider}>
-          <Image src={sobreMi} alt="sobremi" className={styleCarrousel.img} />
+          <Image src={bannerImg} alt="sobremi" className={styleCarrousel.img} />
         </div>
         <div className={styleCarrousel.slider2}>
-          <Image src={sobreMi} alt="sobremi" className={styleCarrousel.img} />
+          <Image src={bannerImg} alt="sobremi" className={styleCarrousel.img} />
         </div>
         <div className={styleCarrousel.slider3}>
-          <Image src={sobreMi} alt="sobremi" className={styleCarrousel.img} />
+          <Image src={bannerImg} alt="sobremi" className={styleCarrousel.img} />
         </div>
       </div> */}
 
-      <TextCarousel texts={listOfBanner} />
+      <Marquee>
+        <Image src={bannerImg} alt="sobremi" className={styleCarrousel.img} />
+        <Image src={bannerImg} alt="sobremi" className={styleCarrousel.img} />
+        <Image src={bannerImg} alt="sobremi" className={styleCarrousel.img} />
+      </Marquee>
+      {/* <TextCarousel texts={listOfBanner} /> */}
     </div>
   );
 };

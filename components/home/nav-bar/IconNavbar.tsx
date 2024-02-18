@@ -5,44 +5,47 @@ import Book from "../../icons/Book";
 import Heart from "../../icons/Heart";
 import Ligth from "../../icons/Ligth";
 import Camera from "../../icons/Camera";
+import probar from "../../../static/icons/SVG/hammer.svg";
 import ValeCorrea from "../../icons/ValeCorrea";
 import styles from "./styles/iconNavbar.module.css";
+import Image from "next/image";
 const IconNavbar = () => {
   const router = useRouter();
   const iconMap = {
     derecho: (
       <div className={styles.iconNavbar}>
-        <Hammer color="#fff" size="45%" />
+        {/* <Image src={probar} alt="asd" width={50} /> */}
+        <Hammer color="#fff" size="60%" />
       </div>
     ),
     psicologia: (
       <div className={styles.iconNavbar}>
-        <Book color="#fff" size="45%" />
+        <Book color="#fff" size="60%" />
       </div>
     ),
     "sobre-mi": (
       <div className={styles.iconNavbar}>
-        <ValeCorrea color="#fff" size="45%" />
+        <ValeCorrea color="#fff" size="60%" />
       </div>
     ),
     filosofia: (
       <div className={styles.iconNavbar}>
-        <Ligth color="#fff" size="45%" />
+        <Ligth color="#fff" size="60%" />
       </div>
     ),
     visual: (
       <div className={styles.iconNavbar}>
-        <Camera color="#fff" size="45%" />
+        <Camera color="#fff" size="60%" />
       </div>
     ),
     inspiracion: (
       <div className={styles.iconNavbar}>
-        <Hammer color="#fff" size="45%" />
+        <Hammer color="#fff" size="60%" />
       </div>
     ),
     bienestar: (
       <div className={styles.iconNavbar}>
-        <Hammer color="#fff" size="45%" />
+        <Hammer color="#fff" size="60%" />
       </div>
     ),
   };

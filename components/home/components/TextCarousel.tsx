@@ -2,35 +2,16 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import bannerImg from "../../../static/home/banner.svg";
+import Image from "next/image";
 interface Props {
   texts: Array<string>;
 }
 const TextCarousel: React.FC<Props> = ({ texts }) => {
   const generateResponsiveSettings = () => {
-    // const settings = {
-    //   infinite: true,
-    //   speed: 500,
-    //   slidesToShow: 1,
-    //   slidesToScroll: 1,
-    //   autoplay: true,
-    //   autoplaySpeed: 5000, // Ajusta la velocidad de reproducción según tus preferencias
-    //   fade: true, // Activa el efecto de fundido
-    //   cssEase: "linear", // Puedes ajustar el tipo de transición (ease, linear, etc.)
-    // };
-    // const settings = {
-    //   infinite: true,
-    //   speed: 500,
-    //   slidesToShow: 10,
-    //   slidesToScroll: 1,
-    //   autoplay: true,
-    //   autoplaySpeed: 5000,
-    //   responsive: [],
-    //   fade: true,
-    //   cssEase: "linear",
-    // };
     const settings = {
       infinite: true,
-      speed: 1000,
+      speed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,

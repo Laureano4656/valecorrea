@@ -5,6 +5,7 @@
     padding-left: 15px;
     gap: 50px;
     scrollbar-color: transparent;
+    width: 60%;
 }
 
 .categories {

@@ -13,9 +13,6 @@
     /* Se duplicó la duración para girar 360 grados */
 }
 
-
-
-
 .imagenNaranja {
     transform-style: preserve-3d;
     transform-origin: center;
@@ -63,23 +60,20 @@
 }
 
 .slider {
-    right: 0;
     animation: slide 10s linear infinite;
 }
 
 .slider2 {
+    background: red;
     right: -100%;
+    animation: slide2 20s linear infinite;
 }
 
 .slider3 {
     right: -200%;
 }
 
-.img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+
 
 @keyframes slide {
     0% {
@@ -111,3 +105,5 @@
         right: 100%;
     }
 }
+
+

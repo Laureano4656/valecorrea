@@ -14,7 +14,10 @@ module.exports = {
         50: "50px",
       },
       minHeight: {
-        calcNavFooter: "calc(100vh - 265px)",
+        calcNavFooter: "calc(100vh - 300px)",
+      },
+      borderWidth: {
+        border1: " 1px",
       },
       height: {
         50: "50px",
