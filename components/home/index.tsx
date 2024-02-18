@@ -24,68 +24,87 @@ const IconsTouch = () => {
           title={"Psicologia"}
           className="left-[50%]  top-[-30%] translate-x-[-50%]"
         >
-          <Book size="60%" />
+          <Book size="70%" strokeMiterlimit={10} />
         </IconMenu>
         <IconMenu
           link={"bienestar"}
           title={"Bienestar"}
           className="top-[-10%] right-[-15%] "
         >
-          <Heart size="60%" />
+          <Heart size="70%" />
         </IconMenu>
         <IconMenu
           link={"inspiracion"}
           title={"Inspiracion"}
           className="right-[-30%]  top-[50%] translate-y-[-50%]"
         >
-          <Inspiration size="60%" />
+          <Inspiration size="70%" />
         </IconMenu>
         <IconMenu
           link={"derecho"}
           title={"Derecho"}
           className="bottom-[-15%] right-[-15%]"
         >
-          <Camera size="60%" />
+          <Camera size="70%" />
         </IconMenu>
         <IconMenu
           link={"derecho"}
           title={"Derecho"}
           className="right-[50%]  bottom-[-30%] translate-x-[50%]"
         >
-          <Play size="60%" />
+          <Play size="70%" />
         </IconMenu>
         <IconMenu
           link={"derecho"}
           title={"Derecho"}
           className="top-[-10%] left-[-10%] "
         >
-          <Hammer size="60%" />
+          <Hammer size="70%" />
         </IconMenu>
         <IconMenu
           link={"sobre-mi"}
           title={"Sobre mi"}
           className="left-[-30%]  bottom-[50%] translate-y-[50%] "
         >
-          <ValeCorrea size="60%" />
+          <ValeCorrea size="70%" />
         </IconMenu>
         <IconMenu
           link={"filosofia"}
           title={"Filosofia"}
           className="bottom-[-10%] left-[-10%] "
         >
-          <Ligth size="60%" />
+          <Ligth size="70%" />
         </IconMenu>
         <div className="w-[10vw] mx-auto contenedor">
           <Favicon background="#c16f38" />
         </div>
       </div>
-
-      <Marquee>
-        <Image src={bannerImg} alt="banner" className={styleCarrousel.img} />
-        <Image src={bannerImg} alt="banner" className={styleCarrousel.img} />
-        <Image src={bannerImg} alt="banner" className={styleCarrousel.img} />
-        <Image src={bannerImg} alt="banner" className={styleCarrousel.img} />
-      </Marquee>
+      <div className="z-0">
+        <Marquee direction="right">
+          <div className="flex gap-2 px-1">
+            <Image
+              src={bannerImg}
+              alt="banner"
+              className={styleCarrousel.img}
+            />
+            <Image
+              src={bannerImg}
+              alt="banner"
+              className={styleCarrousel.img}
+            />
+            <Image
+              src={bannerImg}
+              alt="banner"
+              className={styleCarrousel.img}
+            />
+            <Image
+              src={bannerImg}
+              alt="banner"
+              className={styleCarrousel.img}
+            />
+          </div>
+        </Marquee>
+      </div>
     </div>
   );
 };

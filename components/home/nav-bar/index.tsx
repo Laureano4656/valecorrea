@@ -48,6 +48,16 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
           ],
         },
       ]);
+
+      const selectedOne = subCategory.filter((e) => {
+        return e.sub.filter((i) => {
+          return i.item === "salud";
+        });
+      });
+
+      console.log(selectedOne);
+
+      // setSelectedCategory(subCategory[0][0])
     }
   }, [selectedCategory, router.pathname, router.query.ID]);
 

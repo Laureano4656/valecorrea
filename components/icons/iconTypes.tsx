@@ -1,6 +1,9 @@
-export interface iconType {
+import { ComponentPropsWithoutRef } from "react";
+
+interface Props {
   size?: string;
-  color?: string;
+  height?: string;
   background?: string;
-  className?: string;
 }
+
+export type iconType = ComponentPropsWithoutRef<"svg"> & Props;
