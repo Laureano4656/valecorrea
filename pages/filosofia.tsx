@@ -7,7 +7,6 @@ const filosofía = () => {
   return (
     <LayoutHScreen>
       <NavSide />
-      <Footer />
     </LayoutHScreen>
   );
 };

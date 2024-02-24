@@ -7,7 +7,6 @@ const bienestar = () => {
   return (
     <LayoutHScreen>
       <NavSide />
-      <Footer />
     </LayoutHScreen>
   );
 };

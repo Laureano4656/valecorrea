@@ -8,7 +8,6 @@ const psicología = () => {
   return (
     <LayoutHScreen>
       <NavSide />
-      <Footer />
     </LayoutHScreen>
   );
 };

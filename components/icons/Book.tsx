@@ -16,9 +16,6 @@ export const Book: React.FC<iconType> = ({
       className={className}
       {...props}
     >
-      <defs>
-        {/* <style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;}</style> */}
-      </defs>
       <g>
         <g>
           <path
@@ -28,7 +25,7 @@ export const Book: React.FC<iconType> = ({
           />
           <path
             fill="currentColor"
-            stroke="#000"
+            stroke="currentColor"
             d="M19.28,5.68c-.2.05-5.07,2.9-5.47,3.13s-.46.28-.46,1c0,.37-.12,1.22.44,1l5.46-3.14c.49-.3.42-.34.42-1,0-.28.13-1.16-.39-1M13.86,9.42c.05-.12.51-.34.64-.41l4.66-2.68v.79l-5.3,3Z"
             transform="translate(-0.5 -0.5)"
           />
