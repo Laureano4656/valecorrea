@@ -12,7 +12,7 @@ const inspiración = () => {
     <LayoutHScreen>
       <NavBar />
       <div className="flex items-start justify-start h-full pb-64 ">
-        <div className="grid w-[60%] mx-auto h-screen relative  grid-cols-3 grid-rows-2 gap-1">
+        <div className="grid w-[50%] mx-auto h-screen relative  grid-cols-3 grid-rows-2 gap-1">
           <p className="absolute leading-none -rotate-90 font-playfairBold -translate-x-1/2 -translate-y-1/2 left-[-7%] top-1/4 text-[64px]">
             inspiración
           </p>
