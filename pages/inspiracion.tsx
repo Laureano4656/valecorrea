@@ -13,7 +13,7 @@ const inspiración = () => {
       <NavBar />
       <div className="flex items-start justify-start h-full pb-64 ">
         <div className="grid w-[55%] ml-[25%] h-screen relative  grid-cols-3 grid-rows-2 gap-1">
-          <p className="absolute leading-none -rotate-90 font-playfairBold -translate-x-1/2 -translate-y-1/2 left-[-7%] top-1/4 text-[64px]">
+          <p className="absolute leading-none -rotate-90 font-playfair top-[15%] left-[-22%] 2xl:top-[20%] 2xl:text-[64px] sm:text-[48px]  ">
             inspiración
           </p>
           {images.map((image, index) => (
