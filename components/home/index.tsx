@@ -18,7 +18,7 @@ import Marquee from "react-fast-marquee";
 const IconsTouch = () => {
   return (
     <div className="flex flex-col justify-between w-full min-h-[90vh]">
-      <div className=" mt-36 relative w-[20vw] h-[20vw] mx-auto my-1 flex justify-center items-center">
+      <div className=" mt-36 relative w-[17vw] h-[17vw] mx-auto my-1 flex justify-center items-center">
         <IconMenu
           link={"psicologia"}
           title={"Psicologia"}
@@ -35,7 +35,7 @@ const IconsTouch = () => {
         </IconMenu>
         <IconMenu
           link={"inspiracion"}
-          title={"Inspiracion"}
+          title={"Inspiración"}
           className="right-[-30%]  top-[50%] translate-y-[-50%]"
         >
           <Inspiration size="70%" />
@@ -76,11 +76,11 @@ const IconsTouch = () => {
           <Ligth size="70%" />
         </IconMenu>
         <div className="w-[10vw] mx-auto contenedor">
-          <Favicon background="#c16f38" />
+          <Favicon background="#000" />
         </div>
       </div>
       <div className="z-0">
-        <Marquee direction="right">
+        <Marquee direction="left">
           <div className="flex gap-2 px-1">
             <Image
               src={bannerImg}
