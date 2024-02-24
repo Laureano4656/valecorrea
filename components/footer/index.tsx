@@ -31,7 +31,7 @@ const Footer: React.FC<props> = ({ fixed }) => {
         </Link>
       </div>
       <div className="border-white border-solid rounded-full border-border1">
-        <Image src={logoPomelo} alt={"logo pomelo"} width={50} />
+        <Image src={logoPomelo} alt={"logo pomelo"} width={30} />
       </div>
     </div>
   );
