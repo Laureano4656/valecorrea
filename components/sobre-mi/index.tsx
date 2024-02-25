@@ -1,15 +1,13 @@
 import React, { FunctionComponent } from "react";
 import NavBar from "../home/nav-bar";
-import Image from "next/image";
 import Footer from "../footer";
-import sobreMi from "../../static/images/foto sobre mi 2.webp";
 import Separator from "../ui/separator";
 import styles from "./styles/sobre-mi.module.css";
 const SobreMi: FunctionComponent = () => {
   return (
     <>
       <NavBar />
-      <div className="relative flex flex-col justify-between gap-20">
+      <div className="relative flex flex-col justify-between gap-20 pl-[4%]">
         <div className={styles.header}>
           <div className="relative flex items-center justify-center w-full h-full ">
             <h1
@@ -26,7 +24,7 @@ const SobreMi: FunctionComponent = () => {
           </div>
         </div>
         <p
-          className="w-[70%] mx-auto  pb-16 font-playfair"
+          className="w-full max-w-[850px] text-justify mx-auto  pb-16 font-playfair"
           style={{ fontSize: "22px" }}
         >
           Soy Vale Correa, nací en Mar del Plata en los años ´80 y me considero

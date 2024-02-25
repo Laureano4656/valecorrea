@@ -75,7 +75,7 @@ const IconsTouch = () => {
         >
           <Ligth size="70%" />
         </IconMenu>
-        <div className="w-[8vw] mx-auto contenedor">
+        <div className="w-[9vw] mx-auto contenedor">
           <Favicon background="#000" />
         </div>
       </div>
