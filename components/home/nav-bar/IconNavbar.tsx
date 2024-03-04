@@ -9,41 +9,42 @@ import styles from "./styles/iconNavbar.module.css";
 import Inspiration from "../../icons/Inspiration";
 import Heart from "../../icons/Heart";
 const IconNavbar = () => {
+  const iconSize = "50%"
   const router = useRouter();
   const iconMap = {
     derecho: (
       <div className={styles.iconNavbar}>
-        <Hammer color="#fff" size="50%" />
+        <Hammer color="#fff" size={iconSize} />
       </div>
     ),
     psicologia: (
       <div className={styles.iconNavbar}>
-        <Book color="#fff" size="50%" fill={"#fff"}/>
+        <Book color="#fff" size={iconSize} fill={"#fff"}/>
       </div>
     ),
     "sobre-mi": (
       <div className={styles.iconNavbar}>
-        <ValeCorrea color="#fff" size="50%" />
+        <ValeCorrea color="#fff" size={iconSize} />
       </div>
     ),
     filosofia: (
       <div className={styles.iconNavbar}>
-        <Ligth color="#fff" size="50%" />
+        <Ligth color="#fff" size={iconSize} />
       </div>
     ),
     visual: (
       <div className={styles.iconNavbar}>
-        <Camera color="#fff" size="50%" />
+        <Camera color="#fff" size={iconSize} />
       </div>
     ),
     inspiracion: (
       <div className={styles.iconNavbar}>
-        <Inspiration color="#fff" size="50%" />
+        <Inspiration color="#fff" size={iconSize} />
       </div>
     ),
     bienestar: (
       <div className={styles.iconNavbar}>
-        <Heart color="#fff" size="50%" />
+        <Heart color="#fff" size={iconSize} />
       </div>
     ),
   };

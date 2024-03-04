@@ -2,7 +2,7 @@ import React from "react";
 import { iconType } from "./iconTypes";
 export const Hammer: React.FC<iconType> = ({ size, color, background }) => {
   return (
-    <svg width={size} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.82 16.11">
+    <svg width={size} height={size} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.82 16.11">
     
       <g id="Capa_2" data-name="Capa 2">
         <g id="Capa_1-2" data-name="Capa 1">

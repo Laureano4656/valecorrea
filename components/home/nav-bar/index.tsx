@@ -66,18 +66,18 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
       // ${
       //   maxWhith && ""
       // }
-      className={` flex items-center justify-between  mx-auto  px-[4%]  h-[150px] w-full  relative`}
+      className={` flex items-center justify-between  mx-auto  px-[5%]  h-[150px] w-full  relative`}
     >
       <IconNavbar />
       <div className="w-full mx-auto">
-        <ul className="flex items-end gap-4 mx-auto w-max">
+        <ul className="flex items-end gap-[1vw] mx-auto w-max">
           {menuItems.map((item) => (
             <li key={item.href} className={`w-max relative  `}>
               <Link
-                className={`${
+                className={` ${
                   router.pathname.replace("/[ID]", "") === `/${item.href}`
-                    ? "font-playfairSemiBold  opacity-100 text-2xl text-black"
-                    : "text-black opacity-60  text-base font-playfair "
+                    ? "font-playfairSemiBold text-[1.8vw]  opacity-100  text-black"
+                    : "text-black opacity-60 text-[1.3vw]   font-playfair "
                 }`}
                 href={`/${item.href}`}
               >
@@ -87,18 +87,18 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
                 (e) =>
                   item.label === e.category && (
                     <div
-                      className="absolute left-[50%] translate-x-[-50%] top-10"
+                      className="absolute left-[50%] translate-x-[-50%] top-[3vw]"
                       key={e.id}
                     >
                       <ul>
                         {e.sub.map((subItem) => (
                           <li
-                            className={` ${
+                            className={`text-[1.2vw] ${
                               selectedCategory !== null &&
                               selectedCategory.includes(subItem.item)
                                 ? "text-black"
                                 : "text-gray-500"
-                            } text-base cursor-pointer font-playfair `}
+                            }  cursor-pointer font-playfair `}
                             key={subItem.id}
                             onClick={() => setSelectedCategory(subItem.item)}
                           >

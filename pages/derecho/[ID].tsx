@@ -25,7 +25,7 @@ const DerechoId = () => {
   return (
     <NavBarFooter>
       <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 pt-14 ">
-        <div className="flex flex-col items-center justify-center w-3/6 h-full mx-auto max-w-3/5 gap-9">
+        <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto max-w-3/5 gap-9">
           {content.map((e) => (
             <>
               {e.image.length > 0 && (
@@ -35,11 +35,11 @@ const DerechoId = () => {
                   alt={"Imagen"}
                 />
               )}
-              <h1 className="text-5xl text-gray-600 font-playfair">
+              <h1 className="text-[3.4vw] text-gray-600 font-playfair">
                 {e.title}
               </h1>
 
-              <p className="text-xl text-black font-playfair">{e.comment}</p>
+              <p className="text-[1.5vw] text-black font-playfair">{e.comment}</p>
             </>
           ))}
         </div>

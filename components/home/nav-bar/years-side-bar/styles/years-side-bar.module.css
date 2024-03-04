@@ -1,38 +1,33 @@
 .yearsSideBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-left: 15px;
-    gap: 50px;
-    scrollbar-color: transparent;
-    width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4.7vw;
+  scrollbar-color: transparent;
+  width: 60%;
 }
 
 .categories {
-    width: 100%;
+  width: 100%;
 }
 
 .text {
-    height: 100%;
-    font-family: font-playfair;
-    opacity: .6;
-    font-size: 32px;
+  height: 100%;
+  opacity: 0.6;
+  font-size: 2vw;
+  line-height: 2.5vw;
 }
 
-.years, .yearsActive {
-    cursor: pointer;
-    width: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    font-family: font-playfair;
-    width: auto;
-    font-size: 26px;
-    opacity: .6;
+.years,
+.yearsActive {
+  cursor: pointer;
+  opacity: 0.6;
+  font-size: 2.2vw;
+  line-height: .5vw;
 }
 
 .yearsActive {
-    opacity: 1;
-    font-size: 32px;
-    font-family: font-playfairExtraBold;
+  line-height: 2vw;
+  opacity: 1;
+  font-size: 4vw;
 }

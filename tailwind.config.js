@@ -25,6 +25,10 @@ module.exports = {
       },
       fontSize: {
         17: "23px",
+        "1.7vw": "1.7vw",
+      },
+      margin: {
+        marginRigth: " 0 auto 0 calc(5% + 4.5vw)"
       },
       fontFamily: {
         playfair: ["PlayfairDisplay-Regular", "sans"],

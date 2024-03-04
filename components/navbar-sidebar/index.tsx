@@ -14,7 +14,7 @@ const NavSide: React.FC<props> = ({ children, sideBar }) => {
     <div className="flex flex-col justify-between min-h-screen ">
       <NavBar />
       <div
-        className={`flex w-9/12  items-start justify-end pt-[5%]   mx-auto max-w-7xl h-[60vh]`}
+        className={`flex w-9/12  items-start justify-start pt-[5%] m-marginRigth  h-[60vh]`}
       >
         {children}
         {sideBar && <SideBar />}

@@ -22,11 +22,11 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
   return (
     <>
       {categoriesPerYear.length > 0 && (
-        <ul>
+        <ul className="flex flex-col gap-[2vw]">
           {categoriesPerYear.map((category) => (
-            <li key={category.id}>
+            <li key={category.id} >
               <Link href={`/${router.pathname}/${category.id}`}>
-                <p key={category.title} className={`${styles.text}`}>
+                <p key={category.title} className={`hover:opacity-100 font-playfairSemiBold ${styles.text}`}>
                   {category.title}
                 </p>
               </Link>

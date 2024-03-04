@@ -7,11 +7,11 @@ const SobreMi: FunctionComponent = () => {
   return (
     <>
       <NavBar />
-      <div className="relative flex flex-col justify-between gap-20 pl-[4%]">
+      <div className={`${styles.container} relative flex flex-col justify-between gap-20 pl-[calc(5% + 4.5vw)]`}>
         <div className={styles.header}>
-          <div className="relative flex items-center justify-center w-full h-full ">
+          <div className="relative flex items-center justify-center w-max h-full ">
             <h1
-              className={`${styles.title} w-full py-16 text-center font-playfair`}
+              className={`${styles.title} w-full text-[4.6vw] py-16 text-center font-playfair`}
             >
               valeria
               <br /> correa
@@ -24,51 +24,49 @@ const SobreMi: FunctionComponent = () => {
           </div>
         </div>
         <p
-          className="w-full max-w-[850px] text-justify mx-auto  pb-16 font-playfair"
-          style={{ fontSize: "22px" }}
+          className="w-full max-w-[850px] text-[1.6vw] text-justify mx-auto  pb-16 font-playfair"
         >
           Soy Vale Correa, nací en Mar del Plata en los años ´80 y me considero
-          una persona muy curiosa y creativa, con profundos intereses en el
+          una persona  <br/>muy curiosa y creativa, con profundos intereses en el
           estudio y la investigación.
-          <Separator height={"37px"} />
+          <br/>
+          <br/>
           Durante mi carrera formal dediqué toda mi energía a formarme como
-          Abogada en la Universidad Pública, abocándome en forma exclusiva al
-          Derecho de la Salud, una novel pero consolidada rama jurídica, que me
-          abrió las puertas de la labor en equipo a nivel local y nacional. De
-          la mano de grandes -y muy generosas- referentes, tuve la oportunidad
-          de organizar y participar en <Separator height={"37px"} />
-          <Separator height={"37px"} /> Congresos, paneles y disertaciones en
-          diferentes provincias argentinas, junto a un grupo humano maravilloso,
-          en un intercambio de experiencias del cual, aún hoy, me sigo nutriendo
+          Abogada en <br/> la Universidad Pública, abocándome en forma exclusiva al
+          Derecho de la Salud, una <br/> novel pero consolidada rama jurídica, que me
+          abrió las puertas de la labor en equipo <br/> a nivel local y nacional. De
+          la mano de grandes -y muy generosas- referentes, tuve <br/> la oportunidad
+          de organizar y participar en 
+          <br/> Congresos, paneles y disertaciones en
+          diferentes provincias argentinas, junto a un  <br/>grupo humano maravilloso,
+          en un intercambio de experiencias del cual, aún hoy, <br/> me sigo nutriendo
           profundamente.
-          <Separator height={"37px"} />
+          <br/>
+          <br/>
           Como Especialista en Derecho Penal, logré durante cuatro años generar
-          los conocimientos necesarios para conectar todos los puntos y entender
-          que mi máximo potencial como profesional se genera a partir de la
-          integración de aquellas disciplinas que trabajan muy cerca{" "}
-          <Separator height={"37px"} />
-          <Separator height={"37px"} /> de las personas, en contacto directo con
-          su historia, sus tensiones, sus problemáticas.{" "}
-          <Separator height={"37px"} />
-          <Separator height={"37px"} /> Más, anhelaba entender mejor como
-          funcionamos, de modo que, cuando tuve el espacio, me zambullí de pleno
-          en la Licenciatura en Psicología, carrera que me encuentro cursando y
-          que produjo el equilibrio que mi recorrido necesitaba.{" "}
-          <Separator height={"37px"} />
-          <Separator height={"37px"} /> Algunas herramientas adquiridas me
+          los <br/> conocimientos necesarios para conectar todos los puntos y entender
+          que mi <br/> máximo potencial como profesional se genera a partir de la
+          integración de aquellas <br/> disciplinas que trabajan muy cerca{" "}
+          <br/> de las personas, en contacto directo con
+          su historia, sus tensiones, sus<br/>  problemáticas.
+          <br/> Más, anhelaba entender mejor como
+          funcionamos, de modo que, cuando tuve el <br/> espacio, me zambullí de pleno
+          en la Licenciatura en Psicología, carrera que me  <br/>encuentro cursando y
+          que produjo el equilibrio que mi recorrido necesitaba.
+          <br/> Algunas herramientas adquiridas me
           comprometen de forma especial: ser en Docente de Derecho, e
           Instructora de Yoga en países como Cuba y México canalizan mi
           entusiasmo por compartir, y sintetizar todos los ámbitos del
-          desarrollo humano. <Separator height={"37px"} />
-          <Separator height={"37px"} />
+          desarrollo humano. <br/>
+          <br/>
           Trabajé y sigo trabajando a diario con una visión: hacer un aporte de
-          valor que refuerce la conciencia personal y comunitaria, para con
-          nuestro Ser y para con el Planeta. <Separator height={"37px"} />
-          <Separator height={"37px"} /> Desde el año 2002 me encontrás siempre
-          trabajando para el Servicio de Justicia Federal de miciudad.
-          <Separator height={"37px"} />
+          valor que <br/>refuerce la conciencia personal y comunitaria, para con
+          nuestro Ser y para con el<br/> Planeta. <br/>
+          <br/> Desde el año 2002 me encontrás siempre
+          trabajando para el Servicio de Justicia<br/> Federal de miciudad.
+          <br/><br/>
           En mi expresión intento ejercitarme con frecuencia en el uso la X, la
-          E, @ o #, entre otras marcaslingüísticas que contribuyen a construir
+          E, @ o #, entre<br/> otras marcaslingüísticas que contribuyen a construir
           BRANDIGmodos mas auténticos de narrarnos. Porque aun creo que las
           cosas pueden cambiar.
         </p>

@@ -38,5 +38,13 @@
         "year": 2025,
         "comment": "",
         "title": "Titulo de prueba"
+    },
+    {
+        "id": 6,
+        "image": "",
+        "categorie": "penal",
+        "year": 2021,
+        "comment": "",
+        "title": "Titulo de prueba"
     }
 ]

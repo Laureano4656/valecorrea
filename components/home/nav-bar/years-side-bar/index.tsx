@@ -19,10 +19,10 @@ const YearSideBar = () => {
 
   return (
     <div className={`${styles.yearsSideBar}`}>
+      <Year categories={categories} />
       <div className={`${styles.categories}`}>
         <Categories categories={categories} />
       </div>
-      <Year categories={categories} />
     </div>
   );
 };

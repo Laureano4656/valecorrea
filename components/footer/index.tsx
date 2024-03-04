@@ -13,7 +13,7 @@ const Footer: React.FC<props> = ({ fixed }) => {
   return (
     <div className={`${fixed && styles.footerFixed} ${styles.footer} `}>
       <div className="flex items-center gap-2">
-        <Box size="24px" />
+        <Box size="1.5vw" />
         <Link
           target="_blank"
           className={`${styles.link} font-playfair`}
@@ -21,7 +21,7 @@ const Footer: React.FC<props> = ({ fixed }) => {
         >
           valeriacorrea@gmail.com
         </Link>
-        <IgSocial size="24px" />
+        <IgSocial size="1.5vw" />
         <Link
           target="_blank"
           className={`${styles.link} font-playfair`}

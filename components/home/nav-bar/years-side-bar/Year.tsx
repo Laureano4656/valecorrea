@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FunctionComponent, useEffect } from "react";
 import styles from "./styles/years-side-bar.module.css";
 import useCategoryYear from "../../../utils/useCategoryYear";
@@ -23,20 +24,20 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
   }, [categories]);
 
   return (
-    <div className={`${styles.years} `}>
+    <ul className={` font-playfair min-h-[100px] flex gap-[2.5vw] flex-col items-start`}>
       {yearsArray.length > 0 &&
-        yearsArray.map((year) => (
-          <p
-            key={year}
+        yearsArray.map((year,index) => (
+          <li
+            key={index}
             className={` ${
               selectedYear === year ? styles.yearsActive : styles.years
             }`}
             onClick={() => setSelectedYear(year)}
           >
             {year}
-          </p>
+          </li>
         ))}
-    </div>
+    </ul>
   );
 };
 
