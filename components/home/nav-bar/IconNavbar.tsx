@@ -8,8 +8,11 @@ import ValeCorrea from "../../icons/ValeCorrea";
 import styles from "./styles/iconNavbar.module.css";
 import Inspiration from "../../icons/Inspiration";
 import Heart from "../../icons/Heart";
+import Link from "next/link";
+import { disabledAnimationHome } from "../../../globals/homeAnimations";
 const IconNavbar = () => {
-  const iconSize = "50%"
+  const { setAnimationsHome } = disabledAnimationHome();
+  const iconSize = "50%";
   const router = useRouter();
   const iconMap = {
     derecho: (
@@ -19,12 +22,12 @@ const IconNavbar = () => {
     ),
     psicologia: (
       <div className={styles.iconNavbar}>
-        <Book color="#fff" size={iconSize} fill={"#fff"}/>
+        <Book color="#fff" size={iconSize} fill={"#fff"} />
       </div>
     ),
     "sobre-mi": (
       <div className={styles.iconNavbar}>
-        <ValeCorrea color="#fff" size={iconSize} />
+        <ValeCorrea color="#fff" size={"40%"} />
       </div>
     ),
     filosofia: (
@@ -58,7 +61,16 @@ const IconNavbar = () => {
     return null;
   };
 
-  return getIconForPath();
+  return (
+    <button
+      onClick={() => {
+        setAnimationsHome(true);
+        router.push("/");
+      }}
+    >
+      {getIconForPath()}
+    </button>
+  );
 };
 
 export default IconNavbar;

@@ -6,9 +6,12 @@ export const Favicon: React.FC<iconType> = ({
   background,
   className,
 }) => {
+  const style = {
+    transition: "background-color 0.5s ease", // Agrega la transición suave
+  };
   return (
     <svg
-      className={className ? className : ""}
+      className={className}
       height={size ? size : "100%"}
       width={size ? size : "100%"}
       xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +20,7 @@ export const Favicon: React.FC<iconType> = ({
       <g id="Capa_2" data-name="Capa 2">
         <g id="Capa_1-2" data-name="Capa 1">
           <path
+            style={style}
             fill={background ? background : "#000"}
             d="M77.7,3.5c15.56,3.38,23,9.48,23,9.48s6.09,35.87-18.28,70.39c-12.18,18.27-29.1,27.75-31.81,28.43-2.71-.68-19.63-10.16-31.81-28.43C-4.88,48.85.53,13,.53,13S8,6.88,24.22,3.5c18.31-4.75,35.14-4.59,53.48,0"
           />

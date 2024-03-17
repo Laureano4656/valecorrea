@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "css": "npx tailwindcss -i ./styles/config.css -o ./styles/index.css --watch --minify"
+    "css": "npx tailwindcss -i ./styles/config.css -o ./styles/index.css --watch --minify",
+    "set-image-path": "echo '{\"imageBasePath\": \"/static/images/\"}' > image-path.json"
   },
   "dependencies": {
     "autoprefixer": "^10.4.16",
@@ -22,7 +23,8 @@
     "react-use-gesture": "^9.1.3",
     "slick-carousel": "^1.8.1",
     "swiper": "^6.8.4",
-    "tailwind": "^4.0.0"
+    "tailwind": "^2.2.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",

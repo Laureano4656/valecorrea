@@ -2,8 +2,13 @@ import React from "react";
 import { iconType } from "./iconTypes";
 
 export const BarLoading: React.FC<iconType> = ({ size, color, background }) => {
+  console.log(size);
+
   return (
-    <div className={`relative w-[${size}] overflow-hidden`}>
+    <div
+      style={{ width: size ? size : "100%" }}
+      className={`relative  overflow-hidden`}
+    >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 137.88 26.22">
         <g>
           <g>

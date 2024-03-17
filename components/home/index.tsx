@@ -16,70 +16,92 @@ import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
 const IconsTouch = () => {
+  const [rotationFavicon, setRotationFavicon] = useState(false);
+  const [intervalColor, setIntervalColor] = useState(true);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRotationFavicon(true);
+
+      setTimeout(() => {
+        setRotationFavicon(false);
+        setIntervalColor(!intervalColor);
+      }, 3000); // Duración de la animación en milisegundos
+    }, 6000); // Intervalo de 6 segundos
+    return () => clearInterval(interval);
+  }, [intervalColor]);
+
   return (
-    <div className="flex flex-col justify-between w-full min-h-[90vh]">
-      <div className=" mt-36 relative w-[17vw] h-[17vw] mx-auto my-1 flex justify-center items-center">
-        <IconMenu
-          link={"psicologia"}
-          title={"Psicologia"}
-          className="left-[50%]  top-[-30%] translate-x-[-50%]"
-        >
-          <Book size="60%" strokeMiterlimit={10} />
-        </IconMenu>
-        <IconMenu
-          link={"bienestar"}
-          title={"Bienestar"}
-          className="top-[-10%] right-[-15%] "
-        >
-          <Heart size="60%" />
-        </IconMenu>
-        <IconMenu
-          link={"inspiracion"}
-          title={"Inspiración"}
-          className="right-[-30%]  top-[50%] translate-y-[-50%]"
-        >
-          <Inspiration size="60%" />
-        </IconMenu>
-        <IconMenu
-          link={"derecho"}
-          title={"Derecho"}
-          className="bottom-[-15%] right-[-15%]"
-        >
-          <Camera size="60%" />
-        </IconMenu>
-        <IconMenu
-          link={"derecho"}
-          title={"Derecho"}
-          className="right-[50%]  bottom-[-30%] translate-x-[50%]"
-        >
-          <Play size="60%" />
-        </IconMenu>
-        <IconMenu
-          link={"derecho"}
-          title={"Derecho"}
-          className="top-[-10%] left-[-10%] "
-        >
-          <Hammer size="60%" />
-        </IconMenu>
-        <IconMenu
-          link={"sobre-mi"}
-          title={"Sobre mi"}
-          className="left-[-30%]  bottom-[50%] translate-y-[50%] "
-        >
-          <ValeCorrea size="60%" />
-        </IconMenu>
-        <IconMenu
-          link={"filosofia"}
-          title={"Filosofia"}
-          className="bottom-[-10%] left-[-10%] "
-        >
-          <Ligth size="60%" />
-        </IconMenu>
-        <div className="w-[9vw] mx-auto contenedor">
-          <Favicon background="#000" />
+    <div className="flex flex-col justify-between w-full min-h-screen pb-8">
+      <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+        <div className="relative w-[17vw] h-[17vw] mx-auto my-1 flex justify-center items-center">
+          <IconMenu
+            link={"psicologia"}
+            title={"Textos"}
+            className="left-[50%]  top-[-30%] translate-x-[-50%]"
+          >
+            <Book size="60%" strokeMiterlimit={10} />
+          </IconMenu>
+          <IconMenu
+            link={"bienestar"}
+            title={"Salud"}
+            className="top-[-10%] right-[-15%] "
+          >
+            <Heart size="60%" />
+          </IconMenu>
+          <IconMenu
+            link={"inspiracion"}
+            title={"Bienestar"}
+            className="right-[-30%]  top-[50%] translate-y-[-50%]"
+          >
+            <Inspiration size="60%" />
+          </IconMenu>
+          <IconMenu
+            link={"inspiracion"}
+            title={"Fotografia"}
+            className="bottom-[-15%] right-[-15%]"
+          >
+            <Camera size="60%" />
+          </IconMenu>
+          <IconMenu
+            link={"derecho"}
+            title={"Video"}
+            className="right-[50%]  bottom-[-30%] translate-x-[50%]"
+          >
+            <Play size="60%" />
+          </IconMenu>
+          <IconMenu
+            link={"derecho"}
+            title={"Derecho"}
+            className="top-[-10%] left-[-10%] "
+          >
+            <Hammer size="60%" />
+          </IconMenu>
+          <IconMenu
+            link={"sobre-mi"}
+            title={"Sobre mi"}
+            className="left-[-30%]  bottom-[50%] translate-y-[50%] "
+          >
+            <ValeCorrea size="60%" />
+          </IconMenu>
+          <IconMenu
+            link={"filosofia"}
+            title={"filosofia"}
+            className="bottom-[-10%] left-[-10%] "
+          >
+            <Ligth size="60%" />
+          </IconMenu>
+          <div
+            className={`  ${
+              rotationFavicon && styleCarrousel.animationFavicon
+            } w-[9vw] mx-auto`}
+          >
+            <Favicon
+              background={intervalColor ? `rgba(139, 69, 19, 1)` : "#000"}
+            />
+          </div>
         </div>
       </div>
-      <div className="z-0">
+      <div className="fixed z-0 bottom-12 ">
         <Marquee direction="left">
           <div className="flex gap-2 px-1">
             <Image

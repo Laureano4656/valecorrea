@@ -4,6 +4,20 @@
     perspective: 1000px;
 }
 
+.animationFavicon {
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
 .imagenContainer {
     position: relative;
     width: 100%;
@@ -73,8 +87,9 @@
     right: -200%;
 }
 
-
-
+.img{
+    width: 60vw;
+}
 @keyframes slide {
     0% {
         right: 0;
@@ -105,5 +120,3 @@
         right: 100%;
     }
 }
-
-

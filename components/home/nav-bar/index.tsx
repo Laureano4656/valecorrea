@@ -63,10 +63,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
 
   return (
     <div
-      // ${
-      //   maxWhith && ""
-      // }
-      className={` flex items-center justify-between  mx-auto  px-[5%]  h-[150px] w-full  relative`}
+      className={` flex items-center justify-between  mx-auto  px-[4.3%]  h-[8.2vw] w-full  relative`}
     >
       <IconNavbar />
       <div className="w-full mx-auto">
@@ -76,7 +73,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
               <Link
                 className={` ${
                   router.pathname.replace("/[ID]", "") === `/${item.href}`
-                    ? "font-playfairSemiBold text-[1.8vw]  opacity-100  text-black"
+                    ? "font-playfairSemiBold text-[1.7vw]  opacity-100  text-black"
                     : "text-black opacity-60 text-[1.3vw]   font-playfair "
                 }`}
                 href={`/${item.href}`}
