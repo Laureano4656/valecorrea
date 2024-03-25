@@ -18,6 +18,7 @@ const login = () => {
       (userData.password !== "test123" &&
         userData.user !== "admintest" &&
         userData.password.length !== 0) ||
+        
       userData.user.length !== 0
     ) {
       setError(true);
@@ -42,6 +43,7 @@ const login = () => {
         <input
           className="px-4 py-2"
           name={"password"}
+          type="password"
           placeholder="Contraseña"
           onChange={(e) =>
             setUserData({ ...userData, password: e.target.value })
@@ -49,7 +51,7 @@ const login = () => {
         />
         <button
           className={`${error ? "text-red-600" : "black"}`}
-          disabled={error}
+          // disabled={error}
           type="submit"
         >
           Ingresar

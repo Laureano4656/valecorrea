@@ -6,18 +6,22 @@ import Book from "../../components/icons/Book";
 import adComplete from "../../mooks/all-ads.json";
 import penalImage from "../../static/penal/Manual de marca Valeria Correa.jpg";
 import Image from "next/image";
+import useAllCategories from "../../hooks/useAllCategories";
 
 const DerechoId = () => {
   const router = useRouter();
+
+  const { allCategories, setAllCategories } = useAllCategories();
   const [content, setContent] = useState([]);
 
   useEffect(() => {
     setContent(
-      adComplete.filter((list) => {
+      allCategories.filter((list) => {
         return list.id.toString() === router?.query?.ID;
       })
     );
   }, []);
+
   const getImage = (value) => {
     return penalImage;
   };
@@ -29,9 +33,9 @@ const DerechoId = () => {
           {content.map((e) => (
             <>
               {e.image.length > 0 && (
-                <Image
+                <img
                   style={{ objectFit: "cover", width: "100%", height: "400px" }}
-                  src={getImage(e.image)}
+                  src={e.image ?  e.image : getImage(e.image)}
                   alt={"Imagen"}
                 />
               )}
@@ -39,7 +43,9 @@ const DerechoId = () => {
                 {e.title}
               </h1>
 
-              <p className="text-[1.5vw] text-black font-playfair">{e.comment}</p>
+              <p className="text-[1.5vw] text-black font-playfair">
+                {e.comment}
+              </p>
             </>
           ))}
         </div>

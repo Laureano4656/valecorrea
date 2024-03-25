@@ -1,21 +1,16 @@
 import React, { useEffect } from "react";
 import IconsTouch from "../components/home";
 import Welcome from "../components/home/components/Welcome";
-import { disabledAnimationHome } from "../globals/homeAnimations";
+import { useRouter } from "next/router";
 const Home = () => {
-  const { animationsHome, setAnimationsHome } = disabledAnimationHome();
+  const rotuer = useRouter();
   setTimeout(() => {
-    setAnimationsHome(true);
+    rotuer.push("/home");
   }, 5000);
-
-  // useEffect(() => {
-  //   setAnimationsHome(false);
-  // }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen ">
-      <IconsTouch />
-      {!animationsHome && <Welcome />}
+      <Welcome />
     </div>
   );
 };

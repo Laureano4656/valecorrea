@@ -19,6 +19,7 @@ interface SubCategory {
 const NavBar: React.FC<props> = ({ maxWhith }) => {
   const { selectedCategory, setSelectedCategory } = useCategoryStore();
   const { adCategoryComplete, setAdCategoryComplete } = useAdComplete();
+  console.log(selectedCategory);
 
   const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
 
@@ -54,8 +55,6 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
           return i.item === "salud";
         });
       });
-
-      console.log(selectedOne);
 
       // setSelectedCategory(subCategory[0][0])
     }

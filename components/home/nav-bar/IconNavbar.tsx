@@ -9,9 +9,7 @@ import styles from "./styles/iconNavbar.module.css";
 import Inspiration from "../../icons/Inspiration";
 import Heart from "../../icons/Heart";
 import Link from "next/link";
-import { disabledAnimationHome } from "../../../globals/homeAnimations";
 const IconNavbar = () => {
-  const { setAnimationsHome } = disabledAnimationHome();
   const iconSize = "50%";
   const router = useRouter();
   const iconMap = {
@@ -64,8 +62,7 @@ const IconNavbar = () => {
   return (
     <button
       onClick={() => {
-        setAnimationsHome(true);
-        router.push("/");
+        router.push("/home");
       }}
     >
       {getIconForPath()}

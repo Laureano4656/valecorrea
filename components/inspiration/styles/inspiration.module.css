@@ -4,7 +4,7 @@
     grid-auto-rows: minmax(100px, calc(59vw/3));
     grid-gap: .1vw;
     width: 59vw;
-    margin: 0 auto
+    margin: 0 auto 0 22%
 }
 
 .item:nth-child(3n) {
@@ -20,5 +20,6 @@
         grid-template-columns: repeat(3, minmax(100px, 100%));
         grid-auto-rows: minmax(100px, 100%);
         width: 100%;
+        margin: 0 auto;
     }   
 }

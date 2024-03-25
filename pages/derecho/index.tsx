@@ -5,8 +5,7 @@ import LayoutHScreen from "../../components/utils/LayoutHScreen";
 const Derecho = () => {
   return (
     <LayoutHScreen>
-      <NavSide sideBar={true}>
-      </NavSide>
+      <NavSide sideBar={true}></NavSide>
     </LayoutHScreen>
   );
 };

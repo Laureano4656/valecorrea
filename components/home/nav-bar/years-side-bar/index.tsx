@@ -3,15 +3,19 @@ import styles from "./styles/years-side-bar.module.css";
 import Year from "./Year";
 import useCategoryStore from "../../../utils/useCategoryStore";
 import Categories from "./Categories";
-import allCategories from "../../../../mooks/all-ads.json";
+import useAllCategories from "../../../../hooks/useAllCategories";
 const YearSideBar = () => {
+  const { allCategories } = useAllCategories();
+  console.log(allCategories);
+
   const [categories, setCategories] = useState([]);
   const { selectedCategory } = useCategoryStore();
+console.log(selectedCategory);
 
   useEffect(() => {
     // Simulación de datos del endpoint de años
     const categoryFilter = allCategories.filter((category) => {
-      return category.categorie === selectedCategory;
+      return category.subCategory === selectedCategory;
     });
 
     setCategories(categoryFilter);

@@ -32,8 +32,8 @@ const IconsTouch = () => {
 
   return (
     <div className="flex flex-col justify-between w-full min-h-screen pb-8">
-      <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
-        <div className="relative w-[17vw] h-[17vw] mx-auto my-1 flex justify-center items-center">
+      <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-[44%]">
+        <div className="relative w-[19.3vw] h-[19.3vw] mx-auto my-1 flex justify-center items-center">
           <IconMenu
             link={"psicologia"}
             title={"Textos"}
@@ -93,7 +93,7 @@ const IconsTouch = () => {
           <div
             className={`  ${
               rotationFavicon && styleCarrousel.animationFavicon
-            } w-[9vw] mx-auto`}
+            } w-[10.3vw] mx-auto`}
           >
             <Favicon
               background={intervalColor ? `rgba(139, 69, 19, 1)` : "#000"}

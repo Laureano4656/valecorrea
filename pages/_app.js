@@ -1,4 +1,4 @@
-import "../styles/index.css";
+// import "../styles/index.css";
 import "../styles/globals.css";
 import { AppProvider } from "../components/utils/AppProvider";
 function MyApp({ Component, pageProps }) {
