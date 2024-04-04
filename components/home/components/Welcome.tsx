@@ -16,7 +16,7 @@ const Welcome = () => {
   return (
     <div className="fixed flex items-center justify-center w-full h-screen bg-white">
       {timer.timer1 && (
-        <div className="relative flex items-center justify-center gap-3 overflow-hidden bg-white h-max w-max pr-[3vw] ">
+        <div className="relative flex items-center justify-center gap-3 overflow-hidden bg-white h-max w-max pr-[4vw] ">
           <div className=" bg-gradient-to-r from-white via-white to-transparent z-10 w-[10.5vw] h-[10.5vw]  relative flex justify-end items-center">
             <span className="absolute h-[95%] w-[95%] flex items-center justify-center  -translate-x-1/2 left-1/2">
               <Favicon size="100%" />
@@ -27,7 +27,7 @@ const Welcome = () => {
           </h2>
         </div>
       )}
-    
+
       {timer.timer2 && (
         <div className="flex flex-col items-center text-center welcome-block">
           <h2 className="text-[2.7vw] font-playfairExtraBold mb-[1vw]">
