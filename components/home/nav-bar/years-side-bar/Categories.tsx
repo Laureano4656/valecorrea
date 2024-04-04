@@ -7,6 +7,7 @@ import useCategoryYear from "../../../utils/useCategoryYear";
 import Image from "next/image";
 import addIcon from "../../../../static/icons/SVG/add.svg";
 import useCreateNote from "../../../utils/useCreateNote";
+import useUserLogin from "../../../utils/useAllCategoriesStore";
 interface Props {
   categories: any;
 }
@@ -14,6 +15,7 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
   const router = useRouter();
   const [categoriesPerYear, setCategoriesPerYear] = useState([]);
 
+  const { userLogin } = useUserLogin();
   const { selectedCategory } = useCategoryStore();
   const { selectedYear } = useCategoryYear();
 
@@ -40,15 +42,16 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
   return (
     <>
       {categoriesPerYear.length > 0 && (
-        // aca
         <>
           <ul className="flex flex-col gap-[2vw]">
-            <li onClick={() => createNewYear()} className="cursor-pointer">
-              <div className="flex justify-start items-center text-start font-playfair gap-2 flex-col  text-[1vw] w-full pl-3 ">
-                <Image className="w-[1.7vw] " src={addIcon} alt="Agregar" />
-                Agregar nota
-              </div>
-            </li>
+            {userLogin && (
+              <li onClick={() => createNewYear()} className="cursor-pointer">
+                <div className="flex justify-start items-center text-start font-playfair gap-2 flex-col  text-[1vw] w-full pl-3 ">
+                  <Image className="w-[1.7vw] " src={addIcon} alt="Agregar" />
+                  Agregar nota
+                </div>
+              </li>
+            )}
             {categoriesPerYear.map((category) => (
               <li key={category.id}>
                 <Link href={`/${router.pathname}/${category.id}`}>

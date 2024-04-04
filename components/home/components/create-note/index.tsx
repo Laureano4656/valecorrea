@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBarFooter from "../../../navbar-footer";
 import GlobalInput from "../ui/input-global";
 import close from "../../../../static/icons/SVG/close.svg";
@@ -13,29 +13,29 @@ import useAllCategories from "../../../../hooks/useAllCategories";
 import TextArea from "../ui/input-global/textarea";
 const CreateNote = () => {
   const router = useRouter();
-  const { createNote, setCreateNote } = useCreateNote();
+  const { createNote } = useCreateNote();
   const { allCategories, setAllCategories } = useAllCategories();
-
-  const initialForm = {
+  const initialValues = {
     id: new Date().getTime(),
-    image: "",
+    image: null,
     title: "",
-    subCategory: createNote.category,
+    subCategory: createNote.subCategory,
     year: createNote.year,
     comment: "",
+    category: createNote.category,
   };
 
-  const [newNote, setNewNote] = useState([]);
+  const [initialForm, setInitialForm] = useState(initialValues);
 
   const { form, handleChange, resetForm } = useForm(initialForm, null);
   const handleChangeTest = (e) => {
     console.log(e.target.value);
   };
+
   const createNewNote = () => {
     setAllCategories([...allCategories, form]);
-    // router.push(`/${createNote.category}`);
+    router.push(`/${createNote.category}`);
   };
-
   const [imageSrc, setImageSrc] = useState<any>("");
 
   const handleImageChange = (e) => {
@@ -51,8 +51,7 @@ const CreateNote = () => {
       reader.readAsDataURL(file);
     }
   };
-  console.log("allCategories");
-  console.log(allCategories);
+  console.log(form);
 
   return (
     <NavBarFooter>
@@ -66,7 +65,15 @@ const CreateNote = () => {
             imageValue={form.image}
             onChange={handleImageChange}
           />
-          <Image src={close} alt="close" className="absolute right-4 top-2" />
+          <Image
+            onClick={() => {
+              form.image = "";
+              setInitialForm({ ...initialForm, image: null });
+            }}
+            src={close}
+            alt="close"
+            className="absolute cursor-pointer right-4 top-2"
+          />
         </div>
         <div className="relative h-auto border-black border-border1 ">
           <GlobalInput
@@ -85,6 +92,15 @@ const CreateNote = () => {
             type="text"
             name={"title"}
           />
+          <Image
+            onClick={() => {
+              form.title = "";
+              setInitialForm({ ...initialForm, title: null });
+            }}
+            src={close}
+            alt="close"
+            className="absolute cursor-pointer right-4 top-2"
+          />
         </div>
         <div className="relative flex flex-col justify-between border-black border-border1">
           <TextArea
@@ -93,22 +109,48 @@ const CreateNote = () => {
             style={{ height: "29vw", fontSize: "1.5vw" }}
             name={"comment"}
             value={form.comment}
+            notBorderFocus
             onChange={handleChange}
           />
 
           <div className=" py-6  flex gap-[3.5vw] items-center justify-center ">
-            <Image
+            <button
+              disabled={!form.title || !form.comment}
               onClick={() => createNewNote()}
-              src={save}
-              alt="close"
-              className="cursor-pointer w-[3.5vw] right-4 top-2"
-            />
-            <Image
-              src={trash}
-              alt="close"
-              className="cursor-pointer w-[3.5vw] right-4 top-2"
-            />
+              className="text-[1vw] flex flex-col items-center justify-center cursor-pointer right-4 top-2"
+            >
+              <Image
+                src={save}
+                alt="close"
+                width={0}
+                height={0}
+                className="w-[3vw]"
+              />
+              guardar
+            </button>
+            <button
+              onClick={() => resetForm()}
+              className="text-[1vw] flex flex-col items-center justify-center cursor-pointer right-4 top-2"
+            >
+              <Image
+                src={trash}
+                alt="close"
+                width={0}
+                height={0}
+                className="w-[3vw]"
+              />
+              eliminar
+            </button>
           </div>
+          <Image
+            onClick={() => {
+              form.comment = "";
+              setInitialForm({ ...initialForm, comment: null });
+            }}
+            src={close}
+            alt="close"
+            className="absolute cursor-pointer right-4 top-2"
+          />
         </div>
       </div>
     </NavBarFooter>

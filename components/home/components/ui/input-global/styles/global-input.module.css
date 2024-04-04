@@ -27,6 +27,9 @@
     cursor: text;
 }
 
+
+
+
 .label {
     position: absolute;
     top: -28px;
@@ -35,6 +38,11 @@
 .onFocus {
     border: 1px solid #000;
 }
+
+.onFocus:focus {
+    border: 1px solid #000;
+}
+
 
 .border {
     border: 1px solid #000;

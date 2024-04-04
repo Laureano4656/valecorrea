@@ -10,7 +10,6 @@ import Heart from "../icons/Heart";
 import IconMenu from "./IconMenu";
 import Inspiration from "../icons/Inspiration";
 import styleCarrousel from "./home.module.css";
-import sobreMi from "../../static/images/foto Sobre Mi.png";
 import bannerImg from "../../static/home/banner.svg";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
@@ -85,7 +84,7 @@ const IconsTouch = () => {
           </IconMenu>
           <IconMenu
             link={"filosofia"}
-            title={"filosofia"}
+            title={"Filosofia"}
             className="bottom-[-10%] left-[-10%] "
           >
             <Ligth size="60%" />

@@ -27,7 +27,7 @@ const Welcome = () => {
           </h2>
         </div>
       )}
-
+    
       {timer.timer2 && (
         <div className="flex flex-col items-center text-center welcome-block">
           <h2 className="text-[2.7vw] font-playfairExtraBold mb-[1vw]">
@@ -36,7 +36,7 @@ const Welcome = () => {
           <p className="mb-[1.8vw] text-[1.7vw] font-playfair">
             estas ingrensando <br /> a un área de plena lectura <br /> asique,
             ¡ponete comodx!
-        </p>
+          </p>
           <BarLoading size="13.4vw" />
         </div>
       )}

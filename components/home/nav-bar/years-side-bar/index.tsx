@@ -4,22 +4,24 @@ import Year from "./Year";
 import useCategoryStore from "../../../utils/useCategoryStore";
 import Categories from "./Categories";
 import useAllCategories from "../../../../hooks/useAllCategories";
+import { useRouter } from "next/router";
 const YearSideBar = () => {
   const { allCategories } = useAllCategories();
-  console.log(allCategories);
 
   const [categories, setCategories] = useState([]);
   const { selectedCategory } = useCategoryStore();
-console.log(selectedCategory);
+  const router = useRouter();
 
   useEffect(() => {
     // Simulación de datos del endpoint de años
     const categoryFilter = allCategories.filter((category) => {
-      return category.subCategory === selectedCategory;
+      return (
+        category.subCategory === selectedCategory &&
+        category.category === router.asPath.replace("/", "")
+      );
     });
-
     setCategories(categoryFilter);
-  }, [selectedCategory]);
+  }, [selectedCategory, allCategories]);
 
   return (
     <div className={`${styles.yearsSideBar}`}>

@@ -1,16 +1,16 @@
-import create from "zustand";
+import { create } from "zustand";
 interface Data {
   year: number;
-  category: string;
+  category?: string;
   subCategory?: string;
 }
 interface CreateNote {
-  createNote: Data | null;
+  createNote: Data | any;
   setCreateNote: (data: Data) => void;
 }
 
 const useCreateNote = create<CreateNote>((set) => ({
-  createNote: null,
+  createNote: {},
   setCreateNote: (data: Data) => set({ createNote: data }),
 }));
 export default useCreateNote;

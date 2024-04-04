@@ -1,7 +1,8 @@
+
 [
     {
         "id": 1,
-        "image": "",
+        "image": null,
         "category": "derecho",
         "subCategory": "salud",
         "year": 2023,
@@ -10,7 +11,7 @@
     },
     {
         "id": 2,
-        "image": "",
+        "image": null,
         "category": "derecho",
         "subCategory": "salud",
         "year": 2023,
@@ -19,7 +20,7 @@
     },
     {
         "id": 3,
-        "image": "",
+        "image": null,
         "category": "derecho",
         "subCategory": "salud",
         "year": 2023,
@@ -28,29 +29,11 @@
     },
     {
         "id": 4,
-        "image": "Manual de marca Valeria Correa",
+        "image": null,
         "category": "derecho",
         "subCategory": "penal",
         "year": 2024,
         "comment": "La cuestión del juzgamiento de delitos considerados de lesa humanidad, cometidos por aparatos organizados de poder presenta un intrincado desafío dogmático para la ciencia penal: cómo responsabilizar el accionar de aquellos que lideran las organizaciones pero que no intervienen directamente en la ejecución de los hechos, eludiendo las conceptualizaciones clásicas que fundan los institutos de la autoría y la participación criminal. Cómodamente sentados en sus escritorios, a kilómetros de distancia de los acontecimientos, los “hombres de atrás” han trazado el mapa, establecido la logística, dotado de los medios, y garantizando las impunidades, de quienes llevaban a cabo el acto físico de consumación del ilícito, únicos a los cuales se atribuía la calidad de autor, criterio central de la actuación. Las clasificaciones tradicionales no contemplaban, hasta la intervención de Claus Roxin, una figura capaz de generar una imputación adecuada, considerando las particularidades de ambos aportes o, cuanto menos, no se había diseñado hasta el momento una estructura que pudiera de contener jurídicamente un fenómeno complejo como la macrocriminalidad estatal en cuestiones de lesa humanidad. El Objetivo del presente trabajo es analizar, desde el punto de vista histórico, normativo y dogmático, el impacto la teoría elaborada por Roxin frente a las categorías de autoría tradicionales, como se han afrontado algunas de las críticas mas sobresalientes (que ponen en jaque la posibilidad misma de su existencia), minuciosamente refutadas por el autor a lo largo de los años para, finalmente abordar de que manera es posible conducir, en una evolución técnico-teórica, estos contenidos al notable crecimiento del derecho punitivo aplicado a la macrocriminalidad no estatal, organizativa o empresarial, que forma parte de las agendas político criminales del mundo actual. ",
         "title": "DELITOS DE LESA HUMANIDAD/ Dominio de la voluntad por aparatos organizados de poder de Clauss Roxin."
-    },
-    {
-        "id": 5,
-        "image": "",
-        "category": "derecho",
-        "subCategory": "penal",
-        "year": 2025,
-        "comment": "",
-        "title": "Titulo de prueba"
-    },
-    {
-        "id": 6,
-        "image": "",
-        "category": "derecho",
-        "subCategory": "penal",
-        "year": 2021,
-        "comment": "",
-        "title": "Titulo de prueba"
     }
 ]

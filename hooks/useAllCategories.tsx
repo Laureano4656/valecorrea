@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 
 import allCategoriesJson from "../mooks/all-ads.json";
 

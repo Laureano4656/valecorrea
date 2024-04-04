@@ -17,16 +17,6 @@ export interface GlobalInputProps extends ComponentPropsWithoutRef<"input"> {
   ref?: React.LegacyRef<HTMLInputElement>;
   disabled?: boolean;
   name?: string;
-  // placeholder?: string;
-  // value?: string;
-  // readOnly?: boolean;
-  // autoFocus?: boolean;
-  // onFocus?: React.FocusEventHandler<HTMLInputElement>;
-  // onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  // onChange?: React.ChangeEventHandler<HTMLInputElement> | React.ChangeEventHandler<HTMLTextAreaElement>;
-  // onKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
-  // onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-  // onClick?: () => void;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   border?: boolean;

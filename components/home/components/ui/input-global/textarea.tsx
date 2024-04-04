@@ -5,20 +5,8 @@ import React, {
   useState,
 } from "react";
 import styles from "./styles/global-input.module.css";
-import insert from "../../../../../static/icons/SVG/postImg.svg";
-import Image from "next/image";
 
 export interface TextAreaProps extends ComponentPropsWithoutRef<"textarea"> {
-  // placeholder?: string;
-  // value?: string;
-  // readOnly?: boolean;
-  // autoFocus?: boolean;
-  // onFocus?: React.FocusEventHandler<HTMLInputElement>;
-  // onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  // onChange?: React.ChangeEventHandler<HTMLInputElement> | React.ChangeEventHandler<HTMLTextAreaElement>;
-  // onKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
-  // onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-  // onClick?: () => void;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   border?: boolean;
@@ -51,8 +39,8 @@ const TextArea: FunctionComponent<TextAreaProps> = ({
         ...style,
       }}
       className={` ${styles.container} ${
-        focus && !notBorderFocus && styles.onFocus
-      } ${border && styles.border} ${className}`}
+        border && styles.border
+      } ${className}  ${!notBorderFocus && styles.onFocus} ` }
       placeholder={placeholder}
       value={value}
       name={name}

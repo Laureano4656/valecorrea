@@ -1,3 +1,268 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+* {
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+}
+
+textarea:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+@font-face {
+    font-family: 'PlayfairDisplay-Regular';
+    src: url('../static/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PlayfairDisplay-Bold';
+    src: url('../static/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PlayfairDisplay-ExtraBold';
+    src: url('../static/fonts/PlayfairDisplay-ExtraBold.ttf') format('truetype');
+
+}
+
+@font-face {
+    font-family: 'PlayfairDisplay-SemiBold';
+    src: url('../static/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+}
+
+#container {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.animated-element {
+    width: 200px;
+    height: 200px;
+    background-color: #3498db;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.animate-title-img {
+    display: flex;
+    flex-direction: column;
+}
+
+.animated-element.expanded {
+    width: 100%;
+    height: 80vh;
+    bottom: 0;
+    border-radius: 50% 0 0 50%;
+}
+
+.textAnimation {
+    background: linear-gradient(90deg, transparent 0%, #fff 0%);
+    background-size: 200% 100%;
+    animation: fadeBackground 1.5s ease forwards 1.5s;
+    left: 32%;
+}
+
+.icon-animation {
+    animation: moveIcon 2s ease infinite;
+}
+
+.scroll-transparent::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.scroll-transparent::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+.scroll-transparent::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+
+
+.loading-bar {
+    position: relative;
+    z-index: 5;
+}
+
+.welcome-block {
+    opacity: 0;
+    animation: welcomeBlock 1s ease forwards;
+}
+
+@keyframes welcomeBlock {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.favicon-welcome {
+    margin: 0;
+    animation: faviconAnimPosition 1s ease forwards 1s;
+}
+
+.favicon-none {
+    animation: faviconNone 1s ease forwards 1s;
+}
+
+.favicon-block {
+    opacity: 0;
+    animation: faviconBlock 1s ease forwards 1s;
+}
+
+@keyframes faviconNone {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes faviconBlock {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+@keyframes faviconAnimPosition {
+    0% {
+        margin-left: 0;
+    }
+
+    100% {
+        margin-left: -40vw;
+    }
+}
+
+/* .faviconDisable {
+    display: block;
+    animation: displayNone 1s ease forwards 1.5s;
+
+} */
+
+.faviconActive {
+    opacity: 0;
+    animation: faviconActive 1s ease forwards 2.5s;
+
+}
+
+@keyframes faviconActive {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes displayNone {
+    0% {
+        display: block;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
+@keyframes faviconAnimWidth {
+    0% {
+        width: 180px;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+
+
+.pathLoading {
+    width: 100%;
+    right: 0;
+    background: #fff;
+    z-index: 9000;
+    height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    animation: expandRightToLeft 1.5s ease forwards;
+}
+
+
+@keyframes expandRightToLeft {
+    from {
+        right: 0;
+        /* Comienza desde la derecha */
+    }
+
+    to {
+        right: -100%;
+        /* Termina a la izquierda */
+    }
+}
+
+@keyframes width {
+    to {
+        width: 100%;
+        /* Llena el fondo de izquierda a derecha */
+    }
+}
+
+@keyframes fillBar {
+    to {
+        stroke-dashoffset: 0;
+        /* Llenado completo de izquierda a derecha */
+    }
+}
+
+@keyframes fadeBackground {
+    0% {
+        left: 32%;
+    }
+
+    100% {
+        left: -100%;
+    }
+}
+
+@keyframes moveIcon {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}

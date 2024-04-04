@@ -1,20 +1,16 @@
 import React, { FunctionComponent } from "react";
 import styles from "./styles/inspiration.module.css";
 import Image from "next/image";
-import sobreMi from "../../static/images/foto Sobre Mi.png";
+import image1 from "../../static/inspiration/1.webp";
+import image2 from "../../static/inspiration/2.webp";
+import image3 from "../../static/inspiration/3.webp";
+import image4 from "../../static/inspiration/4.webp";
+import image5 from "../../static/inspiration/5.webp";
+import image6 from "../../static/inspiration/6.webp";
+import image7 from "../../static/inspiration/7.webp";
 
 const Inspiration: FunctionComponent = () => {
-  const images = [
-    sobreMi,
-    sobreMi,
-    sobreMi,
-    sobreMi,
-    sobreMi,
-    sobreMi,
-    sobreMi,
-    sobreMi,
-    sobreMi,
-  ];
+  const images = [image1, image2, image3, image4, image5, image6, image7];
 
   const randomImg = Math.random();
   return (
@@ -32,10 +28,6 @@ const Inspiration: FunctionComponent = () => {
             <Image
               key={index}
               src={image}
-              //   ${
-              //     index === 1 ? "row-span-2 h-full" : "h-[54vw/3]"
-              //   }
-              // object-cover  col-span-1
               className={` ${styles.item} `}
               alt={"Icon"}
             />

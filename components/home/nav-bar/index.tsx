@@ -3,7 +3,6 @@ import IconNavbar from "./IconNavbar";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useCategoryStore from "../../utils/useCategoryStore";
-import useAdComplete from "../../utils/useAdComplete";
 interface props {
   maxWhith?: boolean;
 }
@@ -17,13 +16,10 @@ interface SubCategory {
   sub: SubCategoryIds[];
 }
 const NavBar: React.FC<props> = ({ maxWhith }) => {
+  const router = useRouter();
   const { selectedCategory, setSelectedCategory } = useCategoryStore();
-  const { adCategoryComplete, setAdCategoryComplete } = useAdComplete();
-  console.log(selectedCategory);
-
   const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
 
-  const router = useRouter();
   const menuItems = [
     { label: "sobre mi", href: "sobre-mi" },
     { label: "derecho", href: "derecho" },
@@ -49,16 +45,12 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
           ],
         },
       ]);
-
-      const selectedOne = subCategory.filter((e) => {
-        return e.sub.filter((i) => {
-          return i.item === "salud";
-        });
-      });
-
-      // setSelectedCategory(subCategory[0][0])
     }
   }, [selectedCategory, router.pathname, router.query.ID]);
+
+  useEffect(() => {
+    setSelectedCategory(null);
+  }, [router]);
 
   return (
     <div

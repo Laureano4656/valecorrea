@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import NavBar from "../home/nav-bar";
 import SideBar from "../home/nav-bar/years-side-bar";
-import { AppProvider } from "../utils/AppProvider";
 import Footer from "../footer";
 
 export interface props {

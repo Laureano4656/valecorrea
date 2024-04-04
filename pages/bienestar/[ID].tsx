@@ -1,8 +1,8 @@
 import React  from "react";
 import NoteId from "../../components/note-ids.tsx";
 
-const DerechoId = () => {
+const BienestarId = () => {
   return <NoteId />;
 };
 
-export default DerechoId;
+export default BienestarId;

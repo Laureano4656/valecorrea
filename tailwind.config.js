@@ -31,10 +31,10 @@ module.exports = {
         marginRigth: " 0 auto 0 calc(5% + 4.5vw)"
       },
       fontFamily: {
-        playfair: ["PlayfairDisplay-Regular", "sans"],
-        playfairBold: ["PlayfairDisplay-Bold", "sans"],
-        playfairExtraBold: ["PlayfairDisplay-ExtraBold", "sans"],
-        playfairSemiBold: ["PlayfairDisplay-SemiBold", "sans"],
+        playfair: ["PlayfairDisplay-Regular"],
+        playfairBold: ["PlayfairDisplay-Bold"],
+        playfairExtraBold: ["PlayfairDisplay-ExtraBold"],
+        playfairSemiBold: ["PlayfairDisplay-SemiBold"],
       },
       animation: {
         "fade-out-1000": "fadeOut 1s ease-out",
