@@ -1,5 +1,5 @@
 import React from "react";
-import NoteId from "../../components/note-ids.tsx/index.jsx";
+import NoteId from "../../components/note-ids.tsx";
 
 const visualId = () => {
   return <NoteId />;
