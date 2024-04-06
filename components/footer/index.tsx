@@ -11,7 +11,7 @@ interface props {
 
 const Footer: React.FC<props> = ({ fixed }) => {
   return (
-    <div className={`${fixed && styles.footerFixed} ${styles.footer} `}>
+    <div className={`relative ${fixed && styles.footerFixed} ${styles.footer} `}>
       <div className="flex items-center gap-2">
         <Box size="1.5vw" />
         <Link
@@ -30,8 +30,8 @@ const Footer: React.FC<props> = ({ fixed }) => {
           valecorreadmdq
         </Link>
       </div>
-      <div className="border-white border-solid rounded-full border-border1">
-        <Image src={logoPomelo} alt={"logo pomelo"} width={30} />
+      <div className="border-white border-solid rounded-full border-border1 absolute left-[5%] -translate-y-1/2 top-1/2">
+        <Image src={logoPomelo} alt={"logo pomelo"} width={50} />
       </div>
     </div>
   );

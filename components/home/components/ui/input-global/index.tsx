@@ -7,7 +7,6 @@ import React, {
 import styles from "./styles/global-input.module.css";
 import insert from "../../../../../static/icons/SVG/postImg.svg";
 import Image from "next/image";
-import TextArea from "./textarea";
 
 export interface GlobalInputProps extends ComponentPropsWithoutRef<"input"> {
   label?: string;
@@ -28,6 +27,7 @@ export interface GlobalInputProps extends ComponentPropsWithoutRef<"input"> {
   inputStyle?: React.CSSProperties;
   zIndex?: string;
   imageValue?: string;
+  iconImage?: any;
 }
 
 const GlobalInput: FunctionComponent<GlobalInputProps> = ({
@@ -59,6 +59,7 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
   inputStyle,
   zIndex,
   imageValue,
+  iconImage,
 }) => {
   const [focus, setFocus] = useState(false);
   return (
@@ -88,7 +89,7 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
             />
           )}
 
-          <Image src={insert} alt="Insertar" />
+          {iconImage ? iconImage : <Image src={insert} alt="Insertar" />}
           {placeholder}
         </label>
       )}

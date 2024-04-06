@@ -43,7 +43,7 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
     <>
       {categoriesPerYear.length > 0 && (
         <>
-          <ul className="flex flex-col gap-[2vw]">
+          <ul className="relative flex flex-col w-full ">
             {userLogin && (
               <li onClick={() => createNewYear()} className="cursor-pointer">
                 <div className="flex justify-start items-center text-start font-playfair gap-2 flex-col  text-[1vw] w-full pl-3 ">
@@ -57,7 +57,7 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
                 <Link href={`/${router.pathname}/${category.id}`}>
                   <p
                     key={category.title}
-                    className={`hover:opacity-100 font-playfairSemiBold ${styles.text}`}
+                    className={`hover:opacity-100 font-playfairSemiBold  ml-[31%] w-[42.1vw] ${styles.text}`}
                   >
                     {category.title}
                   </p>

@@ -28,7 +28,7 @@ const SobreMi: FunctionComponent = () => {
             ></div>
           </div>
         </div>
-        <p className="w-full max-w-[60.2vw] text-[1.6vw] text-justify mx-auto  pb-16 font-playfair">
+        <p className="w-full max-w-[60.2vw] md:text-[1.2vw] text-[19px] text-justify mx-auto  pb-16 font-playfair">
           Soy Vale Correa, nací en Mar del Plata en los años ´80 y me considero
           una persona muy curiosa y creativa, con profundos intereses en el
           estudio y la investigación.

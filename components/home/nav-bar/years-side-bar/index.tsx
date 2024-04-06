@@ -25,9 +25,9 @@ const YearSideBar = () => {
 
   return (
     <div className={`${styles.yearsSideBar}`}>
-      <Year categories={categories} />
-      <div className={`${styles.categories}`}>
+      <div className={` relative ${styles.categories}`}>
         <Categories categories={categories} />
+        <Year categories={categories} />
       </div>
     </div>
   );

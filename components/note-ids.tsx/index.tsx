@@ -30,22 +30,24 @@ const NoteId: FunctionComponent = () => {
         <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto max-w-3/5 gap-9">
           {content.map((e) => (
             <>
+              <h1 className="md:text-[3.4vw]  text-[40px] text-gray-600 font-playfair">
+                {e.title}
+              </h1>
+              <h2 className="md:text-[1.8vw] text-[23px] text-gray-600 font-playfair">
+                {e?.subTitle}
+              </h2>
               {e.image && (
                 <img
                   style={{
                     objectFit: "cover",
                     width: "100%",
-                    height: "400px",
                   }}
                   src={e.id === 4 ? penalImage.src : e.image}
                   alt={"Imagen"}
                 />
               )}
-              <h1 className="text-[3.4vw] text-gray-600 font-playfair">
-                {e.title}
-              </h1>
 
-              <p className="text-[1.5vw] text-black font-playfair">
+              <p className="md:text-[1.5vw] text-[19px] text-black font-playfair">
                 {e.comment}
               </p>
             </>

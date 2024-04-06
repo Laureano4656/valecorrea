@@ -19,6 +19,7 @@ const CreateNote = () => {
     id: new Date().getTime(),
     image: null,
     title: "",
+    subTitle: "",
     subCategory: createNote.subCategory,
     year: createNote.year,
     comment: "",
@@ -28,9 +29,6 @@ const CreateNote = () => {
   const [initialForm, setInitialForm] = useState(initialValues);
 
   const { form, handleChange, resetForm } = useForm(initialForm, null);
-  const handleChangeTest = (e) => {
-    console.log(e.target.value);
-  };
 
   const createNewNote = () => {
     setAllCategories([...allCategories, form]);
@@ -56,25 +54,6 @@ const CreateNote = () => {
   return (
     <NavBarFooter>
       <div className="flex flex-col justify-start w-[60.2vw] mx-auto gap-[1vw] h-full mb-8">
-        <div className="relative border-black border-border1 ">
-          <GlobalInput
-            placeholder="Insertar"
-            style={{ height: "20vw" }}
-            type="file"
-            name={"image"}
-            imageValue={form.image}
-            onChange={handleImageChange}
-          />
-          <Image
-            onClick={() => {
-              form.image = "";
-              setInitialForm({ ...initialForm, image: null });
-            }}
-            src={close}
-            alt="close"
-            className="absolute cursor-pointer right-4 top-2"
-          />
-        </div>
         <div className="relative h-auto border-black border-border1 ">
           <GlobalInput
             inputClassName="text-center w-full text-center"
@@ -102,6 +81,53 @@ const CreateNote = () => {
             className="absolute cursor-pointer right-4 top-2"
           />
         </div>
+        <div className="relative h-auto border-black border-border1 ">
+          <GlobalInput
+            inputClassName="text-center w-full text-center"
+            placeholder="Bajada"
+            style={{
+              margin: "0 auto",
+              width: "100%",
+              lineHeight: "0",
+              height: "50%",
+              fontSize: "6vw",
+              padding: "0",
+            }}
+            value={form.subTitle}
+            onChange={handleChange}
+            type="text"
+            name={"subTitle"}
+          />
+          <Image
+            onClick={() => {
+              form.subTitle = "";
+              setInitialForm({ ...initialForm, subTitle: null });
+            }}
+            src={close}
+            alt="close"
+            className="absolute cursor-pointer right-4 top-2"
+          />
+        </div>
+        <div className="relative border-black border-border1 ">
+          <GlobalInput
+            placeholder="Insertar"
+            style={{ height: "20vw" }}
+            type="file"
+            name={"image"}
+            imageValue={form.image}
+            onChange={handleImageChange}
+          />
+          <Image
+            onClick={() => {
+              form.image = "";
+              setInitialForm({ ...initialForm, image: null });
+            }}
+            src={close}
+            alt="close"
+            className="absolute cursor-pointer right-4 top-2"
+          />
+        </div>
+
         <div className="relative flex flex-col justify-between border-black border-border1">
           <TextArea
             inputClassName="resize-none"
