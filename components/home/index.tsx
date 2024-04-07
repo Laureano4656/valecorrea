@@ -22,10 +22,13 @@ const IconsTouch = () => {
       setRotationFavicon(true);
 
       setTimeout(() => {
-        setRotationFavicon(false);
         setIntervalColor(!intervalColor);
+      }, 2300); 
+      setTimeout(() => {
+        setRotationFavicon(false);
+       
       }, 3000); // Duración de la animación en milisegundos
-    }, 6000); // Intervalo de 6 segundos
+    }, 5000); // Intervalo de 5 segundos
     return () => clearInterval(interval);
   }, [intervalColor]);
 
@@ -80,7 +83,7 @@ const IconsTouch = () => {
             title={"Sobre mi"}
             className="left-[-30%]  bottom-[50%] translate-y-[50%] "
           >
-            <ValeCorrea size="60%" />
+            <ValeCorrea size="45%" />
           </IconMenu>
           <IconMenu
             link={"filosofia"}
