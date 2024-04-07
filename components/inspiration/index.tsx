@@ -9,7 +9,6 @@ import image5 from "../../static/inspiration/5.webp";
 import image6 from "../../static/inspiration/6.webp";
 import image7 from "../../static/inspiration/7.webp";
 import useUserLogin from "../utils/useAllCategoriesStore";
-import { useForm } from "../../hooks/useForm";
 import GlobalInput from "../home/components/ui/input-global";
 import close from "../../static/icons/SVG/close.svg";
 import FocusImage from "./FocusImage";
@@ -24,10 +23,9 @@ const Inspiration: FunctionComponent = () => {
     { image: image7, id: 6 },
   ];
 
-  const { form } = useForm(images, null);
   const { userLogin } = useUserLogin();
   const [imageSrc, setImageSrc] = useState<any>(images);
-  const [focusImage, setFocusImage] = useState<any>({});
+  const [focusImage, setFocusImage] = useState<any>(null);
 
   const handleNewImage = (e) => {
     const file = e.target.files[0];
@@ -94,7 +92,7 @@ const Inspiration: FunctionComponent = () => {
             </p>
           </div>
         </div>
-        {!userLogin && (
+        {userLogin && (
           <GlobalInput
             style={{ height: "20vw", padding: "0" }}
             type="file"
@@ -123,7 +121,7 @@ const Inspiration: FunctionComponent = () => {
                   src={image.image}
                   alt={"Icon"}
                 />
-                {!userLogin && (
+                {userLogin && (
                   <Image
                     onClick={() => deleteImage(image.id)}
                     src={close}

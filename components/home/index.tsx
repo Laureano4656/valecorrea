@@ -13,6 +13,7 @@ import styleCarrousel from "./home.module.css";
 import bannerImg from "../../static/home/banner.svg";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
+import hammer from "../../static/icons/SVG/hammer-black.svg";
 
 const IconsTouch = () => {
   const [rotationFavicon, setRotationFavicon] = useState(false);
@@ -23,19 +24,18 @@ const IconsTouch = () => {
 
       setTimeout(() => {
         setIntervalColor(!intervalColor);
-      }, 2300); 
+      }, 2300);
       setTimeout(() => {
         setRotationFavicon(false);
-       
-      }, 3000); // Duración de la animación en milisegundos
-    }, 5000); // Intervalo de 5 segundos
+      }, 3000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [intervalColor]);
 
   return (
     <div className="flex flex-col justify-between w-full min-h-screen pb-8">
       <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-[44%]">
-        <div className="relative w-[19.3vw] h-[19.3vw] mx-auto my-1 flex justify-center items-center">
+        <div className="relative md:w-[19.3vw] md:h-[19.3vw] w-[150px] h-[150px] mx-auto my-1 flex justify-center items-center">
           <IconMenu
             link={"psicologia"}
             title={"Textos"}
@@ -76,14 +76,14 @@ const IconsTouch = () => {
             title={"Derecho"}
             className="top-[-10%] left-[-10%] "
           >
-            <Hammer size="60%" />
+            <img className="w-[60%]" src={`${hammer.src}`} alt="hammer" />
           </IconMenu>
           <IconMenu
             link={"sobre-mi"}
             title={"Sobre mi"}
             className="left-[-30%]  bottom-[50%] translate-y-[50%] "
           >
-            <ValeCorrea size="45%" />
+            <ValeCorrea size="40%" />
           </IconMenu>
           <IconMenu
             link={"filosofia"}
@@ -95,7 +95,7 @@ const IconsTouch = () => {
           <div
             className={`  ${
               rotationFavicon && styleCarrousel.animationFavicon
-            } w-[10.3vw] mx-auto`}
+            } md:w-[10.3vw] w-[60%] mx-auto`}
           >
             <Favicon
               background={intervalColor ? `rgba(139, 69, 19, 1)` : "#000"}
@@ -105,26 +105,26 @@ const IconsTouch = () => {
       </div>
       <div className="fixed z-0 bottom-12 ">
         <Marquee direction="left">
-          <div className="flex gap-2 px-1">
+          <div className="flex px-0 gap-[1vw]">
             <Image
               src={bannerImg}
               alt="banner"
-              className={styleCarrousel.img}
+              className={`md:w-[60vw] `}
             />
             <Image
               src={bannerImg}
               alt="banner"
-              className={styleCarrousel.img}
+              className={`md:w-[60vw] `}
             />
             <Image
               src={bannerImg}
               alt="banner"
-              className={styleCarrousel.img}
+              className={`md:w-[60vw] `}
             />
             <Image
               src={bannerImg}
               alt="banner"
-              className={styleCarrousel.img}
+              className={`md:w-[60vw] `}
             />
           </div>
         </Marquee>

@@ -1,5 +1,4 @@
 import React from "react";
-import Hammer from "../../icons/Hammer";
 import { useRouter } from "next/router";
 import Book from "../../icons/Book";
 import Ligth from "../../icons/Ligth";
@@ -8,14 +7,15 @@ import ValeCorrea from "../../icons/ValeCorrea";
 import styles from "./styles/iconNavbar.module.css";
 import Inspiration from "../../icons/Inspiration";
 import Heart from "../../icons/Heart";
-import Link from "next/link";
+
+import hammer from "../../../static/icons/SVG/hammer-white.svg";
 const IconNavbar = () => {
   const iconSize = "50%";
   const router = useRouter();
   const iconMap = {
     derecho: (
       <div className={styles.iconNavbar}>
-        <Hammer color="#fff" size={iconSize} />
+        <img className="w-[60%]" src={`${hammer.src}`} alt="hammer" />
       </div>
     ),
     psicologia: (

@@ -6,7 +6,7 @@ const Home = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       router.push("/home");
-    }, 5000);
+    }, 7000);
     return () => clearTimeout(timeout);
   }, [router]);
 

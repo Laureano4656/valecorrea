@@ -46,18 +46,18 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
           <ul className="relative flex flex-col w-full ">
             {userLogin && (
               <li onClick={() => createNewYear()} className="cursor-pointer">
-                <div className="flex justify-start items-center text-start font-playfair gap-2 flex-col  text-[1vw] w-full pl-3 ">
+                <div className=" ml-[31%] text-[19px] w-[42.1vw] flex justify-start items-center text-start font-playfair gap-2 flex-col  md:text-[1vw] pl-3 pb-6 ">
                   <Image className="w-[1.7vw] " src={addIcon} alt="Agregar" />
                   Agregar nota
                 </div>
               </li>
             )}
             {categoriesPerYear.map((category) => (
-              <li key={category.id}>
+              <li key={category.id} className="z-10">
                 <Link href={`/${router.pathname}/${category.id}`}>
                   <p
                     key={category.title}
-                    className={`hover:opacity-100 font-playfairSemiBold  ml-[31%] w-[42.1vw] ${styles.text}`}
+                    className={`hover:opacity-100 font-playfairSemiBold  ml-[31%] text-[19px] w-[42.1vw] ${styles.text} text-[1.2vw] md:leading-[1.5vw] leading-5`}
                   >
                     {category.title}
                   </p>

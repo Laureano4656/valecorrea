@@ -16,7 +16,7 @@ const Footer: React.FC<props> = ({ fixed }) => {
         <Box size="1.5vw" />
         <Link
           target="_blank"
-          className={`${styles.link} font-playfair`}
+          className={`${styles.link} md:text-[1.2vw] text-[12px] font-playfair`}
           href="mailto:valeriacorrea@gmail.com"
         >
           valeriacorrea@gmail.com
@@ -24,7 +24,7 @@ const Footer: React.FC<props> = ({ fixed }) => {
         <IgSocial size="1.5vw" />
         <Link
           target="_blank"
-          className={`${styles.link} font-playfair`}
+          className={`${styles.link} md:text-[1.2vw] text-[12px] font-playfair`}
           href={"https://www.instagram.com/valecorreamdq/"}
         >
           valecorreadmdq
