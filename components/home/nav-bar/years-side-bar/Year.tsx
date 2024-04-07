@@ -54,7 +54,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
   const yearsArray = uniqueYears;
 
   useEffect(() => {
-    setSelectedYear(yearsArray && yearsArray[0]);
+    setSelectedYear(yearsArray && yearsArray.year);
   }, [categories]);
 
   const createNewYear = (year: number) => {
