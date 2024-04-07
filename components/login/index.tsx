@@ -68,7 +68,7 @@ const Login: FunctionComponent = () => {
                 alt="Contraseña"
               />
             }
-            placeholder="Nombre de usuario:"
+            placeholder="Ingresar contraseña:"
             notBorderFocus
             name={"password"}
             type="password"

@@ -12,35 +12,77 @@ import useUserLogin from "../utils/useAllCategoriesStore";
 import { useForm } from "../../hooks/useForm";
 import GlobalInput from "../home/components/ui/input-global";
 import close from "../../static/icons/SVG/close.svg";
+import FocusImage from "./FocusImage";
 const Inspiration: FunctionComponent = () => {
-  const images = [image1, image2, image3, image4, image5, image6, image7];
-  const initialForm = {
-    image: images,
-  };
+  let images = [
+    { image: image1, id: 0 },
+    { image: image2, id: 1 },
+    { image: image3, id: 2 },
+    { image: image4, id: 3 },
+    { image: image5, id: 4 },
+    { image: image6, id: 5 },
+    { image: image7, id: 6 },
+  ];
 
-  const { form } = useForm(initialForm, null);
+  const { form } = useForm(images, null);
   const { userLogin } = useUserLogin();
-  const [imageSrc, setImageSrc] = useState<any>("");
+  const [imageSrc, setImageSrc] = useState<any>(images);
+  const [focusImage, setFocusImage] = useState<any>({});
 
-  const handleImageChange = (e) => {
+  const handleNewImage = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
 
     reader.onload = () => {
       const imageDataUrl = reader.result;
-      setImageSrc(imageDataUrl);
-      form.image = [...form.image, imageDataUrl];
+      console.log(imageSrc.length);
+      if (imageSrc.length) {
+        setImageSrc([
+          ...imageSrc,
+          { image: imageDataUrl, id: imageSrc.length },
+        ]);
+      }
     };
     if (file) {
       reader.readAsDataURL(file);
     }
   };
-  const deleteImage = (image) => {
-    console.log(image);
+
+  const deleteImage = (id) => {
+    const probar = imageSrc.filter((img) => {
+      console.log(img.id);
+      console.log(id);
+      return img.id !== id;
+    });
+    console.log(probar);
+    setImageSrc(probar);
   };
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
+
+  const handleRigth = (id: number) => {
+    if (id > 0) {
+      const previousImage = imageSrc.filter((valueId) => {
+        return valueId.id === id - 1;
+      });
+
+      setFocusImage({
+        image: previousImage[0].image,
+        id: previousImage[0].id,
+      });
+    }
+  };
+
+  const handleLeft = (id) => {
+    if (id < imageSrc.length - 1) {
+      const previousImage = imageSrc.filter((valueId) => {
+        return valueId.id === id + 1;
+      });
+
+      setFocusImage({
+        image: previousImage[0].image,
+        id: previousImage[0].id,
+      });
+    }
+  };
 
   return (
     <div className="flex items-start justify-start h-full pb-7 ">
@@ -57,42 +99,49 @@ const Inspiration: FunctionComponent = () => {
             style={{ height: "20vw", padding: "0" }}
             type="file"
             name={"image"}
-            onChange={handleImageChange}
+            onChange={(e) => handleNewImage(e)}
             iconImage={<p className="font-playfair text-[20vw]">+</p>}
           />
         )}
 
-        {form.image.length > 0 &&
-          form.image
+        {imageSrc.length > 0 &&
+          imageSrc
             .slice()
             .reverse()
-            .map((image: string) => (
-              <div className={`relative ${styles.item} `}>
+            .map((image, index) => (
+              <div
+                key={index}
+                className={`relative cursor-pointer ${styles.item} `}
+              >
                 <Image
+                  onClick={() => {
+                    setFocusImage({ image: image.image, id: image.id });
+                  }}
                   width={0}
                   height={0}
-                  className={` ${styles.item} `}
-                  src={image}
+                  className={`  hover:brightness-75 transition duration-300 ease-in-out ${styles.item} `}
+                  src={image.image}
                   alt={"Icon"}
                 />
-                <Image
-                  onClick={() => deleteImage(image)}
-                  src={close}
-                  alt="close"
-                  className="absolute bg-red-600 cursor-pointer w-7 h-7 right-4 top-2"
-                />
+                {!userLogin && (
+                  <Image
+                    onClick={() => deleteImage(image.id)}
+                    src={close}
+                    alt="close"
+                    className="absolute w-7 h-7 right-4 top-2"
+                  />
+                )}
               </div>
             ))}
-        {/* {images.map((image, index) => (
-          <>
-            <Image
-              key={index}
-              src={image}
-              className={` ${styles.item} `}
-              alt={"Icon"}
-            />
-          </>
-        ))} */}
+
+        {focusImage !== null && (
+          <FocusImage
+            handleLeft={() => handleLeft(focusImage.id)}
+            handleRigth={() => handleRigth(focusImage.id)}
+            src={focusImage.image}
+            closeFocus={() => setFocusImage(null)}
+          />
+        )}
       </div>
     </div>
   );
