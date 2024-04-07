@@ -7,22 +7,26 @@
 @font-face {
     font-family: 'PlayfairDisplay-Regular';
     src: url('../static/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
 }
 
 @font-face {
     font-family: 'PlayfairDisplay-Bold';
     src: url('../static/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+    font-weight: normal;
 }
 
 @font-face {
     font-family: 'PlayfairDisplay-ExtraBold';
     src: url('../static/fonts/PlayfairDisplay-ExtraBold.ttf') format('truetype');
+    font-weight: normal;
 
 }
 
 @font-face {
     font-family: 'PlayfairDisplay-SemiBold';
     src: url('../static/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+    font-weight: normal;
 }
 
 * {
