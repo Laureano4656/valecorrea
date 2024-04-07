@@ -3,18 +3,6 @@
 @import 'tailwindcss/utilities';
 
 
-* {
-    box-sizing: border-box;
-}
-
-input:focus {
-    outline: none;
-}
-
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
 
 @font-face {
     font-family: 'PlayfairDisplay-Regular';
@@ -35,6 +23,31 @@ input[type="number"]::-webkit-inner-spin-button {
 @font-face {
     font-family: 'PlayfairDisplay-SemiBold';
     src: url('../static/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+}
+* {
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.PlayfairDisplay-Regular {
+    font-family: PlayfairDisplay-Regular
+}
+.PlayfairDisplay-Bold {
+    font-family: PlayfairDisplay-Bold
+}
+.PlayfairDisplay-ExtraBold {
+    font-family: PlayfairDisplay-ExtraBold
+}
+.PlayfairDisplay-SemiBold {
+    font-family: PlayfairDisplay-SemiBold
 }
 
 #container {

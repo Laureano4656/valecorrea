@@ -31,7 +31,9 @@ module.exports = {
         marginRigth: " 0 auto 0 calc(5% + 4.5vw)"
       },
       fontFamily: {
-        playfair: ["PlayfairDisplay-Regular"],
+        // 'playfair': [`"/path/to/fonts/PlayfairDisplay-Regular"`],
+        // playfair: ["PlayfairDisplay-Regular"],
+        playfair: [`"/path/to/fonts/PlayfairDisplay-Regular"`],
         playfairBold: ["PlayfairDisplay-Bold"],
         playfairExtraBold: ["PlayfairDisplay-ExtraBold"],
         playfairSemiBold: ["PlayfairDisplay-SemiBold"],
