@@ -24,9 +24,9 @@
     font-family: 'PlayfairDisplay-SemiBold';
     src: url('../static/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
 }
+
 * {
     box-sizing: border-box;
-    font-weight: 400;
 }
 
 input:focus {
@@ -41,12 +41,15 @@ input[type="number"]::-webkit-inner-spin-button {
 .PlayfairDisplay-Regular {
     font-family: PlayfairDisplay-Regular
 }
+
 .PlayfairDisplay-Bold {
     font-family: PlayfairDisplay-Bold
 }
+
 .PlayfairDisplay-ExtraBold {
     font-family: PlayfairDisplay-ExtraBold
 }
+
 .PlayfairDisplay-SemiBold {
     font-family: PlayfairDisplay-SemiBold
 }
