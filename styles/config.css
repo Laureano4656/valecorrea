@@ -42,19 +42,19 @@ input[type="number"]::-webkit-inner-spin-button {
     appearance: none;
 }
 
-.font-playfairDisplay-Regular {
+.font-playfair {
     font-family: PlayfairDisplay-Regular
 }
 
-.font-playfairDisplay-Bold {
+.font-playfairDisplayBold {
     font-family: PlayfairDisplay-Bold
 }
 
-.font-playfairDisplay-ExtraBold {
+.font-playfairDisplayExtraBold {
     font-family: PlayfairDisplay-ExtraBold
 }
 
-.font-playfairDisplay-SemiBold {
+.font-playfairSemiBold {
     font-family: PlayfairDisplay-SemiBold
 }
 
