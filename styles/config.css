@@ -13,20 +13,20 @@
 @font-face {
     font-family: PlayfairDisplay-Bold;
     src: local("PlayfairDisplay-Bold");
-    src: url('../public/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+    src: url('/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
 }
 
 @font-face {
     font-family: PlayfairDisplay-ExtraBold;
     src: local("PlayfairDisplay-ExtraBold");
-    src: url('../public/fonts/PlayfairDisplay-ExtraBold.ttf') format('truetype');
+    src: url('/fonts/PlayfairDisplay-ExtraBold.ttf') format('truetype');
 
 }
 
 @font-face {
     font-family: PlayfairDisplay-SemiBold;
     src: local("PlayfairDisplay-SemiBold");
-    src: url('../public/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+    src: url('/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
 }
 
 * {
