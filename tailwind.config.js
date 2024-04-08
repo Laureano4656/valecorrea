@@ -28,13 +28,25 @@ module.exports = {
         "1.7vw": "1.7vw",
       },
       margin: {
-        marginRigth: " 0 auto 0 calc(5% + 4.5vw)"
+        marginRigth: " 0 auto 0 calc(5% + 4.5vw)",
       },
       fontFamily: {
-        playfair: ["PlayfairDisplay-Regular"],
-        playfairBold: ["PlayfairDisplay-Bold"],
-        playfairExtraBold: ["PlayfairDisplay-ExtraBold"],
-        playfairSemiBold: ["PlayfairDisplay-SemiBold"],
+        playfair: [
+          "public/fonts/PlayfairDisplay-Regular",
+          "PlayfairDisplay-Regular",
+        ],
+        playfairBold: [
+          "public/fonts/PlayfairDisplay-Bold",
+          "PlayfairDisplay-Bold",
+        ],
+        playfairExtraBold: [
+          "public/fonts/PlayfairDisplay-ExtraBold",
+          "PlayfairDisplay-ExtraBold",
+        ],
+        playfairSemiBold: [
+          "public/fonts/PlayfairDisplay-SemiBold",
+          "PlayfairDisplay-SemiBold",
+        ],
       },
       animation: {
         "fade-out-1000": "fadeOut 1s ease-out",
