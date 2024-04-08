@@ -1,7 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 @font-face {
     font-family: PlayfairDisplay-Regular;
     src: local("PlayfairDisplay-Regular");
-    src: url('../public/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+    src: url('/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -22,10 +26,6 @@
     src: local("PlayfairDisplay-SemiBold");
     src: url('/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
 }
-
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 
 * {
     box-sizing: border-box;
@@ -48,21 +48,7 @@ input[type="number"]::-webkit-inner-spin-button {
     appearance: none;
 }
 
-.font-playfair {
-    font-family: PlayfairDisplay-Regular
-}
 
-.font-playfairDisplayBold {
-    font-family: PlayfairDisplay-Bold
-}
-
-.font-playfairDisplayExtraBold {
-    font-family: PlayfairDisplay-ExtraBold
-}
-
-.font-playfairSemiBold {
-    font-family: PlayfairDisplay-SemiBold
-}
 
 #container {
     height: 100vh;
