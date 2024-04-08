@@ -74,7 +74,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
   return (
     <>
       <ul
-        className={` font-playfair min-h-[100px] flex gap-[2.5vw] flex-col items-start absolute left-0 top-0 `}
+        className={`z-10 font-playfair min-h-[100px] max-w-[250px] flex gap-[2.5vw] flex-col items-start absolute left-0 top-0 `}
       >
         {yearList.length > 0 &&
           yearList

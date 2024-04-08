@@ -57,7 +57,7 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
                 <Link href={`/${router.pathname}/${category.id}`}>
                   <p
                     key={category.title}
-                    className={`hover:opacity-100 font-playfairSemiBold  ml-[30%] text-[19px] w-[42.1vw] ${styles.text} md:text-[1.2vw] md:leading-[1.5vw] leading-5`}
+                    className={`hover:opacity-100 font-playfairSemiBold  ml-[20vw] text-[19px] w-[42.1vw] ${styles.text} md:text-[1.2vw] md:leading-[1.5vw] leading-5`}
                   >
                     {category.title}
                   </p>
