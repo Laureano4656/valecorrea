@@ -32,19 +32,19 @@ module.exports = {
       },
       fontFamily: {
         playfair: [
-          "public/fonts/PlayfairDisplay-Regular",
+          // "public/fonts/PlayfairDisplay-Regular",
           "PlayfairDisplay-Regular",
         ],
         playfairBold: [
-          "public/fonts/PlayfairDisplay-Bold",
+          // "public/fonts/PlayfairDisplay-Bold",
           "PlayfairDisplay-Bold",
         ],
         playfairExtraBold: [
-          "public/fonts/PlayfairDisplay-ExtraBold",
+          // "public/fonts/PlayfairDisplay-ExtraBold",
           "PlayfairDisplay-ExtraBold",
         ],
         playfairSemiBold: [
-          "public/fonts/PlayfairDisplay-SemiBold",
+          // "public/fonts/PlayfairDisplay-SemiBold",
           "PlayfairDisplay-SemiBold",
         ],
       },
