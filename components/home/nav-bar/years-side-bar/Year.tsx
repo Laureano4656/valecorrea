@@ -52,7 +52,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
   const uniqueYears = Array.from(categories).findLast((e) => e.year);
 
   const yearsArray = uniqueYears;
-
+  
   useEffect(() => {
     setSelectedYear(yearsArray && yearsArray.year);
   }, [categories]);
@@ -71,6 +71,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
 
     setAllCategories(deteleCategory);
   };
+
   return (
     <>
       <ul
@@ -83,7 +84,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
               <>
                 <li
                   key={index}
-                  className={`${
+                  className={`z-50 ${
                     selectedYear === year ? styles.yearsActive : styles.years
                   }`}
                   onClick={() => setSelectedYear(year)}

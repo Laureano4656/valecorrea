@@ -7,7 +7,7 @@ const NavBarFooter = ({ children }) => {
     <>
       <div className={`${styles.container} w-full min-h-calcNavFooter`}>
         <NavBar maxWhith={true} />
-        {children}
+        <div className="pl-[4vw]">{children}</div>
       </div>
       <Footer />
     </>

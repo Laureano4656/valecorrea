@@ -27,13 +27,13 @@ const NoteId: FunctionComponent = () => {
   return (
     <NavBarFooter>
       <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 pt-[5%] ">
-        <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto max-w-3/5 gap-9">
+        <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto max-w-[66.5vw] gap-9">
           {content.map((e) => (
             <>
-              <h1 className="md:text-[3.4vw] md:leading-[3.5vw] leading-10  text-[40px] text-gray-600 font-playfair">
+              <h1 className="leading-10 text-gray-600 text-titles font-playfair">
                 {e.title}
               </h1>
-              <h2 className="md:text-[1.8vw] text-[23px] text-gray-600 font-playfair">
+              <h2 className="text-gray-600 text-subtitles font-playfair">
                 {e?.subTitle}
               </h2>
               {e.image && (
@@ -47,9 +47,14 @@ const NoteId: FunctionComponent = () => {
                 />
               )}
 
-              <p className="md:text-[1.5vw] text-[19px] text-black font-playfair">
-                {e.comment}
-              </p>
+              {e.comment.split("\n").map((linea, index) => (
+                <p
+                  key={index}
+                  className="text-justify text-black text-text font-playfair"
+                >
+                  {linea}
+                </p>
+              ))}
             </>
           ))}
         </div>

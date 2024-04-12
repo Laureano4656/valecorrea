@@ -6,6 +6,7 @@ import Book from "../icons/Book";
 import Ligth from "../icons/Ligth";
 import Play from "../icons/Play";
 import ValeCorrea from "../icons/ValeCorrea";
+import V from "../../static/icons/SVG/V.svg";
 import Heart from "../icons/Heart";
 import IconMenu from "./IconMenu";
 import Inspiration from "../icons/Inspiration";
@@ -83,7 +84,7 @@ const IconsTouch = () => {
             title={"Sobre mi"}
             className="left-[-30%]  bottom-[50%] translate-y-[50%] "
           >
-            <ValeCorrea size="40%" />
+            <Image src={V} alt="V" className={`w-[40%]`} />
           </IconMenu>
           <IconMenu
             link={"filosofia"}
@@ -106,26 +107,10 @@ const IconsTouch = () => {
       <div className="fixed z-0 bottom-12 ">
         <Marquee direction="left">
           <div className="flex px-0 gap-[1vw]">
-            <Image
-              src={bannerImg}
-              alt="banner"
-              className={`md:w-[60vw] `}
-            />
-            <Image
-              src={bannerImg}
-              alt="banner"
-              className={`md:w-[60vw] `}
-            />
-            <Image
-              src={bannerImg}
-              alt="banner"
-              className={`md:w-[60vw] `}
-            />
-            <Image
-              src={bannerImg}
-              alt="banner"
-              className={`md:w-[60vw] `}
-            />
+            <Image src={bannerImg} alt="banner" className={`md:w-[60vw] `} />
+            <Image src={bannerImg} alt="banner" className={`md:w-[60vw] `} />
+            <Image src={bannerImg} alt="banner" className={`md:w-[60vw] `} />
+            <Image src={bannerImg} alt="banner" className={`md:w-[60vw] `} />
           </div>
         </Marquee>
       </div>

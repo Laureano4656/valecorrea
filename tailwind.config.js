@@ -26,6 +26,10 @@ module.exports = {
       fontSize: {
         17: "23px",
         "1.7vw": "1.7vw",
+        titles: "40px",
+        subtitles: "24px",
+        text: "20px",
+        list_heading: "28px",
       },
       margin: {
         marginRigth: " 0 auto 0 calc(5% + 4.5vw)",

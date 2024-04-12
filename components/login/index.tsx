@@ -46,12 +46,12 @@ const Login: FunctionComponent = () => {
         </h1>
         <div className="w-full flex flex-col h-full gap-[5%] items-center justify-center">
           <GlobalInput
-            placeholder="Nombre de usuario:"
+            placeholder="Nombre de usuario"
             name={"user"}
             notBorderFocus
             onChange={(e) => setUserData({ ...userData, user: e.target.value })}
             className="h-[35%!important]   w-[78%!important] p-[0!important]  flex justify-center"
-            inputClassName=" pl-14 text-[1.2vw]  w-full h-full  border-black placeholder:font-playfairSemiBold placeholder:text-black  py-[5%] pl-[12%]   rounded-[1.2vw] border-border1"
+            inputClassName=" pl-14 text-[1.2vw]  w-full h-full  border-black placeholder:font-playfairSemiBold   py-[5%] pl-[12%]   rounded-[1.2vw] border-border1"
             leftIcon={
               <Image
                 className="absolute -translate-y-1/2 left-2 top-1/2 min-w-[16px]  w-[8%]"
@@ -68,7 +68,7 @@ const Login: FunctionComponent = () => {
                 alt="Contraseña"
               />
             }
-            placeholder="Ingresar contraseña:"
+            placeholder="Ingresar contraseña"
             notBorderFocus
             name={"password"}
             type="password"
@@ -76,7 +76,7 @@ const Login: FunctionComponent = () => {
               setUserData({ ...userData, password: e.target.value })
             }
             className="h-[35%!important]   w-[78%!important] p-[0!important]  flex justify-center"
-            inputClassName=" pl-14 text-[1.2vw]  w-full h-full  border-black placeholder:font-playfairSemiBold placeholder:text-black  py-[5%] pl-[12%]   rounded-[1.2vw] border-border1"
+            inputClassName=" pl-14 text-[1.2vw]  w-full h-full  border-black placeholder:font-playfairSemiBold   py-[5%] pl-[12%]   rounded-[1.2vw] border-border1"
           />
         </div>
 

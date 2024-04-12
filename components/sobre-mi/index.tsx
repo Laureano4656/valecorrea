@@ -20,19 +20,15 @@ const SobreMi: FunctionComponent = () => {
           width={0}
           height={0}
           className="min-w-[200px] min-h-[200px]  w-[15vw] h-[15vw] object-cover rounded-[100%] mx-auto"
-          style={{objectPosition:"70%"}}
+          style={{ objectPosition: "70%" }}
         />
 
-        <h1 className="md:text-[1.5vw] text-[40px] text-center">
-          VALERIA  CORREA
-        </h1>
-        <h2 className="md:text-[1.3vw] text-[23px] text-center">
+        <h1 className="text-center  text-titles">VALERIA CORREA</h1>
+        <h2 className="text-center  text-subtitles">
           LA POTENCIA DE LO COLECTIVO ES INFINITA
         </h2>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-[23px]  ">
-          Soy
-        </h3>
-        <p className="font-playfair md:text-[1.3vw] text-[19px]">
+        <h3 className="font-playfairExtraBold text-list_heading ">Soy</h3>
+        <p className="font-playfair text-text">
           Nací en Mar del Plata en los años ´80, mi nombre es Valeria Correa;
           soy abogada y trabajo desde muy joven en el estudio de las áreas del
           derecho que mayor motivación y compromiso me despiertan: salud,
@@ -43,10 +39,10 @@ const SobreMi: FunctionComponent = () => {
           problemáticas con una mirada humanitaria y proyección hacia la
           comunidad.
         </p>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-[23px]  ">
+        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
           Convicción{" "}
         </h3>
-        <p className="font-playfair md:text-[1.3vw] text-[19px]">
+        <p className="font-playfair text-text">
           Como a muchos estudiantes les sucede, no sabía muy bien que estaba
           haciendo en el mundo del derecho hasta que una causa relacionada con
           la salud llegó a mis manos. Cada paso que damos en la construcción de
@@ -59,10 +55,10 @@ const SobreMi: FunctionComponent = () => {
           capacitación permanente, se transforman en pilares imprescindibles
           para reflexionar y accionar con seriedad en el presente.
         </p>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-[23px]  ">
+        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
           Forjando el camino
         </h3>
-        <p className="font-playfair md:text-[1.3vw] text-[19px]">
+        <p className="font-playfair text-text">
           He tenido la oportunidad de compartir mis inicios con grandes
           profesionales, que generosamente abrieron las puertas de sus
           conocimientos y experiencias. Trabajamos en equipo, a nivel local y
@@ -71,10 +67,10 @@ const SobreMi: FunctionComponent = () => {
           nutrieron en un intercambio de experiencias sumamente valioso, que
           forjaron el camino. Sensibilizar la mirada, en red, con otrxs.
         </p>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-[23px]  ">
+        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
           Herramientas{" "}
         </h3>
-        <p className="font-playfair md:text-[1.3vw] text-[19px]">
+        <p className="font-playfair text-text">
           Mi potencial mas genuino, mi propia humanidad y profesionalismo, surge
           a partir de la integración de aquellas disciplinas que trabajan en
           contacto directo con nuestra historia, tensiones, problemáticas. Con
@@ -89,10 +85,10 @@ const SobreMi: FunctionComponent = () => {
           Incansablemente , seguir las huellas de la autenticidad. Tender los
           puentes y animarnos a cruzarlos juntxs*.
         </p>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-[23px]  ">
+        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
           Hoy
         </h3>
-        <p className="font-playfair md:text-[1.3vw] text-[19px]">
+        <p className="font-playfair text-text">
           Desde el año 2002 trabajo para la Justicia Federal de mi ciudad,
           actualmente a cargo de una Secretaria Civil y Comercial. En 2021
           comencé, a generar espacios de divulgación científica sumamente
@@ -119,7 +115,7 @@ const SobreMi: FunctionComponent = () => {
           </div>
         </div> */}
       </div>
-      {/* <p className="w-full max-w-[60.2vw] md:text-[1.3vw] text-[19px] text-justify mx-auto  pb-16 font-playfair">
+      {/* <p className="w-full max-w-[60.2vw]  text-text text-justify mx-auto  pb-16 font-playfair">
         Soy Vale Correa, nací en Mar del Plata en los años ´80 y me considero
         una persona muy curiosa y creativa, con profundos intereses en el
         estudio y la investigación.
