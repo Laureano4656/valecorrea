@@ -21,10 +21,11 @@ const SobreMi: FunctionComponent = () => {
           height={0}
           className="min-w-[200px] min-h-[200px]  w-[15vw] h-[15vw] object-cover rounded-[100%] mx-auto"
           style={{ objectPosition: "70%" }}
+          style={{ objectPosition: "70%" }}
         />
 
-        <h1 className="text-center  text-titles">VALERIA CORREA</h1>
-        <h2 className="text-center  text-subtitles">
+        <h1 className="text-center text-titles">VALERIA CORREA</h1>
+        <h2 className="text-center text-subtitles">
           LA POTENCIA DE LO COLECTIVO ES INFINITA
         </h2>
         <h3 className="font-playfairExtraBold text-list_heading ">Soy</h3>
@@ -99,7 +100,7 @@ const SobreMi: FunctionComponent = () => {
         {/* <div className={styles.header}>
           <div className="relative flex items-center justify-center h-full w-max ">
             <h1
-              className={`${styles.title} w-full text-[4.6vw] py-16 text-center font-playfair`}
+              className={`${styles.title} w-full text-[4.6vw] py-16 text-center font-playfair font-normal`}
             >
               valeria
               <br /> correa
