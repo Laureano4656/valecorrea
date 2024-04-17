@@ -6,7 +6,8 @@ import Image from "next/image";
 import GlobalInput from "../home/components/ui/input-global";
 import { useRouter } from "next/router";
 import useUserLogin from "../utils/useAllCategoriesStore";
-const Login: FunctionComponent = () => {
+
+const AcessLogin: FunctionComponent = () => {
   const [userData, setUserData] = useState({ user: "", password: "" });
   const [error, setError] = useState(false);
   const { setUserLogin } = useUserLogin();
@@ -87,10 +88,9 @@ const Login: FunctionComponent = () => {
           <Image className="w-[2vw]" src={logIn} alt="Contraseña" />
           ingresar
         </button>
-        {/* {error && <span>usuario o contraseña incorrecto</span>} */}
       </form>
     </div>
   );
 };
 
-export default Login;
+export default AcessLogin;

@@ -1,9 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
-import Login from "../components/login";
+import AcessLogin from "../components/access-login";
 
-const login: NextPage = () => {
-  return <Login />;
+const Loggin: NextPage = () => {
+  return <AcessLogin />;
 };
 
-export default login;
+export default Loggin;
