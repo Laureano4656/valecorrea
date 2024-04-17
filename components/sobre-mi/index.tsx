@@ -21,7 +21,6 @@ const SobreMi: FunctionComponent = () => {
           height={0}
           className="min-w-[200px] min-h-[200px]  w-[15vw] h-[15vw] object-cover rounded-[100%] mx-auto"
           style={{ objectPosition: "70%" }}
-          style={{ objectPosition: "70%" }}
         />
 
         <h1 className="text-center text-titles">VALERIA CORREA</h1>
