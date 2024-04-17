@@ -1,8 +1,14 @@
 import { create } from "zustand";
 interface Data {
-  year: number;
+  id?: any;
+  year?: number;
   category?: string;
   subCategory?: string;
+  image?: string;
+  comment?: string;
+  title?: string;
+  active?: boolean;
+  video?: string;
 }
 interface CreateNote {
   createNote: Data | any;

@@ -75,7 +75,7 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
     >
       {label && <p className={styles.label}></p>}
       {leftIcon && leftIcon}
-      {type === "file" && (
+      {type.includes("file") && (
         <label
           htmlFor={name}
           className="relative flex flex-col items-center justify-center w-full h-full "
@@ -97,7 +97,9 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
       {type !== "textarea" && (
         <input
           className={`font-playfair ${inputClassName} ${styles.input}${
-            type !== "file" ? "flex" : "-z-50 absolute hidden right-0 top-0"
+            !type.includes("file")
+              ? "flex"
+              : "-z-50 absolute hidden right-0 top-0"
           }  `}
           readOnly={readOnly}
           ref={ref}

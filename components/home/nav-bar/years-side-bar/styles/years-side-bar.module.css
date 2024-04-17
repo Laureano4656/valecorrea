@@ -1,15 +1,14 @@
 .yearsSideBar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   gap: 4.7vw;
   scrollbar-color: transparent;
   margin-top: -8vw;
+  padding: 0 4.3%;
 }
 
-.categories {
-  width: 100%;
-}
+
 
 .text {
   height: 100%;

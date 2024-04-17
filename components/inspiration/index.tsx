@@ -33,7 +33,6 @@ const Inspiration: FunctionComponent = () => {
 
     reader.onload = () => {
       const imageDataUrl = reader.result;
-      console.log(imageSrc.length);
       if (imageSrc.length) {
         setImageSrc([
           ...imageSrc,
@@ -48,11 +47,8 @@ const Inspiration: FunctionComponent = () => {
 
   const deleteImage = (id) => {
     const probar = imageSrc.filter((img) => {
-      console.log(img.id);
-      console.log(id);
       return img.id !== id;
     });
-    console.log(probar);
     setImageSrc(probar);
   };
 
@@ -98,7 +94,7 @@ const Inspiration: FunctionComponent = () => {
             type="file"
             name={"image"}
             onChange={(e) => handleNewImage(e)}
-            iconImage={<p className="font-playfair text-[20vw]">+</p>}
+            iconImage={<p className="leading-none font-playfair text-[20vw]">+</p>}
           />
         )}
 

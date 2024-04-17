@@ -5,7 +5,7 @@ interface CategoryStore {
   setUserLogin: (value: boolean) => void;
 }
 const useUserLogin = create<CategoryStore>((set) => ({
-  userLogin: null,
+  userLogin: true,
   setUserLogin: (value: boolean) => set({ userLogin: value }),
 }));
 

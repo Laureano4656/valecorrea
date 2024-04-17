@@ -3,6 +3,7 @@ import IconNavbar from "./IconNavbar";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useCategoryStore from "../../utils/useCategoryStore";
+import useActiveContact from "../../utils/useActiveFooter";
 interface props {
   maxWhith?: boolean;
 }
@@ -18,6 +19,7 @@ interface SubCategory {
 const NavBar: React.FC<props> = ({ maxWhith }) => {
   const router = useRouter();
   const { selectedCategory, setSelectedCategory } = useCategoryStore();
+  const { setActiveContact } = useActiveContact();
   const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
 
   const menuItems = [
@@ -54,11 +56,11 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
 
   return (
     <div
-      className={` flex items-center justify-between  mx-auto  px-[4.3%]  h-[8.2vw] w-full  relative`}
+      className={` flex items-center justify-between  mx-auto  px-[4.3%]   h-[8.2vw] w-full  relative`}
     >
       <IconNavbar />
-      <div className="w-full mx-auto">
-        <ul className="flex items-end gap-[1vw] mx-auto w-max">
+      <div className="flex justify-center w-full mx-auto">
+        <ul className="flex items-end gap-[1vw]  w-max ">
           {menuItems.map((item) => (
             <li key={item.href} className={`w-max relative  `}>
               <Link
@@ -71,6 +73,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
               >
                 {item.label}
               </Link>
+
               {subCategory.map(
                 (e) =>
                   item.label === e.category && (
@@ -99,6 +102,12 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
               )}
             </li>
           ))}
+          <li
+            onClick={() => setActiveContact(true)}
+            className={`text-[1.3vw] ${"text-gray-500"}  cursor-pointer font-playfair `}
+          >
+            contacto
+          </li>
         </ul>
       </div>
     </div>

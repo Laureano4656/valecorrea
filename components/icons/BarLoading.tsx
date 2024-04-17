@@ -2,7 +2,6 @@ import React from "react";
 import { iconType } from "./iconTypes";
 
 export const BarLoading: React.FC<iconType> = ({ size, color, background }) => {
-  console.log(size);
 
   return (
     <div

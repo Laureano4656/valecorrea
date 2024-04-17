@@ -12,6 +12,7 @@ import useCategoryStore from "../../../utils/useCategoryStore";
 import useCreateNote from "../../../utils/useCreateNote";
 import useAllCategories from "../../../../hooks/useAllCategories";
 import useUserLogin from "../../../utils/useAllCategoriesStore";
+import Modal from "../../components/ui/input-global/modal.tsx/modal";
 
 interface Category {
   categorie: string;
@@ -52,7 +53,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
   const uniqueYears = Array.from(categories).findLast((e) => e.year);
 
   const yearsArray = uniqueYears;
-  
+
   useEffect(() => {
     setSelectedYear(yearsArray && yearsArray.year);
   }, [categories]);
@@ -75,7 +76,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
   return (
     <>
       <ul
-        className={`z-10 font-playfair min-h-[100px] max-w-[250px] flex gap-[2.5vw] flex-col items-start absolute left-0 top-0 `}
+        className={`z-10 font-playfair min-h-[100px] max-w-[250px] flex gap-[2.5vw] flex-col items-start absolute left-[-30%] top-0 `}
       >
         {yearList.length > 0 &&
           yearList
@@ -99,7 +100,9 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
                         }}
                         src={close}
                         alt="Agregar"
-                        className={`absolute w-[2vw] right-[-25%]   top-[-75%] translate-x-1/2 -translate-y-1/2 ${
+                        className={`${
+                          selectedYear === year ? "w-[2vw]" : "w-[1.2vw]"
+                        } absolute w-[2vw] right-[-25%]   top-[-75%] translate-x-1/2 -translate-y-1/2 ${
                           selectedYear === year
                             ? "right-0 translate-y-0 translate-x-0"
                             : "  "
@@ -110,7 +113,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
                 </li>
               </>
             ))}
-        {userLogin && (
+        {/* {userLogin && (
           <li className="relative flex items-center overflow-hidden cursor-pointer ">
             <input
               min="0"
@@ -127,43 +130,36 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
               <Image className="w-[1.7vw]" src={addIcon} alt="Agregar" />
             </p>
           </li>
-        )}
+        )} */}
       </ul>
-      {openModal && (
-        <div
-          className="fixed top-0 left-0 z-10 flex items-center justify-center w-full h-screen bg-black bg-opacity-60"
-          onClick={() => setOpenModal(false)}
-        >
-          <div className="py-[10px] bg-white w-[16vw] h-[25vh] rounded-[32px] flex flex-col justify-between items-center border-stone-950 border-4">
-            <p className="text-[1.8vw] font-playfairSemiBold font-semibold">
-              atenti!
-            </p>
-            <p className="text-center font-playfair leading-none  text-[1.1vw]">
-              ¿estas segura de que
-              <br /> queres borrar <br />
-              esta carpeta completa ?
-            </p>
-            <div className="flex items-center justify-between gap-2 w-[45%] mx-auto ">
-              <button
-                className="flex flex-col items-center  text-[.7vw] font-playfairSemiBold
-                "
-                onClick={() => setOpenModal(false)}
-              >
-                <img src={arrow.src} alt="Flecha" className="w-[2vw]" />
-                no,volver
-              </button>
-              <button
-                onClick={() => deleteCategories()}
-                className="flex flex-col items-center  text-[.7vw] font-playfairSemiBold
-              "
-              >
-                <img src={trash.src} alt="Flecha" className="w-[2vw]" />
-                si, eliminar
-              </button>
-            </div>
-          </div>
+      <Modal openModal={openModal} setOpenModal={setOpenModal}>
+        <p className="text-[1.8vw] font-playfairSemiBold font-semibold">
+          atenti!
+        </p>
+        <p className="text-center font-playfair leading-none  text-[1.1vw]">
+          ¿estas segura de que
+          <br /> queres borrar <br />
+          esta carpeta completa ?
+        </p>
+        <div className="flex items-center justify-between gap-2 w-[50%] mx-auto ">
+          <button
+            className="flex flex-col items-center  text-[.7vw] font-playfairSemiBold
+            "
+            onClick={() => setOpenModal(false)}
+          >
+            <img src={arrow.src} alt="Flecha" className="w-[2vw]" />
+            no,volver
+          </button>
+          <button
+            onClick={() => deleteCategories()}
+            className="flex flex-col items-center  text-[.7vw] font-playfairSemiBold
+          "
+          >
+            <img src={trash.src} alt="Flecha" className="w-[2vw]" />
+            si, eliminar
+          </button>
         </div>
-      )}
+      </Modal>
     </>
   );
 };
