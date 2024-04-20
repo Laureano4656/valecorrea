@@ -33,7 +33,7 @@ const CreateNote: FunctionComponent = () => {
     year: createNote.id ? createNote.year : null,
     comment: createNote.id ? createNote.comment : "",
     category: createNote.id ? createNote.category : createNote.category,
-    active: true,
+    active: createNote.id ? createNote.active : true,
     video: createNote.id ? createNote.video : "",
   };
 
@@ -57,21 +57,18 @@ const CreateNote: FunctionComponent = () => {
     router.push(`/${createNote.category}`);
   };
   const saveNote = () => {
-    const saveNote = allCategories.map((note) => {
-      if (note.id === createNote.id) {
-        return {
-          ...note,
-          active: false,
-        };
-      }
+    const saveNote = allCategories.filter((note) => {
+      return note.id === createNote.id;
     });
     const removeOldNote = allCategories.filter((oldNote) => {
       return oldNote.id !== createNote.id;
     });
+    saveNote[0].active = false;
 
     setAllCategories([...removeOldNote, saveNote[0]]);
     router.push(`/${createNote.category}`);
   };
+
   const deleteNote = () => {
     const deleteNote = allCategories.filter((note) => {
       return note.id !== createNote.id;
@@ -201,13 +198,24 @@ const CreateNote: FunctionComponent = () => {
           </div>
         </div>
         {video.length > 0 && form.video.length > 0 && (
-          <iframe
-            width="100%"
-            height={500}
-            src={`https://www.youtube.com/embed/${video}`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
+          <div className="relative w-full">
+            <Image
+              onClick={() => {
+                form.video = "";
+                setInitialForm({ ...initialForm, video: null });
+              }}
+              src={close}
+              alt="close"
+              className="absolute cursor-pointer -right-8 -top-8"
+            />
+            <iframe
+              width="100%"
+              height={500}
+              src={`https://www.youtube.com/embed/${video}`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
+          </div>
         )}
         <div className="relative w-full border-black border-border1">
           <GlobalInput
