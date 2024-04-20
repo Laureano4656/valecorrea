@@ -58,7 +58,9 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
     <div
       className={` flex items-center justify-between  mx-auto  px-[4.3%]   h-[8.2vw] w-full  relative`}
     >
-      <IconNavbar />
+      <div className="absolute -translate-y-1/2 top-1/2 ">
+        <IconNavbar />
+      </div>
       <div className="flex justify-center w-full mx-auto">
         <ul className="flex items-end gap-[1vw]  w-max ">
           {menuItems.map((item) => (

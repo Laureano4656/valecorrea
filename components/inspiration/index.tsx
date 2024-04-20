@@ -15,12 +15,12 @@ import FocusImage from "./FocusImage";
 const Inspiration: FunctionComponent = () => {
   let images = [
     { image: image1, id: 0 },
-    { image: image2, id: 1 },
-    { image: image3, id: 2 },
-    { image: image4, id: 3 },
+    { image: image7, id: 1 },
+    { image: image4, id: 2 },
+    { image: image3, id: 3 },
     { image: image5, id: 4 },
     { image: image6, id: 5 },
-    { image: image7, id: 6 },
+    { image: image2, id: 6 },
   ];
 
   const { userLogin } = useUserLogin();
@@ -94,7 +94,9 @@ const Inspiration: FunctionComponent = () => {
             type="file"
             name={"image"}
             onChange={(e) => handleNewImage(e)}
-            iconImage={<p className="leading-none font-playfair text-[20vw]">+</p>}
+            iconImage={
+              <p className="leading-none font-playfair text-[20vw]">+</p>
+            }
           />
         )}
 
@@ -117,6 +119,9 @@ const Inspiration: FunctionComponent = () => {
                   src={image.image}
                   alt={"Icon"}
                 />
+                <p className="absolute top-0 right-0 text-black bg-red-900">
+                  {image.id}
+                </p>
                 {userLogin && (
                   <Image
                     onClick={() => deleteImage(image.id)}

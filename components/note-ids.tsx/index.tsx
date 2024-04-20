@@ -29,7 +29,7 @@ const NoteId: FunctionComponent = () => {
   return (
     <NavBarFooter>
       <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 pt-[5%] ">
-        <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto max-w-[66.5vw] gap-9">
+        <div className="flex flex-col items-center justify-center  h-full mx-auto max-w-[66.5vw] gap-9">
           {content.map((e) => (
             <>
               <h1 className="leading-10 text-center text-gray-600 text-titles font-playfair">
