@@ -17,9 +17,9 @@ const Inspiration: FunctionComponent = () => {
     { image: image1, id: 0 },
     { image: image7, id: 1 },
     { image: image4, id: 2 },
-    { image: image3, id: 3 },
+    { image: image6, id: 3 },
     { image: image5, id: 4 },
-    { image: image6, id: 5 },
+    { image: image3, id: 5 },
     { image: image2, id: 6 },
   ];
 
@@ -119,9 +119,7 @@ const Inspiration: FunctionComponent = () => {
                   src={image.image}
                   alt={"Icon"}
                 />
-                <p className="absolute top-0 right-0 text-black bg-red-900">
-                  {image.id}
-                </p>
+
                 {userLogin && (
                   <Image
                     onClick={() => deleteImage(image.id)}
