@@ -28,13 +28,13 @@ const FocusImage: FunctionComponent<Props> = ({
           }}
           className="absolute  flex items-center justify-center  p-2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full -left-[90%] top-1/2"
         >
-          <Arrow size="32px" className="z-50 transform -rotate-90 " />
+          <Arrow size="16px" className="z-50 transform -rotate-90 " />
         </button>
         <Image
           onClick={closeFocus}
           src={close}
           alt="close"
-          className="absolute cursor-pointer object -cover w-12 h-12 -right-[15%] top-[0]"
+          className="absolute cursor-pointer object -cover w-6 h-6 -right-[15%] top-[0]"
         />
         <Image
           src={src && src}
@@ -50,7 +50,7 @@ const FocusImage: FunctionComponent<Props> = ({
           }}
           className="absolute  flex items-center justify-center  p-2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full -right-[90%] top-1/2"
         >
-          <Arrow size="32px" className="z-50 transform rotate-90" />
+          <Arrow size="16px" className="z-50 transform rotate-90" />
         </button>
       </div>
     </div>
