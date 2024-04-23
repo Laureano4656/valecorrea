@@ -62,23 +62,26 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
   iconImage,
 }) => {
   const [focus, setFocus] = useState(false);
+
   return (
     <div
       style={{
         zIndex: zIndex,
         ...style,
       }}
-      className={`cursor-pointer  ${styles.container} ${
-        focus && !notBorderFocus && styles.onFocus
-      } ${border && styles.border} ${className}`}
+      className={`cursor-pointer  relative    ${styles.container} ${
+        border && styles.border
+      }   ${className} ${focus && !notBorderFocus && styles.onFocus}  `}
       onClick={onClick}
     >
-      {label && <p className={styles.label}></p>}
+      {label && (
+        <p className={"absolute left-0 top-[-50%] text-[12px]"}>{label}</p>
+      )}
       {leftIcon && leftIcon}
       {type === "file" && (
         <label
           htmlFor={name}
-          className="relative flex flex-col items-center justify-center w-full h-full "
+          className="relative flex flex-col items-center rounded-[4px] justify-center w-full h-full "
         >
           {imageValue && (
             <img
@@ -96,9 +99,9 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
 
       {type !== "textarea" && (
         <input
-          className={`font-playfair ${inputClassName} ${styles.input}${
+          className={`font-playfair ${inputClassName} rounded-[4px] ${
             type === "file" ? "-z-50 absolute hidden right-0 top-0" : "flex"
-          }  `}
+          } `}
           readOnly={readOnly}
           ref={ref}
           type={type}
@@ -112,7 +115,6 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
           autoFocus={autoFocus}
           value={value}
           onFocus={(e) => {
-            onFocus && onFocus(e);
             setFocus(e.isTrusted);
           }}
           onBlur={(e) => {

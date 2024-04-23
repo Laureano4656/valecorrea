@@ -101,84 +101,46 @@ const CreateNote: FunctionComponent = () => {
 
   return (
     <NavBarFooter>
-      <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto max-w-[66.5vw] gap-9 ">
-        <div className="relative w-full h-auto">
-          <GlobalInput
-            inputClassName="text-center w-full text-center"
-            placeholder="Ingresar año"
-            style={{
-              margin: "0 auto",
-              width: "100%",
-              lineHeight: "0",
-              height: "50%",
-              fontSize: "40px",
-              padding: "0",
-            }}
-            value={form.year}
-            onChange={handleChange}
-            type="number"
-            name={"year"}
-          />
-        </div>
-        <div className="relative w-full h-auto">
-          <GlobalInput
-            inputClassName="text-center w-full text-center"
-            placeholder="Ingresar titulo"
-            style={{
-              margin: "0 auto",
-              width: "100%",
-              lineHeight: "0",
-              height: "50%",
-              fontSize: "40px",
-              padding: "0",
-            }}
-            value={form.title}
-            onChange={handleChange}
-            type="text"
-            name={"title"}
-          />
-          {/* <Image
-            onClick={() => {
-              form.title = "";
-              setInitialForm({ ...initialForm, title: null });
-            }}
-            src={close}
-            alt="close"
-            className="absolute cursor-pointer right-4 top-2"
-          /> */}
-        </div>
+      <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto my-[50px] max-w-[66.5vw] gap-16 ">
+        <GlobalInput
+          border
+          label="Deseas ingresar un titulo?"
+          inputClassName="text-center w-full text-center"
+          style={{
+            margin: "0 auto",
+            width: "100%",
+            lineHeight: "0",
+            height: "50%",
+            fontSize: "40px",
+            padding: "0",
+          }}
+          value={form.title}
+          onChange={handleChange}
+          type="text"
+          name={"title"}
+        />
+        <GlobalInput
+          border
+          label="Deseas ingresar bajada de titulo?"
+          inputClassName="text-center w-full text-center"
+          style={{
+            margin: "0 auto",
+            width: "100%",
+            lineHeight: "0",
+            height: "50%",
+            fontSize: "24px",
+            padding: "0",
+          }}
+          value={form.subTitle}
+          onChange={handleChange}
+          type="text"
+          name={"subTitle"}
+        />
 
-        <div className="relative w-full h-auto">
-          <GlobalInput
-            inputClassName="text-center w-full text-center"
-            placeholder="Ingresar bajada"
-            style={{
-              margin: "0 auto",
-              width: "100%",
-              lineHeight: "0",
-              height: "50%",
-              fontSize: "24px",
-              padding: "0",
-            }}
-            value={form.subTitle}
-            onChange={handleChange}
-            type="text"
-            name={"subTitle"}
-          />
-          {/* <Image
-            onClick={() => {
-              form.subTitle = "";
-              setInitialForm({ ...initialForm, subTitle: null });
-            }}
-            src={close}
-            alt="close"
-            className="absolute cursor-pointer right-4 top-2"
-          /> */}
-        </div>
         <div className="flex items-center w-full h-10 gap-3 text-center">
-          Deseas insertar un video ?
           <div className="flex items-center w-full gap-3">
             <GlobalInput
+              label=" Deseas insertar un video ?"
               style={{ width: "100%" }}
               border
               inputClassName="w-full"
@@ -217,8 +179,9 @@ const CreateNote: FunctionComponent = () => {
             ></iframe>
           </div>
         )}
-        <div className="relative w-full border-black border-border1">
+        <div className="relative w-full ">
           <GlobalInput
+            border
             placeholder="Insertar"
             style={{ height: "20vw" }}
             type={"file"}
@@ -238,11 +201,17 @@ const CreateNote: FunctionComponent = () => {
           />
         </div>
 
-        <div className="relative flex flex-col justify-between w-full">
+        <div className="relative flex flex-col justify-between rounded-[4px] w-full">
           <TextArea
-            inputClassName="resize-none"
-            placeholder="Escribi tu texto aca"
-            style={{ height: "29vw", fontSize: "20px", textAlign: "justify" }}
+            border
+            label={"Escribi tu texto aca"}
+            inputClassName="resize-none "
+            placeholder=""
+            style={{
+              height: "29vw",
+              fontSize: "20px",
+              textAlign: "justify",
+            }}
             name={"comment"}
             value={form.comment}
             notBorderFocus
@@ -250,42 +219,6 @@ const CreateNote: FunctionComponent = () => {
             className={"p-[0!important]"}
           />
 
-          <div className=" py-6 pb-20  flex gap-[3.5vw] items-center justify-center ">
-            <button
-              disabled={!form.year || !form.title || !form.comment}
-              onClick={() => createNewNote()}
-              className="text-[1vw] relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
-            >
-              <div className="p-[15%] w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
-                <CheckIcon color="#fff" size="90%" />
-              </div>
-              <TextHover title="Publicar" />
-            </button>
-            <button
-              onClick={() => saveNote()}
-              className="text-[1vw]  relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
-            >
-              <Image
-                src={save}
-                alt="close"
-                width={0}
-                height={0}
-                className="w-[3vw]"
-              />
-
-              <TextHover title="Guardar" />
-            </button>
-            <button
-              onClick={() => deleteNote()}
-              className="text-[1vw]  relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
-            >
-              <div className="p-[15%] w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
-                <CrossIcon color="#fff" size="90%" />
-              </div>
-
-              <TextHover title="Eliminar" />
-            </button>
-          </div>
           <Image
             onClick={() => {
               form.comment = "";
@@ -295,6 +228,61 @@ const CreateNote: FunctionComponent = () => {
             alt="close"
             className="absolute cursor-pointer -right-8 -top-4"
           />
+        </div>
+        <div className="relative flex mx-auto  h-auto w-[20vw]">
+          <GlobalInput
+            label="Ingresar año"
+            border
+            inputClassName="text-center w-full text-center"
+            style={{
+              margin: "0 auto",
+              width: "100%",
+              lineHeight: "0",
+              height: "50%",
+              fontSize: "20px",
+              padding: "0",
+            }}
+            value={form.year}
+            onChange={handleChange}
+            type="number"
+            name={"year"}
+          />
+        </div>
+        <div className=" py-6 gap-[3.5vw] w-[20vw]  flex  items-center justify-center ">
+          <button
+            disabled={!form.year || !form.title || !form.comment}
+            onClick={() => createNewNote()}
+            className="text-[1vw] relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
+          >
+            <div className="p-[15%] w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+              <CheckIcon color="#fff" size="90%" />
+            </div>
+            <TextHover title="Publicar" />
+          </button>
+          <button
+            onClick={() => saveNote()}
+            className="text-[1vw]  relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
+          >
+            <Image
+              src={save}
+              alt="close"
+              width={0}
+              height={0}
+              className="w-[3vw]"
+            />
+
+            <TextHover title="Guardar" />
+          </button>
+          <button
+            onClick={() => deleteNote()}
+            className="text-[1vw]  relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
+          >
+            <div className="p-[15%] w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+              <CrossIcon color="#fff" size="90%" />
+            </div>
+
+            <TextHover title="Eliminar" />
+          </button>
         </div>
       </div>
     </NavBarFooter>

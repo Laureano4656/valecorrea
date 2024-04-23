@@ -21,6 +21,8 @@
     border: none;
     height: 100%;
     width: 100%;
+    border: none;
+    border-radius: 4px;
 }
 
 .input:hover {
@@ -28,22 +30,23 @@
 }
 
 
-
-
 .label {
     position: absolute;
     top: -28px;
 }
 
-.onFocus {
-    border: 1px solid #000;
-}
-
-.onFocus:focus {
-    border: 1px solid #000;
-}
 
 
 .border {
+    border-radius: 4px;
     border: 1px solid #000;
+}
+.onFocus {
+    border: 2px solid #000;
+    border-radius: 4px;
+}
+
+.onFocus:focus {
+    border: 2px solid #000;
+    border-radius: 4px;
 }

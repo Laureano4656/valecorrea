@@ -18,6 +18,7 @@ export interface TextAreaProps extends ComponentPropsWithoutRef<"textarea"> {
   inputStyle?: React.CSSProperties;
   zIndex?: string;
   imageValue?: string;
+  label?: string;
 }
 
 const TextArea: FunctionComponent<TextAreaProps> = ({
@@ -29,25 +30,29 @@ const TextArea: FunctionComponent<TextAreaProps> = ({
   border,
   notBorderFocus,
   style,
+  label,
   zIndex,
   ...rest
 }) => {
   return (
-    <textarea
-      style={{
-        zIndex: zIndex,
-        ...style,
-      }}
-      className={` ${styles.container} ${
-        border && styles.border
-      } ${className}  ${!notBorderFocus && styles.onFocus} ` }
-      placeholder={placeholder}
-      value={value}
-      name={name}
-      id={name}
-      onChange={onChange}
-      {...rest}
-    />
+    <div className="relative rounded-[4px]">
+      {label && <p>{label}</p>}
+      <textarea
+        style={{
+          zIndex: zIndex,
+          ...style,
+        }}
+        className={` ${styles.container} ${
+          border && styles.border
+        } ${className}  ${!notBorderFocus && styles.onFocus} `}
+        placeholder={placeholder}
+        value={value}
+        name={name}
+        id={name}
+        onChange={onChange}
+        {...rest}
+      />
+    </div>
   );
 };
 export default TextArea;
