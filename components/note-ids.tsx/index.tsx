@@ -10,6 +10,12 @@ import EditIcon from "../icons/EditIcon";
 import useCreateNote from "../utils/useCreateNote";
 import TextHover from "../home/components/ui/input-global/TextHover";
 
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css"; // Importa el CSS de Quill.js
+import "react-quill/dist/quill.bubble.css"; // Opcional: Importa otro tema de Quill.js si lo prefieres
+import styles from "./note-id.module.css";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const NoteId: FunctionComponent = () => {
   const router = useRouter();
 
@@ -18,6 +24,13 @@ const NoteId: FunctionComponent = () => {
   const { setCreateNote } = useCreateNote();
   const { userLogin } = useUserLogin();
 
+  const [editorHtml, setEditorHtml] = useState();
+  useEffect(() => {
+    if (content.length > 0) {
+      setEditorHtml(content[0].comment);
+    }
+  }, [content]);
+
   useEffect(() => {
     setContent(
       allCategories.filter((list) => {
@@ -25,6 +38,8 @@ const NoteId: FunctionComponent = () => {
       })
     );
   }, [allCategories]);
+  console.log("content[0].video");
+  console.log(content);
 
   return (
     <NavBarFooter>
@@ -57,15 +72,34 @@ const NoteId: FunctionComponent = () => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 ></iframe>
               )}
-
-              {e.comment.split("\n").map((linea, index) => (
+              <div className={styles.ReactQuill}>
+                <ReactQuill
+                  readOnly={true}
+                  theme="snow"
+                  value={editorHtml}
+                  modules={{
+                    toolbar: false,
+                  }}
+                />
+              </div>
+              {e.image2 && (
+                <img
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                  }}
+                  src={e.image2}
+                  alt={"Imagen"}
+                />
+              )}
+              {/* {e.comment.split("\n").map((linea, index) => (
                 <p
                   key={index}
                   className="text-justify text-black text-text font-playfair"
                 >
                   {linea}
                 </p>
-              ))}
+              ))} */}
             </>
           ))}
         </div>
@@ -80,6 +114,7 @@ const NoteId: FunctionComponent = () => {
                   category: content[0].category,
                   subCategory: content[0].subCategory,
                   image: content[0].image,
+                  image2: content[0].image2,
                   comment: content[0].comment,
                   title: content[0].title,
                   video: content[0].video,

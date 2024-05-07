@@ -106,7 +106,7 @@ const IconsTouch = () => {
       </div>
       <div className="fixed z-0 bottom-12 ">
         <Marquee direction="left">
-          <div className="flex px-0 gap-[1vw]">
+          <div className="flex px-0 gap-[2vw]">
             <Image src={bannerImg} alt="banner" className={`md:w-[60vw] `} />
             <Image src={bannerImg} alt="banner" className={`md:w-[60vw] `} />
             <Image src={bannerImg} alt="banner" className={`md:w-[60vw] `} />

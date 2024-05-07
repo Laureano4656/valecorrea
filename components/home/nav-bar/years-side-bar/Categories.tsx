@@ -46,11 +46,7 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
     });
     router.push(`/create`);
   };
-  console.log(categoriesPerYear);
-  const probar = (objeto) => {
-    console.log("category.id");
-    console.log(objeto);
-  };
+
   return (
     <>
       {userLogin && (
@@ -74,7 +70,6 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
                 {userLogin ? (
                   <li key={category.id} className=" z-10 ml-[7vw] w-[53vw]">
                     <Link
-                      // onClick={() => probar(category)}
                       className="w-fit "
                       href={`/${router.pathname}/${category.id}`}
                     >

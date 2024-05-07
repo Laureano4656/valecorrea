@@ -2,13 +2,10 @@ import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import NavBarFooter from "../../../navbar-footer";
 import GlobalInput from "../ui/input-global";
 import close from "../../../../static/icons/SVG/close.svg";
-import trash from "../../../../static/icons/SVG/trash.svg";
 import save from "../../../../static/icons/SVG/save.svg";
-import check from "../../../../static/icons/SVG/check.svg";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import useCreateNote from "../../../utils/useCreateNote";
-// import allCategories from "../../../../mooks/all-ads.json";
 import { useForm } from "../../../../hooks/useForm";
 import useAllCategories from "../../../../hooks/useAllCategories";
 import TextArea from "../ui/input-global/textarea";
@@ -16,6 +13,14 @@ import CheckIcon from "../../../icons/CheckIcon";
 import TextHover from "../ui/input-global/TextHover";
 import CrossIcon from "../../../icons/CrossIcon";
 import ButtonPrimary from "../ui/button-primary";
+import Book from "../../../icons/Book";
+import Close from "../../../icons/Close";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css"; // Importa el CSS de Quill.js
+import "react-quill/dist/quill.bubble.css"; // Opcional: Importa otro tema de Quill.js si lo prefieres
+
+// Importa Quill.js de forma dinámica para evitar problemas con SSR
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const CreateNote: FunctionComponent = () => {
   const router = useRouter();
@@ -35,6 +40,7 @@ const CreateNote: FunctionComponent = () => {
     category: createNote.id ? createNote.category : createNote.category,
     active: createNote.id ? createNote.active : true,
     video: createNote.id ? createNote.video : "",
+    image2: createNote.id ? createNote.image2 : null,
   };
 
   const [video, setVideo] = useState(initialValues.video);
@@ -44,11 +50,11 @@ const CreateNote: FunctionComponent = () => {
   const { form, handleChange, resetForm } = useForm(initialForm, null);
 
   const createNewNote = () => {
+    form.active = true;
     if (createNote.id) {
       const removeOldNote = allCategories.filter((note) => {
         return note.id !== createNote.id;
       });
-
       setAllCategories([...removeOldNote, form]);
     } else {
       setAllCategories([...allCategories, form]);
@@ -75,6 +81,7 @@ const CreateNote: FunctionComponent = () => {
     });
 
     setAllCategories([...deleteNote]);
+    router.push(`/${createNote.category}`);
   };
   const [imageSrc, setImageSrc] = useState<any>("");
 
@@ -85,7 +92,11 @@ const CreateNote: FunctionComponent = () => {
     reader.onload = () => {
       const imageDataUrl = reader.result;
       setImageSrc(imageDataUrl);
-      form.image = imageDataUrl;
+      if (e.target.name.includes("image2")) {
+        form.image2 = imageDataUrl;
+      } else {
+        form.image = imageDataUrl;
+      }
     };
     if (file) {
       reader.readAsDataURL(file);
@@ -94,17 +105,32 @@ const CreateNote: FunctionComponent = () => {
   const getVideoId = (url) => {
     const startIndex = url.indexOf("v=") + 2;
     const endIndex = url.indexOf("&");
+    form.video = url.substring(
+      startIndex,
+      endIndex !== -1 ? endIndex : undefined
+    );
     return setVideo(
       url.substring(startIndex, endIndex !== -1 ? endIndex : undefined)
     );
   };
+  const [editorHtml, setEditorHtml] = useState("");
 
+  useEffect(() => {
+    setEditorHtml(createNote.comment);
+
+    // Lógica para cargar contenido inicial del editor si es necesario
+  }, []);
+
+  const handleEditorChange = (html) => {
+    form.comment = html;
+    setEditorHtml(html);
+  };
   return (
     <NavBarFooter>
       <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto my-[50px] max-w-[66.5vw] gap-16 ">
         <GlobalInput
           border
-          label="Deseas ingresar un titulo?"
+          label=" Acá va el título!"
           inputClassName="text-center w-full text-center"
           style={{
             margin: "0 auto",
@@ -121,7 +147,7 @@ const CreateNote: FunctionComponent = () => {
         />
         <GlobalInput
           border
-          label="Deseas ingresar bajada de titulo?"
+          label=" Acá va la bajada de titulo!"
           inputClassName="text-center w-full text-center"
           style={{
             margin: "0 auto",
@@ -140,7 +166,7 @@ const CreateNote: FunctionComponent = () => {
         <div className="flex items-center w-full h-10 gap-3 text-center">
           <div className="flex items-center w-full gap-3">
             <GlobalInput
-              label=" Deseas insertar un video ?"
+              label="Pega el link del video que quieras cargar "
               style={{ width: "100%" }}
               border
               inputClassName="w-full"
@@ -153,21 +179,27 @@ const CreateNote: FunctionComponent = () => {
             />
             <ButtonPrimary
               onClick={() => getVideoId(form.video)}
-              className="flex justify-center w-auto px-4 py-2 mx-auto text-center border-black rounded-lg border-border1"
+              className="relative flex justify-center w-auto px-4 py-2 mx-auto text-center border-black rounded-lg border-border1"
             >
-              Cargar
+              <p className="absolute w-10/12 -translate-x-1/2 -translate-y-1/2 bg-white opacity-0 h-10/12 top-1/2 left-1/2 hover:opacity-100">
+                Cargar
+              </p>
+              <div className="opacity-100 hover:opacity-0">
+                <CheckIcon color="#000" size="30px" />
+              </div>
             </ButtonPrimary>
           </div>
         </div>
         {video.length > 0 && form.video.length > 0 && (
           <div className="relative w-full">
-            <Image
+            <Close
               onClick={() => {
                 form.video = "";
                 setInitialForm({ ...initialForm, video: null });
               }}
-              src={close}
-              alt="close"
+              background={"#000"}
+              color="#fff"
+              size="24px"
               className="absolute cursor-pointer -right-8 -top-8"
             />
             <iframe
@@ -190,18 +222,51 @@ const CreateNote: FunctionComponent = () => {
             onChange={handleImageChange}
             className={"p-[0!important]"}
           />
-          <Image
+          <Close
             onClick={() => {
               form.image = "";
               setInitialForm({ ...initialForm, image: null });
             }}
-            src={close}
-            alt="close"
+            background={"#000"}
+            color="#fff"
+            size="24px"
             className="absolute cursor-pointer -right-8 -top-8"
           />
         </div>
 
-        <div className="relative flex flex-col justify-between rounded-[4px] w-full">
+        <div
+          className="relative rounded-[4px] w-full h"
+          style={{ height: "auto" }}
+        >
+          <ReactQuill
+            theme="snow"
+            value={editorHtml}
+            onChange={handleEditorChange}
+          />
+        </div>
+        <div className="relative w-full ">
+          <GlobalInput
+            border
+            placeholder="Te gustaria cargar una segunda imagen ?"
+            style={{ height: "20vw" }}
+            type={"file"}
+            name={"image2"}
+            imageValue={form.image2}
+            onChange={handleImageChange}
+            className={"p-[0!important]"}
+          />
+          <Close
+            onClick={() => {
+              form.image2 = "";
+              setInitialForm({ ...initialForm, image2: null });
+            }}
+            background={"#000"}
+            color="#fff"
+            size="24px"
+            className="absolute cursor-pointer -right-8 -top-8"
+          />
+        </div>
+        {/* <div className="relative flex flex-col justify-between rounded-[4px] w-full">
           <TextArea
             border
             label={"Escribi tu texto aca"}
@@ -218,18 +283,18 @@ const CreateNote: FunctionComponent = () => {
             onChange={handleChange}
             className={"p-[0!important]"}
           />
-
-          <Image
+          <Close
             onClick={() => {
               form.comment = "";
               setInitialForm({ ...initialForm, comment: null });
             }}
-            src={close}
-            alt="close"
-            className="absolute cursor-pointer -right-8 -top-4"
+            background={"#000"}
+            color="#fff"
+            size="24px"
+            className="absolute cursor-pointer -right-8 -top-8"
           />
-        </div>
-        <div className="relative flex mx-auto  h-auto w-[20vw]">
+        </div> */}
+        <div className="relative flex justify-start w-full h-auto pr-[80%]">
           <GlobalInput
             label="Ingresar año"
             border
@@ -248,21 +313,18 @@ const CreateNote: FunctionComponent = () => {
             name={"year"}
           />
         </div>
-        <div className=" py-6 gap-[3.5vw] w-[20vw]  flex  items-center justify-center ">
+        <div className="  gap-[3.5vw]   flex  items-center justify-center ">
           <button
             disabled={!form.year || !form.title || !form.comment}
             onClick={() => createNewNote()}
-            className="text-[1vw] relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
+            className="relative cursor-pointer"
           >
-            <div className="p-[15%] w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+            <div className="p-[15%]  w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
               <CheckIcon color="#fff" size="90%" />
             </div>
             <TextHover title="Publicar" />
           </button>
-          <button
-            onClick={() => saveNote()}
-            className="text-[1vw]  relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
-          >
+          <button onClick={() => saveNote()} className="relative ">
             <Image
               src={save}
               alt="close"
@@ -273,15 +335,19 @@ const CreateNote: FunctionComponent = () => {
 
             <TextHover title="Guardar" />
           </button>
-          <button
-            onClick={() => deleteNote()}
-            className="text-[1vw]  relative flex flex-col items-center justify-center cursor-pointer right-4 top-2"
-          >
-            <div className="p-[15%] w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+
+          <button onClick={() => deleteNote()} className="relative ">
+            <div className=" p-[15%] w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
               <CrossIcon color="#fff" size="90%" />
             </div>
 
             <TextHover title="Eliminar" />
+          </button>
+          <button onClick={() => saveNote()} className="relative ">
+            <div className=" w-[3vw] p-[15%] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+              <Book size="90%" color="#fff" />
+            </div>
+            <TextHover title="volver" />
           </button>
         </div>
       </div>

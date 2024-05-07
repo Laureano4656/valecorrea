@@ -5,6 +5,7 @@ interface Data {
   category?: string;
   subCategory?: string;
   image?: string;
+  image2?: string;
   comment?: string;
   title?: string;
   active?: boolean;

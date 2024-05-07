@@ -1,0 +1,15 @@
+.ReactQuill{
+  width: 100%;
+}
+.ReactQuill>div>div {
+  border: none !important;
+}
+
+.ReactQuill>div>div>div {
+  padding: 0 !important;
+}
+
+.ReactQuill>div>div>div>p {
+  font-family: "PlayfairDisplay-Regular";
+  font-size: 24px;
+}

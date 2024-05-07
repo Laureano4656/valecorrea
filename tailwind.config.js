@@ -27,7 +27,7 @@ module.exports = {
         17: "23px",
         "1.7vw": "1.7vw",
         titles: "40px",
-        subtitles: "24px",
+        subtitles: "28px",
         text: "20px",
         list_heading: "28px",
       },

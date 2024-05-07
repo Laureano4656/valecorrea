@@ -17,7 +17,7 @@ const ButtonBack: FunctionComponent<Props> = ({ onClick, children, title }) => {
       >
         {children}
       </div>
-      {title ? title : "Volver"}
+      {title ? title : "volver"}
     </button>
   );
 };

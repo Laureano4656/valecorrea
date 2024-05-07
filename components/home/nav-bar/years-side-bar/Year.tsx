@@ -13,6 +13,7 @@ import useCreateNote from "../../../utils/useCreateNote";
 import useAllCategories from "../../../../hooks/useAllCategories";
 import useUserLogin from "../../../utils/useAllCategoriesStore";
 import Modal from "../../components/ui/input-global/modal.tsx/modal";
+import Close from "../../../icons/Close";
 
 interface Category {
   categorie: string;
@@ -92,12 +93,14 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
                 >
                   <p className="relative w-max">
                     {year}
+                  
                     {userLogin && (
                       <Image
                         onClick={() => {
                           setYearDelete(year);
                           setOpenModal(true);
                         }}
+                        
                         src={close}
                         alt="Agregar"
                         className={`${

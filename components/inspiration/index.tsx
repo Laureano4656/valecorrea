@@ -12,6 +12,8 @@ import useUserLogin from "../utils/useAllCategoriesStore";
 import GlobalInput from "../home/components/ui/input-global";
 import close from "../../static/icons/SVG/close.svg";
 import FocusImage from "./FocusImage";
+import CrossIcon from "../icons/CrossIcon";
+import Close from "../icons/Close";
 const Inspiration: FunctionComponent = () => {
   let images = [
     { image: image1, id: 0 },
@@ -25,6 +27,7 @@ const Inspiration: FunctionComponent = () => {
 
   const { userLogin } = useUserLogin();
   const [imageSrc, setImageSrc] = useState<any>(images);
+  const [isHovered, setIsHovered] = useState(false);
   const [focusImage, setFocusImage] = useState<any>(null);
 
   const handleNewImage = (e) => {
@@ -95,11 +98,10 @@ const Inspiration: FunctionComponent = () => {
             name={"image"}
             onChange={(e) => handleNewImage(e)}
             iconImage={
-              <p className="leading-none font-playfair text-[20vw]">+</p>
+              <p className="leading-none font-playfair text-[150px]">+</p>
             }
           />
         )}
-
         {imageSrc.length > 0 &&
           imageSrc
             .slice()
@@ -109,25 +111,32 @@ const Inspiration: FunctionComponent = () => {
                 key={index}
                 className={`relative cursor-pointer ${styles.item} `}
               >
-                <Image
-                  onClick={() => {
-                    setFocusImage({ image: image.image, id: image.id });
-                  }}
-                  width={0}
-                  height={0}
-                  className={`  hover:brightness-75 transition duration-300 ease-in-out ${styles.item} `}
-                  src={image.image}
-                  alt={"Icon"}
-                />
-
-                {userLogin && (
+                <div className="relative w-full h-full">
                   <Image
-                    onClick={() => deleteImage(image.id)}
-                    src={close}
-                    alt="close"
-                    className="absolute w-7 h-7 right-4 top-2"
+                    width={0}
+                    height={0}
+                    className={`  hover:brightness-75 transition duration-300 ease-in-out ${styles.item} `}
+                    src={image.image}
+                    alt={"Icon"}
                   />
-                )}
+                  {userLogin && (
+                    <>
+                      <div
+                        onClick={() => {
+                          setFocusImage({ image: image.image, id: image.id });
+                        }}
+                        className="absolute top-0 right-0 w-full h-full opacity-0 hover:opacity-100 pl-[80%] pb-[80%]"
+                      >
+                        <Close
+                          color="#fff"
+                          background="#000"
+                          onClick={() => deleteImage(image.id)}
+                          className="relative right-0 flex w-7 h-7 top-2"
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
             ))}
 

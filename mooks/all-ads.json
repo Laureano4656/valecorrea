@@ -5,11 +5,12 @@
         "category": "derecho",
         "subCategory": "salud",
         "year": 2024,
-        "comment": "Los derechos humanos son derechos inherentes a todos los seres humanos, sin distinción alguna de raza, sexo, nacionalidad, origen étnico, lengua, religión o cualquier otra condición.",
+        "comment": "",
         "title": "ONU y los Derechos Humanos",
         "subTitle": "",
         "active": true,
-        "video": ""
+        "video": "",
+        "image2": ""
     },
     {
         "id": 2,
@@ -21,7 +22,8 @@
         "title": "Derechos humanos y democracia",
         "subTitle": "",
         "active": true,
-        "video": ""
+        "video": "",
+        "image2": ""
     },
     {
         "id": 3,
@@ -33,7 +35,8 @@
         "title": "Derecho a la Sanidad",
         "subTitle": "",
         "active": true,
-        "video": ""
+        "video": "",
+        "image2": ""
     },
     {
         "id": 4,
@@ -45,6 +48,7 @@
         "title": "DELITOS DE LESA HUMANIDAD",
         "subTitle": "Dominio de la voluntad por aparatos organizados de poder de Clauss Roxin.",
         "active": true,
-        "video": ""
+        "video": "",
+        "image2": ""
     }
 ]

@@ -3,6 +3,7 @@ import React, { FunctionComponent } from "react";
 
 import close from "../../static/icons/SVG/close.svg";
 import Arrow from "../icons/Arrow";
+import Close from "../icons/Close";
 interface Props {
   src: string | undefined | null | any;
   handleLeft?: () => void;
@@ -30,12 +31,13 @@ const FocusImage: FunctionComponent<Props> = ({
         >
           <Arrow size="16px" className="z-50 transform -rotate-90 " />
         </button>
-        <Image
+        <Close
+          color="#fff"
+          background="#000"
           onClick={closeFocus}
-          src={close}
-          alt="close"
           className="absolute cursor-pointer object -cover w-6 h-6 -right-[15%] top-[0]"
         />
+
         <Image
           src={src && src}
           alt="Image"

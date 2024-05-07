@@ -55,6 +55,31 @@ input[type="number"]::-webkit-inner-spin-button {
     overflow: hidden;
 }
 
+.quill {
+    width: 100%;
+    font-size: 24px;
+}
+
+.quill>div>div {
+    border: none !important;
+}
+
+.quill>div>div>div {
+    padding: 0 !important;
+}
+
+.quill>div>div>div>p {
+    background: red;
+    font-family: "PlayfairDisplay-Regular";
+    font-size: 24px;
+}
+
+.ql-editor>p {
+    font-family: "PlayfairDisplay-Regular";
+    font-size: 24px;
+}
+
+
 .animated-element {
     width: 200px;
     height: 200px;
