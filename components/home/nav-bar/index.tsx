@@ -26,9 +26,9 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
     { label: "sobre mi", href: "sobre-mi" },
     { label: "derecho", href: "derecho" },
     { label: "psicologia", href: "psicologia" },
-    { label: "organico", href: "bienestar" },
+    { label: "organico", href: "organico" },
     { label: "filosofía", href: "filosofia" },
-    { label: "visual", href: "visual" },
+    { label: "bienestar", href: "bienestar" },
     { label: "inspiración", href: "inspiracion" },
   ];
   useEffect(() => {

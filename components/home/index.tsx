@@ -39,20 +39,20 @@ const IconsTouch = () => {
         <div className="relative md:w-[19.3vw] md:h-[19.3vw] w-[150px] h-[150px] mx-auto my-1 flex justify-center items-center">
           <IconMenu
             link={"psicologia"}
-            title={"Textos"}
+            title={"Psicología"}
             className="left-[50%]  top-[-30%] translate-x-[-50%]"
           >
             <Book size="60%" strokeMiterlimit={10} />
           </IconMenu>
           <IconMenu
-            link={"bienestar"}
-            title={"Salud"}
+            link={"organico"}
+            title={"Orgánico"}
             className="top-[-10%] right-[-15%] "
           >
             <Heart size="60%" />
           </IconMenu>
           <IconMenu
-            link={"inspiracion"}
+            link={"bienestar"}
             title={"Bienestar"}
             className="right-[-30%]  top-[50%] translate-y-[-50%]"
           >
@@ -60,7 +60,7 @@ const IconsTouch = () => {
           </IconMenu>
           <IconMenu
             link={"inspiracion"}
-            title={"Fotografia"}
+            title={"inspiracion"}
             className="bottom-[-15%] right-[-15%]"
           >
             <Camera size="60%" />

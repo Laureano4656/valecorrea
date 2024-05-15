@@ -33,7 +33,7 @@ const IconNavbar = () => {
         <Ligth color="#fff" size={iconSize} />
       </div>
     ),
-    visual: (
+    bienestar: (
       <div className={styles.iconNavbar}>
         <Camera color="#fff" size={iconSize} />
       </div>
@@ -43,7 +43,7 @@ const IconNavbar = () => {
         <Inspiration color="#fff" size={iconSize} />
       </div>
     ),
-    bienestar: (
+    organico: (
       <div className={styles.iconNavbar}>
         <Heart color="#fff" size={iconSize} />
       </div>

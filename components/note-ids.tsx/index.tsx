@@ -38,8 +38,6 @@ const NoteId: FunctionComponent = () => {
       })
     );
   }, [allCategories]);
-  console.log("content[0].video");
-  console.log(content);
 
   return (
     <NavBarFooter>
@@ -64,13 +62,36 @@ const NoteId: FunctionComponent = () => {
                 />
               )}
               {e.video.length > 0 && (
-                <iframe
-                  width="100%"
-                  height={500}
-                  src={`https://www.youtube.com/embed/${e.video}`}
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                ></iframe>
+                <div className="relative w-full">
+                  {e.video.includes("youtube.com") ? (
+                    <iframe
+                      width="100%"
+                      height={500}
+                      src={`https://www.youtube.com/embed/${
+                        e.video.includes("v=")
+                          ? e.video.split("v=")[1].split("&")[0]
+                          : e.video
+                      }`}
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                  ) : e.video.includes("vimeo.com") ? (
+                    <iframe
+                      className="w-full"
+                      src={`https://player.vimeo.com/video/${e.video
+                        .split("/")
+                        .pop()}`}
+                      style={{ width: "100%", aspectRatio: "16 / 9" }}
+                      title="vimeo video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                  ) : (
+                    <p>
+                      No se puede reproducir el video debido al formato del
+                      enlace.
+                    </p>
+                  )}
+                </div>
               )}
               <div className={styles.ReactQuill}>
                 <ReactQuill

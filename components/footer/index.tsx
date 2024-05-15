@@ -41,9 +41,9 @@ const Footer: React.FC<props> = ({ fixed }) => {
           <Link
             target="_blank"
             className={`${styles.link} md:text-[1.2vw] text-[12px] font-playfair`}
-            href="mailto:valeriacorrea@gmail.com"
+            href="valecorreamdq@gmail.com"
           >
-            valeriacorrea@gmail.com
+            valecorreamdq@gmail.com
           </Link>
           <IgSocial size="1.5vw" />
           <Link

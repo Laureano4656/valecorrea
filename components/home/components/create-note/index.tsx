@@ -103,16 +103,21 @@ const CreateNote: FunctionComponent = () => {
     }
   };
   const getVideoId = (url) => {
-    const startIndex = url.indexOf("v=") + 2;
-    const endIndex = url.indexOf("&");
-    form.video = url.substring(
-      startIndex,
-      endIndex !== -1 ? endIndex : undefined
-    );
-    return setVideo(
-      url.substring(startIndex, endIndex !== -1 ? endIndex : undefined)
-    );
+    // Verificar si es un enlace de YouTube
+    form.video = url;
+    setVideo(url);
   };
+  // const getVideoId = (url) => {
+  //   const startIndex = url.indexOf("v=") + 2;
+  //   const endIndex = url.indexOf("&");
+  //   form.video = url.substring(
+  //     startIndex,
+  //     endIndex !== -1 ? endIndex : undefined
+  //   );
+  //   return setVideo(
+  //     url.substring(startIndex, endIndex !== -1 ? endIndex : undefined)
+  //   );
+  // };
   const [editorHtml, setEditorHtml] = useState("");
 
   useEffect(() => {
@@ -190,26 +195,30 @@ const CreateNote: FunctionComponent = () => {
             </ButtonPrimary>
           </div>
         </div>
-        {video.length > 0 && form.video.length > 0 && (
-          <div className="relative w-full">
-            <Close
-              onClick={() => {
-                form.video = "";
-                setInitialForm({ ...initialForm, video: null });
-              }}
-              background={"#000"}
-              color="#fff"
-              size="24px"
-              className="absolute cursor-pointer -right-8 -top-8"
-            />
-            <iframe
-              width="100%"
-              height={500}
-              src={`https://www.youtube.com/embed/${video}`}
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
-          </div>
+        {form.video.includes("youtube.com") ? (
+          <iframe
+            width="100%"
+            height={500}
+            src={`https://www.youtube.com/embed/${
+              form.video.includes("v=")
+                ? form.video.split("v=")[1].split("&")[0]
+                : form.video
+            }`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        ) : form.video.includes("vimeo.com") ? (
+          <iframe
+            src={`https://player.vimeo.com/video/${form.video
+              .split("/")
+              .pop()}`}
+            width="100%"
+            height={500}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+          ></iframe>
+        ) : (
+          <p>No se puede reproducir el video debido al formato del enlace.</p>
         )}
         <div className="relative w-full ">
           <GlobalInput
@@ -266,34 +275,7 @@ const CreateNote: FunctionComponent = () => {
             className="absolute cursor-pointer -right-8 -top-8"
           />
         </div>
-        {/* <div className="relative flex flex-col justify-between rounded-[4px] w-full">
-          <TextArea
-            border
-            label={"Escribi tu texto aca"}
-            inputClassName="resize-none "
-            placeholder=""
-            style={{
-              height: "29vw",
-              fontSize: "20px",
-              textAlign: "justify",
-            }}
-            name={"comment"}
-            value={form.comment}
-            notBorderFocus
-            onChange={handleChange}
-            className={"p-[0!important]"}
-          />
-          <Close
-            onClick={() => {
-              form.comment = "";
-              setInitialForm({ ...initialForm, comment: null });
-            }}
-            background={"#000"}
-            color="#fff"
-            size="24px"
-            className="absolute cursor-pointer -right-8 -top-8"
-          />
-        </div> */}
+
         <div className="relative flex justify-start w-full h-auto pr-[80%]">
           <GlobalInput
             label="Ingresar año"
