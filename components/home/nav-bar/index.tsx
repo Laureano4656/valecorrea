@@ -24,7 +24,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
   const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
 
   const menuItems = [
-    { label: "sobre mi", href: "sobre-mi" },
+    { label: "sobre mí", href: "sobre-mi" },
     { label: "derecho", href: "derecho" },
     { label: "psicología", href: "psicologia" },
     { label: "organico", href: "organico" },

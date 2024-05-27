@@ -64,7 +64,7 @@ const IconsTouch = () => {
           </IconMenu>
           <IconMenu
             link={"inspiracion"}
-            title={"Inspiracion"}
+            title={"Inspiración"}
             className="bottom-[-15%] right-[-15%]"
           >
             <Camera size="60%" />
@@ -85,14 +85,14 @@ const IconsTouch = () => {
           </IconMenu>
           <IconMenu
             link={"sobre-mi"}
-            title={"Sobre mi"}
+            title={"Sobre mí"}
             className="left-[-30%]  bottom-[50%] translate-y-[50%] "
           >
             <Image src={V} alt="V" className={`w-[40%]`} />
           </IconMenu>
           <IconMenu
             link={"filosofia"}
-            title={"Filosofia"}
+            title={"Filosofía"}
             className="bottom-[-10%] left-[-10%] "
           >
             <Ligth size="60%" />

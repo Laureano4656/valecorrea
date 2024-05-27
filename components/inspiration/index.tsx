@@ -105,7 +105,13 @@ const Inspiration: FunctionComponent = () => {
             onChange={(e) => handleNewImage(e)}
             iconImage={
               // <img src={`${iconAdd}`} alt="Agregar" />
-              <Image src={iconAdd} height={0} width={0} className="w-[40%]" alt="Agregar" />
+              <Image
+                src={iconAdd}
+                height={0}
+                width={0}
+                className="w-[40%]"
+                alt="Agregar"
+              />
               // <p className="leading-none font-playfair text-[150px]">+</p>
             }
           />
@@ -121,9 +127,12 @@ const Inspiration: FunctionComponent = () => {
               >
                 <div className="relative w-full h-full">
                   <Image
+                    onClick={() => {
+                      setFocusImage({ image: image.image, id: image.id });
+                    }}
                     width={0}
                     height={0}
-                    className={`  hover:brightness-75 transition duration-300 ease-in-out ${styles.item} `}
+                    className={`   hover:brightness-75 transition duration-300 ease-in-out ${styles.item} w-full`}
                     src={image.image}
                     alt={"Icon"}
                   />
