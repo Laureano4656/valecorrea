@@ -4,22 +4,27 @@
     grid-auto-rows: minmax(100px, calc(59vw/3));
     grid-gap: .1vw;
     width: 59vw;
-    margin: 0 auto 0 22%
+    margin: 0 auto 0 22%;
 }
 
 .item:nth-child(3n) {
     grid-row: span 2;
 }
+
 .item {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
+
 @media (max-width: 768px) {
     .container {
         grid-template-columns: repeat(3, minmax(100px, 100%));
-        grid-auto-rows: minmax(100px, 100%);
+        /* grid-auto-rows: minmax(100px, 100%); */
+        grid-auto-rows: minmax(100px, 20vw );
         width: 100%;
         margin: 0 auto;
-    }   
+        min-height: 100vh;
+
+    }
 }

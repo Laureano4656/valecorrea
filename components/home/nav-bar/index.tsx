@@ -22,17 +22,15 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
   const { setActiveContact } = useActiveContact();
   const [activeMenu, setActiveMenu] = useState(false);
   const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
-  console.log("selectedCategory");
-  console.log(selectedCategory);
 
   const menuItems = [
     { label: "sobre mi", href: "sobre-mi" },
     { label: "derecho", href: "derecho" },
-    { label: "psicologia", href: "psicologia" },
+    { label: "psicología", href: "psicologia" },
     { label: "organico", href: "organico" },
-    { label: "filosofía", href: "filosofia" },
+    { label: "filosofía ", href: "filosofia" },
     { label: "bienestar", href: "bienestar" },
-    { label: "inspiración", href: "inspiracion" },
+    { label: "inspiración ", href: "inspiracion" },
   ];
   useEffect(() => {
     if (

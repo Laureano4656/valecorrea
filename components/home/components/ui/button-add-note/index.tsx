@@ -29,7 +29,7 @@ const ButtonAddNote: FunctionComponent = () => {
       <div className="relative sm:w-[200px] w-max ml-[31%] text-xs  flex justify-start items-center text-start font-playfair sm:gap-2 flex-col  md:text-[1vw] pb-6 ">
         <Image className="sm:w-[2vw] w-12" src={addIcon} alt="Agregar" />
         <div className="absolute flex items-center justify-center h-full -translate-x-1/2 -translate-y-1/2 w-max sm:w-full sm:opacity-0 opacity-1 left-1/2 top-1/2 hover:sm:opacity-100 ">
-          <p className="pt-10">Agregar nota</p>
+          <p className="pt-10 sm:pt-3">Agregar nota</p>
         </div>
       </div>
     </button>
