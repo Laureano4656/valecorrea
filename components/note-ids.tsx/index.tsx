@@ -41,8 +41,11 @@ const NoteId: FunctionComponent = () => {
 
   return (
     <NavBarFooter>
-      <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 pt-[5%] ">
-        <div className="flex flex-col items-center justify-center  h-full mx-auto max-w-[66.5vw] gap-9">
+      <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 sm:pt-[5%] pt-[80px] ">
+        <div
+          className="flex flex-col items-center justify-center  h-full mx-auto w-11/12
+         sm:max-w-[66.5vw] gap-9"
+        >
           {content.map((e) => (
             <>
               <h1 className="leading-10 text-center text-gray-600 text-titles font-playfair">
@@ -86,10 +89,7 @@ const NoteId: FunctionComponent = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
                   ) : (
-                    <p>
-                      No se puede reproducir el video debido al formato del
-                      enlace.
-                    </p>
+                    ""
                   )}
                 </div>
               )}
@@ -124,7 +124,7 @@ const NoteId: FunctionComponent = () => {
             </>
           ))}
         </div>
-        <div className="flex items-center justify-center gap-[3.5vw] pb-8">
+        <div className="flex items-center justify-center sm:gap-[3.5vw] gap-8 pb-8">
           {userLogin && (
             <ButtonBack
               title="Editar"

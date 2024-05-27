@@ -1,17 +1,16 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Box from "../icons/Box";
-import IgSocial from "../icons/IgSocial";
-import logoPomelo from "../../static/icons/Logo Pomelo.png";
 import styles from "./footer.module.css";
-import Image from "next/image";
 import useActiveContact from "../utils/useActiveFooter";
+import useIsMobile from "../utils/isMobile";
 interface props {
   fixed?: boolean;
 }
 
 const Footer: React.FC<props> = ({ fixed }) => {
   const { activeContact, setActiveContact } = useActiveContact();
+  const isMobile = useIsMobile();
   useEffect(() => {
     const handleWheel = (event) => {
       // Aquí puedes hacer lo que necesites cuando ocurra el evento de rueda del ratón
@@ -25,19 +24,21 @@ const Footer: React.FC<props> = ({ fixed }) => {
 
   return (
     <>
-    {activeContact &&
+      {/* {activeContact &&
       <div className={`${styles.footer}`}></div>
 
-    }
+    } */}
       <div
-        className={`${
+        className={`
+        ${styles.footer}
+        ${
           activeContact
             ? `  fixed bottom-0 left-0 w-full  transition-all duration-1000`
-            : `${activeContact ? "0 " : "-bottom-52 "}`
-        } ${fixed && styles.footerFixed} ${styles.footer} transition-all duration-1000 `}
+            : `${activeContact ? "" : "-bottom-52 "}`
+        } ${fixed ? styles.footerFixed : ""}  transition-all duration-1000 `}
       >
         <div className="flex items-center gap-2">
-          <Box size="1.5vw" />
+          <Box size={isMobile ? "16px" : "1.5vw"} />
           <Link
             target="_blank"
             className={`${styles.link} md:text-[1.2vw] text-[12px] font-playfair`}
@@ -45,18 +46,18 @@ const Footer: React.FC<props> = ({ fixed }) => {
           >
             valecorreamdq@gmail.com
           </Link>
-          <IgSocial size="1.5vw" />
+          {/* <IgSocial size="1.5vw" />
           <Link
             target="_blank"
             className={`${styles.link} md:text-[1.2vw] text-[12px] font-playfair`}
             href={"https://www.instagram.com/valecorreamdq/"}
           >
             valecorreadmdq
-          </Link>
+          </Link> */}
         </div>
         <Link
           target="_blank"
-          className={`${styles.link}  text-[12px] font-playfair`}
+          className={`${styles.link} text-[12px] font-playfair`}
           href={"http://www.productorapomelo.com.ar/"}
         >
           Creator Pomelo I&M

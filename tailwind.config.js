@@ -10,6 +10,10 @@ module.exports = {
       translate: {
         translate50: "-50%",
       },
+      gap: {
+        1: "1px",
+        2: "2px",
+      },
       width: {
         50: "50px",
       },

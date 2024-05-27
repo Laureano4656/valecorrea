@@ -29,3 +29,15 @@
   opacity: 1;
   font-size: 4vw;
 }
+
+@media (max-width: 768px) {
+  .yearsSideBar {
+    justify-content: flex-start;
+    margin-top: 20%;
+  }
+
+  .years,
+  .yearsActive {
+    font-size: 34px;
+  }
+}

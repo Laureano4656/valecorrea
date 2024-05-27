@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Favicon from "../../icons/Favicon";
 import BarLoading from "../../icons/BarLoading";
+import useIsMobile from "../../utils/isMobile";
 
 const Welcome = () => {
+  const isMobile = useIsMobile();
   const [timer, setTimer] = useState({ timer1: true, timer2: false });
 
   useEffect(() => {
@@ -30,14 +32,14 @@ const Welcome = () => {
 
       {timer.timer2 && (
         <div className="flex flex-col items-center text-center welcome-block">
-          <h2 className="text-[2.7vw] font-playfairExtraBold mb-[1vw]">
+          <h2 className="text-text font-playfairExtraBold mb-[1vw]">
             <strong>hola!</strong>
           </h2>
-          <p className="mb-[1.8vw] text-[1.7vw] font-playfair">
+          <p className="mb-[24px] sm:mb-[1.8vw] text-text font-playfair">
             estas ingrensando <br /> a un área de plena lectura <br /> asique,
             ¡ponete comodx!
           </p>
-          <BarLoading size="13.4vw" />
+          <BarLoading size={isMobile ? "50%" : "13.4vw"} />
         </div>
       )}
     </div>

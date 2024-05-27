@@ -132,10 +132,10 @@ const CreateNote: FunctionComponent = () => {
   };
   return (
     <NavBarFooter>
-      <div className="flex flex-col items-center justify-center w-[55%] h-full mx-auto my-[50px] max-w-[66.5vw] gap-16 ">
+      <div className="flex flex-col items-center justify-center sm:w-[55%] w-11/12 pt-6 sm:pt-0 h-full mx-auto my-[50px] sm:max-w-[66.5vw] gap-16 ">
         <GlobalInput
           border
-          label=" Acá va el título!"
+          placeholder=" Acá va el título!"
           inputClassName="text-center w-full text-center"
           style={{
             margin: "0 auto",
@@ -144,6 +144,7 @@ const CreateNote: FunctionComponent = () => {
             height: "50%",
             fontSize: "40px",
             padding: "0",
+            minHeight: "55px",
           }}
           value={form.title}
           onChange={handleChange}
@@ -152,7 +153,7 @@ const CreateNote: FunctionComponent = () => {
         />
         <GlobalInput
           border
-          label=" Acá va la bajada de titulo!"
+          placeholder=" Acá va la bajada de titulo!"
           inputClassName="text-center w-full text-center"
           style={{
             margin: "0 auto",
@@ -161,6 +162,7 @@ const CreateNote: FunctionComponent = () => {
             height: "50%",
             fontSize: "24px",
             padding: "0",
+            minHeight: "55px",
           }}
           value={form.subTitle}
           onChange={handleChange}
@@ -168,11 +170,16 @@ const CreateNote: FunctionComponent = () => {
           name={"subTitle"}
         />
 
-        <div className="flex items-center w-full h-10 gap-3 text-center">
-          <div className="flex items-center w-full gap-3">
+        <div className="flex items-center w-full gap-3 text-center">
+          <div className="flex items-center w-full h-auto gap-3">
             <GlobalInput
-              label="Pega el link del video que quieras cargar "
-              style={{ width: "100%" }}
+              style={{
+                width: "100%",
+                minHeight: "55px",
+                padding: 0,
+                paddingLeft: "12px",
+                maxHeight: "50px",
+              }}
               border
               inputClassName="w-full"
               placeholder="ingresar  url del video aqui"
@@ -180,7 +187,7 @@ const CreateNote: FunctionComponent = () => {
               name={"video"}
               value={form.video}
               onChange={handleChange}
-              className={"w-full"}
+              className={"w-full h-auto"}
             />
             <ButtonPrimary
               onClick={() => getVideoId(form.video)}
@@ -218,7 +225,7 @@ const CreateNote: FunctionComponent = () => {
             allowFullScreen
           ></iframe>
         ) : (
-          <p>No se puede reproducir el video debido al formato del enlace.</p>
+          " "
         )}
         <div className="relative w-full ">
           <GlobalInput
@@ -239,7 +246,7 @@ const CreateNote: FunctionComponent = () => {
             background={"#000"}
             color="#fff"
             size="24px"
-            className="absolute cursor-pointer -right-8 -top-8"
+            className="absolute cursor-pointer sm:-right-8 -right-0 -top-8"
           />
         </div>
 
@@ -256,7 +263,7 @@ const CreateNote: FunctionComponent = () => {
         <div className="relative w-full ">
           <GlobalInput
             border
-            placeholder="Te gustaria cargar una segunda imagen ?"
+            placeholder="Te gustaría  cargar una segunda imagen ?"
             style={{ height: "20vw" }}
             type={"file"}
             name={"image2"}
@@ -272,13 +279,13 @@ const CreateNote: FunctionComponent = () => {
             background={"#000"}
             color="#fff"
             size="24px"
-            className="absolute cursor-pointer -right-8 -top-8"
+            className="absolute cursor-pointer sm:-right-8 -right-0 -top-8"
           />
         </div>
 
-        <div className="relative flex justify-start w-full h-auto pr-[80%]">
+        <div className="relative flex justify-start w-full h-auto sm:pr-[80%]">
           <GlobalInput
-            label="Ingresar año"
+            placeholder="Ingresar año"
             border
             inputClassName="text-center w-full text-center"
             style={{
@@ -288,6 +295,7 @@ const CreateNote: FunctionComponent = () => {
               height: "50%",
               fontSize: "20px",
               padding: "0",
+              minHeight: "55px",
             }}
             value={form.year}
             onChange={handleChange}
@@ -295,16 +303,16 @@ const CreateNote: FunctionComponent = () => {
             name={"year"}
           />
         </div>
-        <div className="  gap-[3.5vw]   flex  items-center justify-center ">
+        <div className="  sm:gap-[3.5vw] gap-7   flex  items-center justify-center ">
           <button
             disabled={!form.year || !form.title || !form.comment}
             onClick={() => createNewNote()}
             className="relative cursor-pointer"
           >
-            <div className="p-[15%]  w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+            <div className="p-[15%] w-12 h-12 sm:w-[3vw] sm:h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
               <CheckIcon color="#fff" size="90%" />
             </div>
-            <TextHover title="Publicar" />
+            <TextHover title="publicar" />
           </button>
           <button onClick={() => saveNote()} className="relative ">
             <Image
@@ -312,21 +320,21 @@ const CreateNote: FunctionComponent = () => {
               alt="close"
               width={0}
               height={0}
-              className="w-[3vw]"
+              className="sm:w-[3vw] w-12 h-12"
             />
 
-            <TextHover title="Guardar" />
+            <TextHover title="guardar" />
           </button>
 
           <button onClick={() => deleteNote()} className="relative ">
-            <div className=" p-[15%] w-[3vw] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+            <div className=" p-[15%] w-12 h-12 sm:w-[3vw] sm:h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
               <CrossIcon color="#fff" size="90%" />
             </div>
 
-            <TextHover title="Eliminar" />
+            <TextHover title="eliminar" />
           </button>
-          <button onClick={() => saveNote()} className="relative ">
-            <div className=" w-[3vw] p-[15%] h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+          <button onClick={() => router.back()} className="relative ">
+            <div className=" sm:w-[3vw] sm:h-[3vw]  p-[15%] w-12 h-12  bg-black rounded-[100%] flex justify-center items-center">
               <Book size="90%" color="#fff" />
             </div>
             <TextHover title="volver" />

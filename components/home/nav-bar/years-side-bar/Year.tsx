@@ -6,7 +6,6 @@ import addIcon from "../../../../static/icons/SVG/add.svg";
 import close from "../../../../static/icons/SVG/close.svg";
 import arrow from "../../../../static/icons/SVG/arrow.svg";
 import trash from "../../../../static/icons/SVG/trash.svg";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import useCategoryStore from "../../../utils/useCategoryStore";
 import useCreateNote from "../../../utils/useCreateNote";
@@ -14,6 +13,7 @@ import useAllCategories from "../../../../hooks/useAllCategories";
 import useUserLogin from "../../../utils/useAllCategoriesStore";
 import Modal from "../../components/ui/input-global/modal.tsx/modal";
 import Close from "../../../icons/Close";
+import Image from "next/image";
 
 interface Category {
   categorie: string;
@@ -77,7 +77,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
   return (
     <>
       <ul
-        className={`z-10 font-playfair min-h-[100px] max-w-[250px] flex gap-[2.5vw] flex-col items-start absolute left-[-30%] top-0 `}
+        className={`z-10 font-playfair min-h-[100px] max-w-[250px] flex gap-[2.5vw] flex-col items-start absolute sm:left-[-30%] left-[12%] -translate-x-1/2 sm:translate-x-0 sm:top-0 -top-8 `}
       >
         {yearList.length > 0 &&
           yearList
@@ -91,21 +91,20 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
                   }`}
                   onClick={() => setSelectedYear(year)}
                 >
-                  <p className="relative w-max">
+                  <p className="relative w-max ">
                     {year}
-                  
+
                     {userLogin && (
                       <Image
                         onClick={() => {
                           setYearDelete(year);
                           setOpenModal(true);
                         }}
-                        
                         src={close}
                         alt="Agregar"
                         className={`${
                           selectedYear === year ? "w-[2vw]" : "w-[1.2vw]"
-                        } absolute w-[2vw] right-[-25%]   top-[-75%] translate-x-1/2 -translate-y-1/2 ${
+                        } absolute w-[30px] sm:w-[2vw] right-[-25%]   top-[-75%] translate-x-1/2 -translate-y-1/2 ${
                           selectedYear === year
                             ? "right-0 translate-y-0 translate-x-0"
                             : "  "
@@ -136,29 +135,27 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
         )} */}
       </ul>
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        <p className="text-[1.8vw] font-playfairSemiBold font-semibold">
+        <p className="font-semibold text-text font-playfairSemiBold">
           atenti!
         </p>
-        <p className="text-center font-playfair leading-none  text-[1.1vw]">
+        <p className="leading-none text-center font-playfair text-text ">
           ¿estas segura de que
           <br /> queres borrar <br />
           esta carpeta completa ?
         </p>
         <div className="flex items-center justify-between gap-2 w-[50%] mx-auto ">
           <button
-            className="flex flex-col items-center  text-[.7vw] font-playfairSemiBold
-            "
+            className="flex flex-col items-center text-sm font-playfairSemiBold "
             onClick={() => setOpenModal(false)}
           >
-            <img src={arrow.src} alt="Flecha" className="w-[2vw]" />
+            <img src={arrow.src} alt="Flecha" className="w-9" />
             no,volver
           </button>
           <button
             onClick={() => deleteCategories()}
-            className="flex flex-col items-center  text-[.7vw] font-playfairSemiBold
-          "
+            className="flex flex-col items-center text-sm font-playfairSemiBold "
           >
-            <img src={trash.src} alt="Flecha" className="w-[2vw]" />
+            <img src={trash.src} alt="Flecha" className="w-9" />
             si, eliminar
           </button>
         </div>

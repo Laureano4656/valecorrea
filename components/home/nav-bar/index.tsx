@@ -20,7 +20,10 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
   const router = useRouter();
   const { selectedCategory, setSelectedCategory } = useCategoryStore();
   const { setActiveContact } = useActiveContact();
+  const [activeMenu, setActiveMenu] = useState(false);
   const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
+  console.log("selectedCategory");
+  console.log(selectedCategory);
 
   const menuItems = [
     { label: "sobre mi", href: "sobre-mi" },
@@ -51,20 +54,81 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
   }, [selectedCategory, router.pathname, router.query.ID]);
 
   useEffect(() => {
-    setSelectedCategory(null);
-  }, [router]);
+    setSelectedCategory("salud");
+  }, []);
+  console.log(router.pathname.split("/")[1]);
 
   return (
     <div
-      className={` flex items-center justify-between  mx-auto  px-[4.3%]   h-[8.2vw] w-full  relative`}
+      className={` flex items-center justify-between  mx-auto  px-[4.3%]  sm:h-[8.2vw] w-full  relative`}
     >
-      <div className="absolute -translate-y-1/2 top-1/2 ">
+      <div className="fixed top-0 z-50 flex flex-col w-full -translate-x-1/2 left-1/2 sm:hidden">
+        <button
+          onClick={() => setActiveMenu(!activeMenu)}
+          className="flex items-center justify-center w-full p-3 py-2 text-base bg-slate-200 h-50"
+        >
+          Menu
+        </button>
+        {subCategory.map(
+          (e) =>
+            router.pathname.split("/")[1] === e.category && (
+              <div className="justify-center w-full mt-2" key={e.id}>
+                <ul>
+                  {e.sub.map((subItem) => (
+                    <li
+                      className={`text-xs ${
+                        selectedCategory !== null &&
+                        selectedCategory.includes(subItem.item)
+                          ? "text-black"
+                          : "text-gray-500"
+                      }  cursor-pointer font-playfair text-center `}
+                      key={subItem.id}
+                      onClick={() => setSelectedCategory(subItem.item)}
+                    >
+                      *{subItem.item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+        )}
+        {activeMenu && (
+          <>
+            <ul className="flex flex-col items-center gap-3 pb-5 no-underline pt-5 bg-[rgba(255,255,255,0.9)]">
+              {menuItems.map((item) => (
+                <>
+                  <li key={item.href} className={`w-max relative  `}>
+                    <Link
+                      className={` ${
+                        router.pathname.replace("/[ID]", "") === `/${item.href}`
+                          ? "font-playfairSemiBold text-base  opacity-100  text-black underline"
+                          : "text-black opacity-60 text-base   font-playfair "
+                      }`}
+                      href={`/${item.href}`}
+                    >
+                      {item.label.toUpperCase()}
+                    </Link>
+                  </li>
+                </>
+              ))}
+              <li
+                onClick={() => setActiveContact(true)}
+                className={` ${"text-black opacity-60 text-base   font-playfair "}`}
+              >
+                CONTACTO
+              </li>
+            </ul>
+          </>
+        )}
+      </div>
+      <div className="absolute hidden -translate-y-1/2 top-1/2 sm:flex">
         <IconNavbar />
       </div>
-      <div className="flex justify-center w-full mx-auto">
+
+      <div className="top-0 left-0 justify-center hidden w-full mx-auto sm:flex ">
         <ul className="flex items-end gap-[1vw]  w-max ">
           {menuItems.map((item) => (
-            <li key={item.href} className={`w-max relative  `}>
+            <li key={item.href} className={`w-max relative`}>
               <Link
                 className={` ${
                   router.pathname.replace("/[ID]", "") === `/${item.href}`

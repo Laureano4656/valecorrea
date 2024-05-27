@@ -10,7 +10,7 @@ import image6 from "../../static/inspiration/6.webp";
 import image7 from "../../static/inspiration/7.webp";
 import useUserLogin from "../utils/useAllCategoriesStore";
 import GlobalInput from "../home/components/ui/input-global";
-import close from "../../static/icons/SVG/close.svg";
+import iconAdd from "../../static/icons/SVG/+.svg";
 import FocusImage from "./FocusImage";
 import CrossIcon from "../icons/CrossIcon";
 import Close from "../icons/Close";
@@ -82,8 +82,8 @@ const Inspiration: FunctionComponent = () => {
   };
 
   return (
-    <div className="flex items-start justify-start h-full pb-7 ">
-      <div className={`${styles.container}    relative `}>
+    <div className="flex items-start justify-start h-full pb-7 pt-[50px]">
+      <div className={`${styles.container}   gap-2 sm:gap-0 relative `}>
         <div className="absolute top-[10%]  left-[-12%] h-[400px] w-[50px] flex justify-center items-start">
           <div className="relative">
             <p className=" leading-none sm:mt-[100px] absolute left-1/2 bottom-[-9vw] -translate-x-1/2    2xl:mt-[128px]  -rotate-90 font-playfair   text-[5.1vw]   ">
@@ -93,12 +93,20 @@ const Inspiration: FunctionComponent = () => {
         </div>
         {userLogin && (
           <GlobalInput
-            style={{ height: "20vw", padding: "0" }}
+            style={{
+              height: "auto",
+              padding: "0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
             type="file"
             name={"image"}
             onChange={(e) => handleNewImage(e)}
             iconImage={
-              <p className="leading-none font-playfair text-[150px]">+</p>
+              // <img src={`${iconAdd}`} alt="Agregar" />
+              <Image src={iconAdd} height={0} width={0} className="w-[40%]" alt="Agregar" />
+              // <p className="leading-none font-playfair text-[150px]">+</p>
             }
           />
         )}

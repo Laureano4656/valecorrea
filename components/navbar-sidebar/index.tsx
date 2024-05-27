@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import NavBar from "../home/nav-bar";
 import SideBar from "../home/nav-bar/years-side-bar";
 import Footer from "../footer";
+import ButtonAddNote from "../home/components/ui/button-add-note";
 
 export interface props {
   children?: ReactNode;
@@ -10,14 +11,21 @@ export interface props {
 
 const NavSide: React.FC<props> = ({ children, sideBar }) => {
   return (
-    <div className="flex flex-col justify-between min-h-screen ">
+    // h-[calc(100vh+150px)]
+    <div className="relative flex-col pb-[150px] justify-between block h-screen sm:min-h-screen pt-28 sm:pt-0">
       <NavBar />
       <div
-        className={` w-9/12  mt-[16vw] pb-8   m-marginRigth  min-h-[32vh] h-full`}
+        //  sm:mt-[16vw] pb-8  sm:m-marginRigth  sm:min-h-[32vh]
+        className={`relative w-full sm:w-9/12 h-screen mx-auto sm:pt-52`}
       >
         {children}
+
         {sideBar && <SideBar />}
+        <div className="block sm:hidden">
+          <ButtonAddNote />
+        </div>
       </div>
+
       <Footer />
     </div>
   );

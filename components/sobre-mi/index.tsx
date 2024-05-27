@@ -11,7 +11,7 @@ const SobreMi: FunctionComponent = () => {
       <NavBar />
       <div
         className={
-          "relative text-justify  flex md:w-[66.5vw] w-11/12 mx-auto flex-col justify-between gap-8 pb-12"
+          "relative text-justify  flex md:w-[66.5vw] w-11/12 mx-auto flex-col justify-between gap-8 pb-12 pt-16 sm:pt-0"
         }
       >
         <Image
@@ -27,8 +27,10 @@ const SobreMi: FunctionComponent = () => {
         <h2 className="text-center text-subtitles">
           LA POTENCIA DE LO COLECTIVO ES INFINITA
         </h2>
-        <h3 className="font-playfairExtraBold text-list_heading ">Soy</h3>
-        <p className="font-playfair text-text">
+        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading mt-12 ">
+          Soy
+        </h3>
+        <p className="text-left font-playfair text-text sm:text-justify">
           Nací en Mar del Plata en los años ´80, mi nombre es Valeria Correa;
           soy abogada y trabajo desde muy joven en el estudio de las áreas del
           derecho que mayor motivación y compromiso me despiertan: salud,
@@ -42,7 +44,7 @@ const SobreMi: FunctionComponent = () => {
         <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
           Convicción{" "}
         </h3>
-        <p className="font-playfair text-text">
+        <p className="text-left font-playfair text-text sm:text-justify">
           Como a muchos estudiantes les sucede, no sabía muy bien que estaba
           haciendo en el mundo del derecho hasta que una causa relacionada con
           la salud llegó a mis manos. Cada paso que damos en la construcción de
@@ -58,7 +60,7 @@ const SobreMi: FunctionComponent = () => {
         <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
           Forjando el camino
         </h3>
-        <p className="font-playfair text-text">
+        <p className="text-left font-playfair text-text sm:text-justify">
           He tenido la oportunidad de compartir mis inicios con grandes
           profesionales, que generosamente abrieron las puertas de sus
           conocimientos y experiencias. Trabajamos en equipo, a nivel local y
@@ -70,7 +72,7 @@ const SobreMi: FunctionComponent = () => {
         <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
           Herramientas{" "}
         </h3>
-        <p className="font-playfair text-text">
+        <p className="text-left font-playfair text-text sm:text-justify">
           Mi potencial mas genuino, mi propia humanidad y profesionalismo, surge
           a partir de la integración de aquellas disciplinas que trabajan en
           contacto directo con nuestra historia, tensiones, problemáticas. Con
@@ -88,7 +90,7 @@ const SobreMi: FunctionComponent = () => {
         <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
           Hoy
         </h3>
-        <p className="font-playfair text-text">
+        <p className="text-left font-playfair text-text sm:text-justify">
           Desde el año 2002 trabajo para la Justicia Federal de mi ciudad,
           actualmente a cargo de una Secretaria Civil y Comercial. En 2021
           comencé, a generar espacios de divulgación científica sumamente

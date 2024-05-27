@@ -198,6 +198,18 @@ input[type="number"]::-webkit-inner-spin-button {
     }
 }
 
+@media (max-width: 767px) {
+    @keyframes faviconAnimPosition {
+        0% {
+            margin-left: 0;
+        }
+
+        100% {
+            margin-left: -42vw;
+        }
+    }
+}
+
 /* .faviconDisable {
     display: block;
     animation: displayNone 1s ease forwards 1.5s;

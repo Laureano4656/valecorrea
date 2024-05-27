@@ -10,6 +10,7 @@ import useCreateNote from "../../../utils/useCreateNote";
 import useUserLogin from "../../../utils/useAllCategoriesStore";
 import CheckIcon from "../../../icons/CheckIcon";
 import CrossIcon from "../../../icons/CrossIcon";
+import ButtonAddNote from "../../components/ui/button-add-note";
 interface Props {
   categories: any;
 }
@@ -50,27 +51,33 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
   return (
     <>
       {userLogin && (
-        <button
-          onClick={() => createNewYear()}
-          className={`z-10 font-playfair min-h-[100px] max-w-[100px] flex gap-[2.5vw] flex-col items-start absolute right-[-15%] top-[-25px] `}
-        >
-          <div className="relative w-[200px] ml-[31%] text-text  flex justify-start items-center text-start font-playfair gap-2 flex-col  md:text-[1vw]  pb-6 ">
-            <Image className="w-[2vw]" src={addIcon} alt="Agregar" />
-            <div className="absolute flex items-center justify-center w-full h-full -translate-x-1/2 -translate-y-1/2 opacity-0 left-1/2 top-1/2 hover:opacity-100">
-              <p className="pt-10">Agregar nota</p>
-            </div>
-          </div>
-        </button>
+        <div className="hidden sm:block">
+          <ButtonAddNote />
+        </div>
+        // <button
+        //   onClick={() => createNewYear()}
+        //   className={`fixed z-10 font-playfair min-h-[100px] max-w-[100px] flex gap-[2.5vw] flex-col items-start sm:absolute sm:right-[-15%] sm:top-[-25px] bottom-[2%] right-[25%] `}
+        // >
+        //   <div className="relative w-[200px] ml-[31%] text-xs  flex justify-start items-center text-start font-playfair sm:gap-2 flex-col  md:text-[1vw] pb-6 ">
+        //     <Image className="sm:w-[2vw] w-12" src={addIcon} alt="Agregar" />
+        //     <div className="absolute flex items-center justify-center w-full h-full -translate-x-1/2 -translate-y-1/2 sm:opacity-0 opacity-1 left-1/2 top-1/2 hover:sm:opacity-100 ">
+        //       <p className="pt-10">Agregar nota</p>
+        //     </div>
+        //   </div>
+        // </button>
       )}
       {categoriesPerYear.length > 0 && (
         <>
-          <ul className="pt-[1.3vw] relative flex flex-col w-full items-center">
+          <ul className="pt-[1.3vw] relative flex flex-col w-full sm:items-center">
             {categoriesPerYear.map((category) => (
               <>
                 {userLogin ? (
-                  <li key={category.id} className=" z-10 ml-[7vw] w-[53vw]">
+                  <li
+                    key={category.id}
+                    className=" z-10 sm:ml-[7vw] sm:w-[53vw]"
+                  >
                     <Link
-                      className="w-fit "
+                      className="sm:w-fit"
                       href={`/${router.pathname}/${category.id}`}
                     >
                       <p

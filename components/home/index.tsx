@@ -15,6 +15,7 @@ import bannerImg from "../../static/home/banner.svg";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import hammer from "../../static/icons/SVG/hammer-black.svg";
+import NavBar from "./nav-bar";
 
 const IconsTouch = () => {
   const [rotationFavicon, setRotationFavicon] = useState(false);
@@ -35,8 +36,11 @@ const IconsTouch = () => {
 
   return (
     <div className="flex flex-col justify-between w-full min-h-screen pb-8">
+      <div className="block sm:hidden">
+        <NavBar />
+      </div>
       <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-[44%]">
-        <div className="relative md:w-[19.3vw] md:h-[19.3vw] w-[150px] h-[150px] mx-auto my-1 flex justify-center items-center">
+        <div className="relative md:w-[19.3vw] md:h-[19.3vw] w-[50vw] h-[50vw] mx-auto my-1 flex justify-center items-center">
           <IconMenu
             link={"psicologia"}
             title={"Psicología"}
@@ -60,7 +64,7 @@ const IconsTouch = () => {
           </IconMenu>
           <IconMenu
             link={"inspiracion"}
-            title={"inspiracion"}
+            title={"Inspiracion"}
             className="bottom-[-15%] right-[-15%]"
           >
             <Camera size="60%" />

@@ -17,6 +17,7 @@ export const ValeCorrea: React.FC<iconType> = ({ size, color, background }) => {
           />
           <polygon
             stroke={color ? color : "#000"}
+            fill={color ? color : "#000"}
             points="17.45 0 12.02 0 12.02 0.85 14.37 0.85 9.79 12.98 5.15 0.85 7.54 0.85 7.54 0 0.27 0 0 0 0 0.85 2.12 0.85 8.29 17.02 9.23 17.02 15.33 0.85 17.45 0.85 17.45 0 17.45 0"
           />
         </g>

@@ -9,7 +9,7 @@ const Modal = ({ children, setOpenModal, openModal }) => {
         //   onClick={() => setOpenModal(false)}
         >
           {/* w-[16vw] h-[25vh] */}
-          <div className="py-[10px] bg-white  rounded-[32px] flex flex-col justify-between items-center border-stone-950 border-4">
+          <div className="py-[10px] bg-white sm:w-96 w-10/12  h-[50vh] sm:h-[250px] rounded-[32px] flex flex-col justify-between items-center border-stone-950 border-4">
             {children}
           </div>
         </div>
