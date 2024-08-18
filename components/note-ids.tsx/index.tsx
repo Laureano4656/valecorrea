@@ -8,7 +8,6 @@ import useAllCategories from "../../hooks/useAllCategories";
 import useUserLogin from "../utils/useAllCategoriesStore";
 import EditIcon from "../icons/EditIcon";
 import useCreateNote from "../utils/useCreateNote";
-import TextHover from "../home/components/ui/input-global/TextHover";
 
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css"; // Importa el CSS de Quill.js
@@ -25,6 +24,7 @@ const NoteId: FunctionComponent = () => {
   const { userLogin } = useUserLogin();
 
   const [editorHtml, setEditorHtml] = useState();
+
   useEffect(() => {
     if (content.length > 0) {
       setEditorHtml(content[0].comment);
@@ -37,6 +37,9 @@ const NoteId: FunctionComponent = () => {
         return list.id.toString() === router?.query?.ID;
       })
     );
+    console.log("allCategories");
+    console.log(allCategories);
+    
   }, [allCategories]);
 
   return (

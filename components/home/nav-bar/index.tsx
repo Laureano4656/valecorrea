@@ -65,7 +65,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
           onClick={() => setActiveMenu(!activeMenu)}
           className="flex items-center justify-center w-full p-3 py-2 text-base bg-slate-200 h-50"
         >
-          Menu
+          MENÚ
         </button>
         {subCategory.map(
           (e) =>

@@ -67,54 +67,44 @@ const Categories: FunctionComponent<Props> = ({ categories }) => {
         // </button>
       )}
       {categoriesPerYear.length > 0 && (
-        <>
-          <ul className="pt-[1.3vw] relative flex flex-col w-full sm:items-center">
-            {categoriesPerYear.map((category) => (
-              <>
-                {userLogin ? (
-                  <li
-                    key={category.id}
-                    className=" z-10 sm:ml-[7vw] sm:w-[53vw]"
-                  >
-                    <Link
-                      className="sm:w-fit"
-                      href={`/${router.pathname}/${category.id}`}
+        <ul className="pt-[1.3vw]  relative flex flex-col gap-[6px]  sm:w-full sm:items-center">
+          {categoriesPerYear.map((category) => (
+            <>
+              {userLogin ? (
+                <li className="z-10 relative sm:ml-[7vw] sm:w-[53vw] w-[70vw]">
+                  <Link href={`/${router.pathname}/${category.id}`}>
+                    <p
+                      className={` hover:opacity-100 font-playfairSemiBold w-full block text-[19px] leading-6 overflow-hidden text-ellipsis whitespace-nowrap ${styles.text}`}
                     >
+                      {category.title}
+                    </p>
+                  </Link>
+                  {category.active ? (
+                    <span className="absolute -translate-x-1/2 -translate-y-1/2 -right-6 top-1/2">
+                      <CheckIcon size="12px" />
+                    </span>
+                  ) : (
+                    <span className="absolute -translate-x-1/2 -translate-y-1/2 -right-6 top-1/2">
+                      <CrossIcon size="12px" />
+                    </span>
+                  )}
+                </li>
+              ) : (
+                category.active && (
+                  <li className="z-10 relative sm:ml-[7vw] sm:w-[53vw] w-[70vw]">
+                    <Link href={`/${router.pathname}/${category.id}`}>
                       <p
-                        key={category.title}
-                        className={` relative hover:opacity-100 font-playfairSemiBold w-fit   text-[19px]  ${styles.text}   leading-6`}
+                        className={` hover:opacity-100 font-playfairSemiBold w-full block text-[19px] leading-6 overflow-hidden text-ellipsis whitespace-nowrap ${styles.text}`}
                       >
-                        {category.active ? (
-                          <span className="absolute -translate-y-1/2 top-1/2 -right-6">
-                            <CheckIcon size="12px" />
-                          </span>
-                        ) : (
-                          <span className="absolute -translate-y-1/2 top-1/2 -right-6">
-                            <CrossIcon size="12px" />
-                          </span>
-                        )}
                         {category.title}
                       </p>
                     </Link>
                   </li>
-                ) : (
-                  category.active && (
-                    <li key={category.id} className="z-10 ml-[7vw] w-[53vw]">
-                      <Link href={`/${router.pathname}/${category.id}`}>
-                        <p
-                          key={category.title}
-                          className={` hover:opacity-100 font-playfairSemiBold    text-[19px]  ${styles.text} md:text-[1.2vw] md:leading-[1.5vw] leading-5`}
-                        >
-                          {category.title}
-                        </p>
-                      </Link>
-                    </li>
-                  )
-                )}
-              </>
-            ))}
-          </ul>
-        </>
+                )
+              )}
+            </>
+          ))}
+        </ul>
       )}
     </>
   );

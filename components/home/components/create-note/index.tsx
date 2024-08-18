@@ -18,6 +18,8 @@ import Close from "../../../icons/Close";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css"; // Importa el CSS de Quill.js
 import "react-quill/dist/quill.bubble.css"; // Opcional: Importa otro tema de Quill.js si lo prefieres
+import { BASE_URL } from "../../../../helpers/env";
+import axios from "axios";
 
 // Importa Quill.js de forma dinámica para evitar problemas con SSR
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -26,7 +28,6 @@ const CreateNote: FunctionComponent = () => {
   const router = useRouter();
   const { createNote } = useCreateNote();
   const { allCategories, setAllCategories } = useAllCategories();
-
   const initialValues = {
     id: createNote.id ? createNote.id : new Date().getTime(),
     image: createNote.id ? createNote.image : null,
@@ -50,6 +51,42 @@ const CreateNote: FunctionComponent = () => {
   const { form, handleChange, resetForm } = useForm(initialForm, null);
 
   const createNewNote = () => {
+    // const body = {
+    //   id: 1,
+    //   title: form.title ? form.title : "",
+    //   subTitle: form.subTitle ? form.subTitle :"",
+    //   subCategory: form.subCategory ? form.subCategory :"",
+    //   year: form.year ,
+    //   comment: form.comment ? form.comment :"",
+    //   category: form.category ? form.category :"",
+    //   active: true,
+    //   video: form.video ? form.video :"",
+    // };
+    // // console.log("body");
+    // // console.log(body);
+
+    // axios
+    //   .post(`${BASE_URL}/notes`, body)
+    //   .then((response) => {
+    //     console.log("response");
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log("error");
+    //     console.log(error);
+    //   });
+
+    // axios
+    //   .post(`${BASE_URL}/notes/upload/${form.id}/image2`)
+    //   .then((response) => {
+    //     console.log("response");
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log("error");
+    //     console.log(error);
+    //   });
+
     form.active = true;
     if (createNote.id) {
       const removeOldNote = allCategories.filter((note) => {
@@ -62,10 +99,12 @@ const CreateNote: FunctionComponent = () => {
 
     router.push(`/${createNote.category}`);
   };
+
   const saveNote = () => {
     const saveNote = allCategories.filter((note) => {
       return note.id === createNote.id;
     });
+
     const removeOldNote = allCategories.filter((oldNote) => {
       return oldNote.id !== createNote.id;
     });
@@ -305,7 +344,7 @@ const CreateNote: FunctionComponent = () => {
         </div>
         <div className="  sm:gap-[3.5vw] gap-7   flex  items-center justify-center ">
           <button
-            disabled={!form.year || !form.title || !form.comment}
+            // disabled={!form.year || !form.title || !form.comment}
             onClick={() => createNewNote()}
             className="relative cursor-pointer"
           >

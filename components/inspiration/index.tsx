@@ -14,6 +14,11 @@ import iconAdd from "../../static/icons/SVG/+.svg";
 import FocusImage from "./FocusImage";
 import CrossIcon from "../icons/CrossIcon";
 import Close from "../icons/Close";
+import Modal from "../home/components/ui/input-global/modal.tsx/modal";
+import arrow from "../../static/icons/SVG/arrow.svg";
+import trash from "../../static/icons/SVG/trash.svg";
+import useIsMobile from "../utils/isMobile";
+
 const Inspiration: FunctionComponent = () => {
   let images = [
     { image: image1, id: 0 },
@@ -26,9 +31,12 @@ const Inspiration: FunctionComponent = () => {
   ];
 
   const { userLogin } = useUserLogin();
+
+  const isMobile = useIsMobile();
   const [imageSrc, setImageSrc] = useState<any>(images);
   const [isHovered, setIsHovered] = useState(false);
   const [focusImage, setFocusImage] = useState<any>(null);
+  const [openModal, setOpenModal] = useState(false);
 
   const handleNewImage = (e) => {
     const file = e.target.files[0];
@@ -84,14 +92,26 @@ const Inspiration: FunctionComponent = () => {
   return (
     <div className="flex items-start justify-start h-full pb-7 pt-[50px]">
       <div className={`${styles.container}   gap-2 sm:gap-0 relative `}>
-        <div className="absolute top-[10%]  left-[-12%] h-[400px] w-[50px] flex justify-center items-start">
+        <div
+          className={`${
+            isMobile
+              ? "relative flex items-center justify-center w-full col-start-1 col-end-3"
+              : "absolute w-[50px]  left-[-12%] top-[10%] h-[400px]"
+          }    flex justify-center items-start`}
+        >
           <div className="relative">
-            <p className=" leading-none sm:mt-[100px] absolute left-1/2 bottom-[-9vw] -translate-x-1/2    2xl:mt-[128px]  -rotate-90 font-playfair   text-[5.1vw]   ">
+            <p
+              className={`${
+                isMobile
+                  ? "relative"
+                  : "-rotate-90 -translate-x-1/2 bottom-[-9vw] absolute left-1/2 sm:mt-[100px] 2xl:mt-[128px]   "
+              }leading-none font-playfair text-[5.1vw]`}
+            >
               inspiración
             </p>
           </div>
         </div>
-        {userLogin && (
+        {!userLogin && (
           <GlobalInput
             style={{
               height: "auto",
@@ -116,6 +136,7 @@ const Inspiration: FunctionComponent = () => {
             }
           />
         )}
+
         {imageSrc.length > 0 &&
           imageSrc
             .slice()
@@ -125,30 +146,34 @@ const Inspiration: FunctionComponent = () => {
                 key={index}
                 className={`relative cursor-pointer ${styles.item} `}
               >
-                <div className="relative w-full h-full">
+                <div
+                  className="relative w-full h-full"
+                  onClick={() => {
+                    setFocusImage({ image: image.image, id: image.id });
+                  }}
+                >
                   <Image
-                    onClick={() => {
-                      setFocusImage({ image: image.image, id: image.id });
-                    }}
                     width={0}
                     height={0}
-                    className={`   hover:brightness-75 transition duration-300 ease-in-out ${styles.item} w-full`}
+                    className={`hover:brightness-75  transition duration-300 ease-in-out ${styles.item} w-full`}
                     src={image.image}
                     alt={"Icon"}
                   />
+
                   {userLogin && (
                     <>
                       <div
-                        onClick={() => {
-                          setFocusImage({ image: image.image, id: image.id });
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setOpenModal(image.id);
                         }}
-                        className="absolute top-0 right-0 w-full h-full opacity-0 hover:opacity-100 pl-[80%] pb-[80%]"
+                        className="absolute top-0 right-0 w-[30px]  h-[30px] sm:opacity-1 hover:opacity-100  "
                       >
                         <Close
                           color="#fff"
                           background="#000"
-                          onClick={() => deleteImage(image.id)}
-                          className="relative right-0 flex w-7 h-7 top-2"
+                          className="relative right-0 flex w-4 h-4 sm:w-7 sm:h-7 top-2"
                         />
                       </div>
                     </>
@@ -157,6 +182,35 @@ const Inspiration: FunctionComponent = () => {
               </div>
             ))}
 
+        <Modal openModal={openModal} setOpenModal={setOpenModal}>
+          <p className="font-semibold text-text font-playfairSemiBold">
+            atenti!
+          </p>
+          <p className="leading-none text-center font-playfair text-text ">
+            ¿estás segura de que
+            <br /> querés borrar <br />
+            está imagen ?
+          </p>
+          <div className="flex items-center justify-between gap-2 w-[50%] mx-auto ">
+            <button
+              className="flex flex-col items-center text-sm font-playfairSemiBold "
+              onClick={() => setOpenModal(false)}
+            >
+              <img src={arrow.src} alt="Flecha" className="w-9" />
+              no,volver
+            </button>
+            <button
+              onClick={() => {
+                deleteImage(openModal);
+                setOpenModal(false);
+              }}
+              className="flex flex-col items-center text-sm font-playfairSemiBold "
+            >
+              <img src={trash.src} alt="Flecha" className="w-9" />
+              si, eliminar
+            </button>
+          </div>
+        </Modal>
         {focusImage !== null && (
           <FocusImage
             handleLeft={() => handleLeft(focusImage.id)}

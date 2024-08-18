@@ -19,9 +19,9 @@ const FocusImage: FunctionComponent<Props> = ({
   return (
     <div
       onClick={closeFocus}
-      className="fixed top-0 left-0 z-10 flex items-center justify-center w-full h-screen bg-black bg-opacity-60"
+      className="fixed top-0 left-0 z-20 flex items-center justify-center w-full h-screen bg-black bg-opacity-60"
     >
-      <div className="sm:w-2/6 z-40 w-11/12 h-[95%] relative  ">
+      <div className="sm:w-2/6 z-40 w-11/12 sm:h-[95%] h-[80%] relative  ">
         <button
           onClick={(e) => {
             e.stopPropagation();
