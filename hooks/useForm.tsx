@@ -23,7 +23,7 @@ export const useForm = (initialForm, validateForm) => {
     setErrors(validateForm(form));
   };
 
-  const resetForm = () => {
+  const resetForm = (initialForm) => {
     setForm(initialForm);
     setErrors({});
   };

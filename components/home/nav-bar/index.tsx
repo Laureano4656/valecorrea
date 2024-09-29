@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import useCategoryStore from "../../utils/useCategoryStore";
 import useActiveContact from "../../utils/useActiveFooter";
+import { useSubcategory } from "../../../store/useSubcategory";
 interface props {
   maxWhith?: boolean;
 }
@@ -18,10 +19,10 @@ interface SubCategory {
 }
 const NavBar: React.FC<props> = ({ maxWhith }) => {
   const router = useRouter();
-  const { selectedCategory, setSelectedCategory } = useCategoryStore();
   const { setActiveContact } = useActiveContact();
   const [activeMenu, setActiveMenu] = useState(false);
-  const [subCategory, setSetsubCategory] = useState<SubCategory[]>([]);
+  const { subCategory, selectedSubcategory, setSelectedSubcategory } =
+    useSubcategory();
 
   const menuItems = [
     { label: "sobre mí", href: "sobre-mi" },
@@ -32,29 +33,28 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
     { label: "bienestar", href: "bienestar" },
     { label: "inspiración ", href: "inspiracion" },
   ];
-  useEffect(() => {
-    if (
-      router.pathname.includes("derecho") &&
-      router?.pathname !== "/derecho/[ID]"
-    ) {
-      setSetsubCategory([
-        {
-          id: 0,
-          category: "derecho",
-          sub: [
-            { id: 0, item: "salud" },
-            { id: 1, item: "penal" },
-            { id: 2, item: "otros" },
-          ],
-        },
-      ]);
-    }
-  }, [selectedCategory, router.pathname, router.query.ID]);
+  // useEffect(() => {
+  //   if (
+  //     router.pathname.includes("derecho") &&
+  //     router?.pathname !== "/derecho/[ID]"
+  //   ) {
+  //     setSubcategory([
+  //       {
+  //         id: 0,
+  //         category: "derecho",
+  //         sub: [
+  //           { id: 0, item: "salud" },
+  //           { id: 1, item: "penal" },
+  //           { id: 2, item: "otros" },
+  //         ],
+  //       },
+  //     ]);
+  //   }
+  // }, [selectedCategory, router.pathname, router.query.ID]);
 
   useEffect(() => {
-    setSelectedCategory("salud");
+    setSelectedSubcategory("salud");
   }, []);
-  console.log(router.pathname.split("/")[1]);
 
   return (
     <div
@@ -70,18 +70,18 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
         {subCategory.map(
           (e) =>
             router.pathname.split("/")[1] === e.category && (
-              <div className="justify-center w-full mt-2" key={e.id}>
+              <div className="z-50 justify-center w-full " key={e.id}>
                 <ul>
                   {e.sub.map((subItem) => (
                     <li
                       className={`text-xs ${
-                        selectedCategory !== null &&
-                        selectedCategory.includes(subItem.item)
+                        selectedSubcategory !== null &&
+                        selectedSubcategory.includes(subItem.item)
                           ? "text-black"
                           : "text-gray-500"
                       }  cursor-pointer font-playfair text-center `}
                       key={subItem.id}
-                      onClick={() => setSelectedCategory(subItem.item)}
+                      onClick={() => setSelectedSubcategory(subItem.item)}
                     >
                       *{subItem.item}
                     </li>
@@ -138,32 +138,35 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
                 {item.label}
               </Link>
 
-              {subCategory.map(
-                (e) =>
-                  item.label === e.category && (
-                    <div
-                      className="absolute left-[50%] translate-x-[-50%] top-[3vw]"
-                      key={e.id}
-                    >
-                      <ul>
-                        {e.sub.map((subItem) => (
-                          <li
-                            className={`text-[1.2vw] ${
-                              selectedCategory !== null &&
-                              selectedCategory.includes(subItem.item)
-                                ? "text-black"
-                                : "text-gray-500"
-                            }  cursor-pointer font-playfair `}
-                            key={subItem.id}
-                            onClick={() => setSelectedCategory(subItem.item)}
-                          >
-                            *{subItem.item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )
-              )}
+              {router.asPath.replace("/", "") === "derecho" &&
+                subCategory.map(
+                  (e) =>
+                    item.label === e.category && (
+                      <div
+                        className="absolute left-[50%] translate-x-[-50%]  z-[600] top-[3vw]"
+                        key={e.id}
+                      >
+                        <ul>
+                          {e.sub.map((subItem) => (
+                            <li
+                              className={`text-[1.2vw] ${
+                                selectedSubcategory !== null &&
+                                selectedSubcategory.includes(subItem.item)
+                                  ? "text-black"
+                                  : "text-gray-500"
+                              }  cursor-pointer font-playfair `}
+                              key={subItem.id}
+                              onClick={() =>
+                                setSelectedSubcategory(subItem.item)
+                              }
+                            >
+                              *{subItem.item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )
+                )}
             </li>
           ))}
           <li

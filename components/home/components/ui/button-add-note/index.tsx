@@ -19,7 +19,7 @@ const ButtonAddNote: FunctionComponent = () => {
       category: router.asPath.replace("/", ""),
       subCategory: selectedCategory,
     });
-    router.push(`/create`);
+    router.push(`/create/${router.asPath.replace("/", "")}`);
   };
   return (
     <button

@@ -41,8 +41,8 @@ const FocusImage: FunctionComponent<Props> = ({
         <Image
           src={src && src}
           alt="Image"
-          width={0}
-          height={0}
+          width={2000}
+          height={2000}
           className="z-10 object-cover w-full h-full"
         />
         <button

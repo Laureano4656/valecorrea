@@ -1,13 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import styles from "./styles/inspiration.module.css";
 import Image from "next/image";
-import image1 from "../../static/inspiration/1.webp";
-import image2 from "../../static/inspiration/2.webp";
-import image3 from "../../static/inspiration/3.webp";
-import image4 from "../../static/inspiration/4.webp";
-import image5 from "../../static/inspiration/5.webp";
-import image6 from "../../static/inspiration/6.webp";
-import image7 from "../../static/inspiration/7.webp";
 import useUserLogin from "../utils/useAllCategoriesStore";
 import GlobalInput from "../home/components/ui/input-global";
 import iconAdd from "../../static/icons/SVG/+.svg";
@@ -18,79 +11,85 @@ import Modal from "../home/components/ui/input-global/modal.tsx/modal";
 import arrow from "../../static/icons/SVG/arrow.svg";
 import trash from "../../static/icons/SVG/trash.svg";
 import useIsMobile from "../utils/isMobile";
+import axios from "axios";
+import { BASE_URL } from "../../helpers/env";
 
 const Inspiration: FunctionComponent = () => {
-  let images = [
-    { image: image1, id: 0 },
-    { image: image7, id: 1 },
-    { image: image4, id: 2 },
-    { image: image6, id: 3 },
-    { image: image5, id: 4 },
-    { image: image3, id: 5 },
-    { image: image2, id: 6 },
-  ];
-
   const { userLogin } = useUserLogin();
-
   const isMobile = useIsMobile();
-  const [imageSrc, setImageSrc] = useState<any>(images);
+  const [imageSrc, setImageSrc] = useState<any>([]);
   const [isHovered, setIsHovered] = useState(false);
   const [focusImage, setFocusImage] = useState<any>(null);
   const [openModal, setOpenModal] = useState(false);
 
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/personal-images`)
+      .then((response) => {
+
+        setImageSrc(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching images:", error);
+      });
+  }, []);
+
   const handleNewImage = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
+    const formData = new FormData();
+    formData.append("file", file);
 
-    reader.onload = () => {
-      const imageDataUrl = reader.result;
-      if (imageSrc.length) {
-        setImageSrc([
-          ...imageSrc,
-          { image: imageDataUrl, id: imageSrc.length },
+    axios
+      .post(`${BASE_URL}/personal-images/upload`, formData)
+      .then((response) => {
+
+        setImageSrc((prevImages) => [
+          ...prevImages,
+          { fileName: response.data.fileName, id: response.data.id },
         ]);
-      }
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
+      })
+      .catch((error) => {
+        console.error("Error uploading image:", error);
+      });
   };
 
   const deleteImage = (id) => {
-    const probar = imageSrc.filter((img) => {
-      return img.id !== id;
-    });
-    setImageSrc(probar);
+    axios
+      .delete(`${BASE_URL}/personal-images/${id}`)
+      .then(() => {
+        setImageSrc((prevImages) => prevImages.filter((img) => img.id !== id));
+      })
+      .catch((error) => {
+        console.error("Error deleting image:", error);
+      });
   };
 
-  const handleRigth = (id: number) => {
+  const handleRight = (id: number) => {
     if (id > 0) {
-      const previousImage = imageSrc.filter((valueId) => {
-        return valueId.id === id - 1;
-      });
-
-      setFocusImage({
-        image: previousImage[0].image,
-        id: previousImage[0].id,
-      });
+      const previousImage = imageSrc.find((img) => img.id === id - 1);
+      if (previousImage) {
+        setFocusImage({
+          image: previousImage.image,
+          id: previousImage.id,
+        });
+      }
     }
   };
 
   const handleLeft = (id) => {
     if (id < imageSrc.length - 1) {
-      const previousImage = imageSrc.filter((valueId) => {
-        return valueId.id === id + 1;
-      });
-
-      setFocusImage({
-        image: previousImage[0].image,
-        id: previousImage[0].id,
-      });
+      const nextImage = imageSrc.find((img) => img.id === id + 1);
+      if (nextImage) {
+        setFocusImage({
+          image: nextImage.image,
+          id: nextImage.id,
+        });
+      }
     }
   };
 
   return (
-    <div className="flex items-start justify-start h-full pb-7 pt-[50px]">
+    <div className="flex items-start justify-start  pb-7 pt-[50px] min-h-screen">
       <div className={`${styles.container}   gap-2 sm:gap-0 relative `}>
         <div
           className={`${
@@ -111,7 +110,7 @@ const Inspiration: FunctionComponent = () => {
             </p>
           </div>
         </div>
-        {!userLogin && (
+        {/* {!userLogin && (
           <GlobalInput
             style={{
               height: "auto",
@@ -135,8 +134,30 @@ const Inspiration: FunctionComponent = () => {
               // <p className="leading-none font-playfair text-[150px]">+</p>
             }
           />
-        )}
-
+        )} */}
+        <GlobalInput
+          style={{
+            height: "auto",
+            padding: "0",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          type="file"
+          name={"image"}
+          onChange={(e) => handleNewImage(e)}
+          iconImage={
+            // <img src={`${iconAdd}`} alt="Agregar" />
+            <Image
+              src={iconAdd}
+              height={0}
+              width={0}
+              className="w-[40%]"
+              alt="Agregar"
+            />
+            // <p className="leading-none font-playfair text-[150px]">+</p>
+          }
+        />
         {imageSrc.length > 0 &&
           imageSrc
             .slice()
@@ -149,14 +170,14 @@ const Inspiration: FunctionComponent = () => {
                 <div
                   className="relative w-full h-full"
                   onClick={() => {
-                    setFocusImage({ image: image.image, id: image.id });
+                    setFocusImage({ image: `${BASE_URL}/${image.fileName}` });
                   }}
                 >
                   <Image
-                    width={0}
-                    height={0}
+                    width={500}
+                    height={500}
                     className={`hover:brightness-75  transition duration-300 ease-in-out ${styles.item} w-full`}
-                    src={image.image}
+                    src={`${BASE_URL}/${image.fileName}`}
                     alt={"Icon"}
                   />
 
@@ -214,7 +235,7 @@ const Inspiration: FunctionComponent = () => {
         {focusImage !== null && (
           <FocusImage
             handleLeft={() => handleLeft(focusImage.id)}
-            handleRigth={() => handleRigth(focusImage.id)}
+            handleRigth={() => handleRight(focusImage.id)}
             src={focusImage.image}
             closeFocus={() => setFocusImage(null)}
           />

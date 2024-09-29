@@ -6,7 +6,7 @@ import { NextPage } from "next";
 const organico: NextPage = () => {
   return (
     <LayoutHScreen>
-      <NavSide sideBar={true}></NavSide>
+      <NavSide sideBar={true} />
     </LayoutHScreen>
   );
 };

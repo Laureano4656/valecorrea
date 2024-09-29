@@ -5,7 +5,7 @@ import LayoutHScreen from "../../components/utils/LayoutHScreen";
 const filosofía = () => {
   return (
     <LayoutHScreen>
-     <NavSide sideBar={true}></NavSide>
+     <NavSide sideBar={true}/>
     </LayoutHScreen>
   );
 };

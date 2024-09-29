@@ -23,33 +23,14 @@ import axios from "axios";
 
 // Importa Quill.js de forma dinámica para evitar problemas con SSR
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-interface Props {
-  noteId?: string;
-}
 
-const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
+const EditNote: FunctionComponent = () => {
   const router = useRouter();
-
+  const noteId = router.query.ID;
   const { createNote } = useCreateNote();
-  const { allCategories, setAllCategories } = useAllCategories();
-  // const initialValues = {
-  //   id: createNote.id ? createNote.id : "",
-  //   title: createNote.id ? createNote.title : "",
-  //   subTitle: createNote.id ? createNote.subTitle : "",
-  //   subCategory: createNote.id
-  //     ? createNote.subCategory
-  //     : createNote.subCategory,
-  //   year: createNote.id ? createNote.year : null,
-  //   comment: createNote.id ? createNote.comment : "",
-  //   category: createNote.id ? createNote.category : createNote.category,
-  //   active: createNote.id ? createNote.active : true,
-  //   video: createNote.id ? createNote.video : "",
-  //   image: createNote.id ? createNote.image : null,
-  //   image2: createNote.id ? createNote.image2 : null,
-  // };
 
-  const [viewImage1, setViewImage1] = useState({});
-  const [viewImage2, setViewImage2] = useState({});
+  const [viewImage1, setViewImage1] = useState(createNote.image);
+  const [viewImage2, setViewImage2] = useState(createNote.image2);
   const [initialForm, setInitialForm] = useState({
     id: "",
     title: "",
@@ -60,12 +41,12 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     category: "",
     active: "",
     video: "",
-    image: {},
-    image2: {},
+    image: "",
+    image2: "",
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const createNewNote = () => {
+  const createNewNote = (saveNote?) => {
     const formData = new FormData();
     formData.append("title", form.title ? form.title : "");
     formData.append("subTitle", form.subTitle ? form.subTitle : "");
@@ -73,19 +54,19 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     formData.append("year", form.year ? form.year.toString() : "");
     formData.append("comment", form.comment ? form.comment : "");
     formData.append("category", form.category ? form.category : "");
-    formData.append("active", "1");
+    formData.append("active", saveNote ? "0" : "1");
     formData.append("video", form.video ? form.video : "");
 
-    if (form.id) {
+    if (noteId) {
       axios
-        .put(`${BASE_URL}/notes/${form.id}`, formData)
+        .put(`${BASE_URL}/notes/${noteId}`, formData)
         .then((response) => {
-          // if (response.data.image) {
-          //   setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
-          // }
-          // if (response.data.image2) {
-          //   setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
-          // }
+          if (response.data.image) {
+            setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
+          }
+          if (response.data.image2) {
+            setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
+          }
         })
         .catch((error) => {});
     } else {
@@ -94,46 +75,11 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
         .then((response) => {})
         .catch((error) => {});
     }
-
-    // form.active = true;
-    // if (createNote.id) {
-    //   const removeOldNote = allCategories.filter((note) => {
-    //     return note.id !== createNote.id;
-    //   });
-    //   setAllCategories([...removeOldNote, form]);
-    // } else {
-    //   setAllCategories([...allCategories, form]);
-    // }
-
-    // router.push(`/${createNote.category}`);
-  };
-
-  const saveNote = () => {
-    const formData = new FormData();
-    formData.append("title", form.title ? form.title : "");
-    formData.append("subTitle", form.subTitle ? form.subTitle : "");
-    formData.append("subCategory", router.query.ID.toString());
-    formData.append("year", form.year ? form.year.toString() : "");
-    formData.append("comment", form.comment ? form.comment : "");
-    formData.append("category", form.category ? form.category : "");
-    formData.append("active", "0");
-    formData.append("video", form.video ? form.video : "");
-    axios
-      .put(`${BASE_URL}/notes/${router.query.ID}`, formData)
-      .then((response) => {
-        // if (response.data.image) {
-        //   setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
-        // }
-        // if (response.data.image2) {
-        //   setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
-        // }
-      })
-      .catch((error) => {});
   };
 
   const deleteNote = () => {
     axios
-      .delete(`${BASE_URL}/notes/${router.query.ID}`)
+      .delete(`${BASE_URL}/notes/${noteId}`)
       .then((response) => {})
       .catch((error) => {});
   };
@@ -143,14 +89,10 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     const file = e.target.files[0];
 
     const reader = new FileReader();
-    setImageSrc(URL.createObjectURL(file));
-    setViewImage1(URL.createObjectURL(file));
+    setImageSrc(file);
     if (e.target.name.includes("image2")) {
       form.image2 = file;
     } else {
-      console.log("file");
-      console.log(file);
-
       form.image = file;
     }
   };
@@ -161,12 +103,27 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
   const [editorHtml, setEditorHtml] = useState("");
   const { form, handleChange, resetForm } = useForm(initialForm, null);
 
-  useEffect(() => {}, [router]);
-  // useEffect(() => {
-  //   if (form?.image || form?.image2) {
-  //     createNewNote();
-  //   }
-  // }, [form?.image, form?.image2]);
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`${BASE_URL}/notes/byId/${router?.query?.ID}`)
+      .then((response) => {
+        setInitialForm(response.data);
+        resetForm(response.data);
+        setViewImage1(response.data.image);
+        setViewImage2(response.data.image2);
+        setEditorHtml(createNote.comment);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [router]);
+  useEffect(() => {
+    if (form?.image || form?.image2) {
+      createNewNote();
+    }
+  }, [form?.image, form?.image2]);
 
   const handleEditorChange = (html) => {
     form.comment = html;
@@ -277,7 +234,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image"}
-              imageValue={`${viewImage1}`}
+              imageValue={viewImage1}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
@@ -310,7 +267,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image2"}
-              imageValue={`${viewImage2}`}
+              imageValue={viewImage2}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
@@ -357,7 +314,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               </div>
               <TextHover title="publicar" />
             </button>
-            <button onClick={() => saveNote()} className="relative ">
+            <button onClick={() => createNewNote(true)} className="relative ">
               <Image
                 src={save}
                 alt="close"
@@ -389,4 +346,4 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
   );
 };
 
-export default CreateNote;
+export default EditNote;
