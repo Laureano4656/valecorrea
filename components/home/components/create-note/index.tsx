@@ -20,6 +20,7 @@ import "react-quill/dist/quill.snow.css"; // Importa el CSS de Quill.js
 import "react-quill/dist/quill.bubble.css"; // Opcional: Importa otro tema de Quill.js si lo prefieres
 import { BASE_URL } from "../../../../helpers/env";
 import axios from "axios";
+import { useSubcategory } from "../../../../store/useSubcategory";
 
 // Importa Quill.js de forma dinámica para evitar problemas con SSR
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -29,27 +30,10 @@ interface Props {
 
 const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
   const router = useRouter();
-
-  const { createNote } = useCreateNote();
-  const { allCategories, setAllCategories } = useAllCategories();
-  // const initialValues = {
-  //   id: createNote.id ? createNote.id : "",
-  //   title: createNote.id ? createNote.title : "",
-  //   subTitle: createNote.id ? createNote.subTitle : "",
-  //   subCategory: createNote.id
-  //     ? createNote.subCategory
-  //     : createNote.subCategory,
-  //   year: createNote.id ? createNote.year : null,
-  //   comment: createNote.id ? createNote.comment : "",
-  //   category: createNote.id ? createNote.category : createNote.category,
-  //   active: createNote.id ? createNote.active : true,
-  //   video: createNote.id ? createNote.video : "",
-  //   image: createNote.id ? createNote.image : null,
-  //   image2: createNote.id ? createNote.image2 : null,
-  // };
-
-  const [viewImage1, setViewImage1] = useState({});
-  const [viewImage2, setViewImage2] = useState({});
+  const { selectedSubcategory } = useSubcategory();
+  const [editorHtml, setEditorHtml] = useState("");
+  const [viewImage1, setViewImage1] = useState<any>("");
+  const [viewImage2, setViewImage2] = useState<any>("");
   const [initialForm, setInitialForm] = useState({
     id: "",
     title: "",
@@ -60,38 +44,46 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     category: "",
     active: "",
     video: "",
-    image: {},
-    image2: {},
+    image: "",
+    image2: "",
   });
+  const { form, handleChange, resetForm } = useForm(initialForm, null);
+
   const [loading, setLoading] = useState(false);
 
   const createNewNote = () => {
     const formData = new FormData();
     formData.append("title", form.title ? form.title : "");
     formData.append("subTitle", form.subTitle ? form.subTitle : "");
-    formData.append("subCategory", router.query.ID.toString());
+    // formData.append("subCategory", router.query.ID.toString());
+    formData.append("subCategory", selectedSubcategory);
     formData.append("year", form.year ? form.year.toString() : "");
     formData.append("comment", form.comment ? form.comment : "");
-    formData.append("category", form.category ? form.category : "");
+    formData.append("category", `${router.query.ID}`);
     formData.append("active", "1");
     formData.append("video", form.video ? form.video : "");
+    formData.append("image1", form.image ? form.image : "");
+    formData.append("image2", form.imag2 ? form.image2 : "");
 
     if (form.id) {
       axios
         .put(`${BASE_URL}/notes/${form.id}`, formData)
         .then((response) => {
-          // if (response.data.image) {
-          //   setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
-          // }
-          // if (response.data.image2) {
-          //   setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
-          // }
+          if (response.data.image) {
+            setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
+          }
+          if (response.data.image2) {
+            setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
+          }
+          router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     } else {
       axios
         .post(`${BASE_URL}/notes`, formData)
-        .then((response) => {})
+        .then((response) => {
+          router.push(`/${router.query.ID}`);
+        })
         .catch((error) => {});
     }
 
@@ -121,12 +113,13 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     axios
       .put(`${BASE_URL}/notes/${router.query.ID}`, formData)
       .then((response) => {
-        // if (response.data.image) {
-        //   setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
-        // }
-        // if (response.data.image2) {
-        //   setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
-        // }
+        if (response.data.image) {
+          setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
+        }
+        if (response.data.image2) {
+          setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
+        }
+        router.back();
       })
       .catch((error) => {});
   };
@@ -141,37 +134,31 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-
     const reader = new FileReader();
-    setImageSrc(URL.createObjectURL(file));
-    setViewImage1(URL.createObjectURL(file));
-    if (e.target.name.includes("image2")) {
-      form.image2 = file;
-    } else {
-      console.log("file");
-      console.log(file);
 
-      form.image = file;
+    // Leer la imagen y establecer la URL en el estado
+    reader.onloadend = () => {
+      if (e.target.name.includes("image2")) {
+        setViewImage2(reader.result); // Guardar la URL de la imagen
+      } else {
+        setViewImage1(reader.result); // Guardar la URL de la imagen
+      }
+    };
+
+    if (file) {
+      reader.readAsDataURL(file); // Leer como URL
     }
   };
   const getVideoId = (url) => {
     // Verificar si es un enlace de YouTube
     form.video = url;
   };
-  const [editorHtml, setEditorHtml] = useState("");
-  const { form, handleChange, resetForm } = useForm(initialForm, null);
-
-  useEffect(() => {}, [router]);
-  // useEffect(() => {
-  //   if (form?.image || form?.image2) {
-  //     createNewNote();
-  //   }
-  // }, [form?.image, form?.image2]);
 
   const handleEditorChange = (html) => {
     form.comment = html;
     setEditorHtml(html);
   };
+
   return (
     <NavBarFooter>
       {!loading && (
@@ -277,7 +264,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image"}
-              imageValue={`${viewImage1}`}
+              imageValue={viewImage1}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
@@ -310,7 +297,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image2"}
-              imageValue={`${viewImage2}`}
+              imageValue={viewImage2}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
@@ -358,13 +345,15 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               <TextHover title="publicar" />
             </button>
             <button onClick={() => saveNote()} className="relative ">
-              <Image
-                src={save}
-                alt="close"
-                width={0}
-                height={0}
-                className="sm:w-[3vw] w-12 h-12"
-              />
+              <div className="p-[15%] w-12 h-12 sm:w-[3vw] sm:h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+                <Image
+                  src={save}
+                  alt="close"
+                  width={0}
+                  height={0}
+                  className="sm:w-[3vw] w-12 h-12"
+                />
+              </div>
 
               <TextHover title="guardar" />
             </button>

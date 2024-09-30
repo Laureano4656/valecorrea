@@ -115,29 +115,9 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
                 </li>
               </>
             ))}
-        {/* {userLogin && (
-          <li className="relative flex items-center overflow-hidden cursor-pointer ">
-            <input
-              min="0"
-              type="number"
-              placeholder="Año"
-              className=" w-full text-[2.2vw] border-border1 border-black focus:border-black focus:border-border1"
-              name="year"
-              onChange={(e) => setDataCategory(parseInt(e.target.value))}
-            />
-            <p
-              onClick={() => createNewYear(dataCategory)}
-              className="flex  text-[1vw] w-full items-center pl-3 text-center"
-            >
-              <Image className="w-[1.7vw]" src={addIcon} alt="Agregar" />
-            </p>
-          </li>
-        )} */}
       </ul>
       <Modal openModal={openModal} setOpenModal={setOpenModal}>
-        <p className="font-semibold text-text font-playfairSemiBold">
-          atenti!
-        </p>
+        <p className="font-semibold text-text font-playfairSemiBold">atenti!</p>
         <p className="leading-none text-center font-playfair text-text ">
           ¿estas segura de que
           <br /> queres borrar <br />

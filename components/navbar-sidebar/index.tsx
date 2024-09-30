@@ -1,8 +1,9 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import NavBar from "../home/nav-bar";
 import SideBar from "../home/nav-bar/years-side-bar";
 import Footer from "../footer";
 import ButtonAddNote from "../home/components/ui/button-add-note";
+import { useSubcategory } from "../../store/useSubcategory";
 
 interface NavSideProps {
   children?: ReactNode;
@@ -10,6 +11,11 @@ interface NavSideProps {
 }
 
 const NavSide: React.FC<NavSideProps> = ({ children, sideBar }) => {
+  const { setSelectedSubcategory } = useSubcategory();
+  useEffect(() => {
+    setSelectedSubcategory("salud");
+  }, []);
+
   return (
     <div className="relative flex-col pb-[150px] justify-between block h-screen sm:min-h-screen pt-28 sm:pt-0">
       <NavBar />

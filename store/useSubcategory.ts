@@ -12,10 +12,10 @@ export interface ICategory {
 }
 
 export interface IPropertyStore {
-  subCategory: ICategory[]; 
-  selectedSubcategory: string | null; 
-  setSubcategory: (value: ICategory[]) => void; 
-  setSelectedSubcategory: (value: string) => void; 
+  subCategory: ICategory[];
+  selectedSubcategory: string | null;
+  setSubcategory: (value: ICategory[]) => void;
+  setSelectedSubcategory: (value: string) => void;
 }
 
 export const useSubcategory = create<IPropertyStore>((set) => ({
@@ -30,7 +30,7 @@ export const useSubcategory = create<IPropertyStore>((set) => ({
       ],
     },
   ],
-  selectedSubcategory: "salud",
+  selectedSubcategory: null,
   setSubcategory: (value) => set({ subCategory: value }),
   setSelectedSubcategory: (value) => set({ selectedSubcategory: value }),
 }));

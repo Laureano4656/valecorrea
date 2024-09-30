@@ -3,15 +3,12 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import NavBarFooter from "../../components/navbar-footer";
 import ButtonBack from "../../components/ui/ButtonBack";
 import Book from "../../components/icons/Book";
-import penalImage from "../../static/penal/Manual de marca Valeria Correa.jpg";
 import useAllCategories from "../../hooks/useAllCategories";
 import useUserLogin from "../utils/useAllCategoriesStore";
 import EditIcon from "../icons/EditIcon";
-import useCreateNote from "../utils/useCreateNote";
-
 import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css"; // Importa el CSS de Quill.js
-import "react-quill/dist/quill.bubble.css"; // Opcional: Importa otro tema de Quill.js si lo prefieres
+import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css"; 
 import styles from "./note-id.module.css";
 import axios from "axios";
 import { BASE_URL } from "../../helpers/env";
@@ -29,26 +26,13 @@ const NoteId: FunctionComponent = () => {
     video: "",
     id: null,
     subCategory: "",
-    // Si tienes más propiedades como `comment` o cualquier otra, añádelas aquí
     comment: "",
   });
-  const { setCreateNote } = useCreateNote();
   const { userLogin } = useUserLogin();
 
   const [editorHtml, setEditorHtml] = useState();
 
-  // useEffect(() => {
-  //   if (content.length > 0) {
-  //     setEditorHtml(content[0].comment);
-  //   }
-  // }, [content]);
-
   useEffect(() => {
-    // setContent(
-    //   allCategories.filter((list) => {
-    //     return list.id.toString() === router?.query?.ID;
-    //   })
-    // );
     axios
       .get(`${BASE_URL}/notes/byId/${router?.query?.ID}`)
       .then((response) => {
@@ -80,7 +64,7 @@ const NoteId: FunctionComponent = () => {
                   objectFit: "cover",
                   width: "100%",
                 }}
-                src={content.id === 4 ? penalImage.src : content.image}
+                src={`${BASE_URL}/uploads/${content.image}`}
                 alt="Imagen"
               />
             )}
@@ -133,11 +117,6 @@ const NoteId: FunctionComponent = () => {
                 alt="Imagen"
               />
             )}
-            {/* {content.comment.split("\n").map((linea, index) => (
-    <p key={index} className="text-justify text-black text-text font-playfair">
-      {linea}
-    </p>
-  ))} */}
           </>
         </div>
         <div className="flex items-center justify-center sm:gap-[3.5vw] gap-8 pb-8">
@@ -145,17 +124,6 @@ const NoteId: FunctionComponent = () => {
             <ButtonBack
               title="Editar"
               onClick={() => {
-                // setCreateNote({
-                //   id: content[0].id,
-                //   year: content[0].year,
-                //   category: content[0].category,
-                //   subCategory: content[0].subCategory,
-                //   image: content[0].image,
-                //   image2: content[0].image2,
-                //   comment: content[0].comment,
-                //   title: content[0].title,
-                //   video: content[0].video,
-                // });
                 router.push(`/edit/${content.id}`);
               }}
             >

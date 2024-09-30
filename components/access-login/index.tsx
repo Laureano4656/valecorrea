@@ -7,6 +7,7 @@ import GlobalInput from "../home/components/ui/input-global";
 import { useRouter } from "next/router";
 import useUserLogin from "../utils/useAllCategoriesStore";
 import useIsMobile from "../utils/isMobile";
+import { BASE_URL } from "../../helpers/env";
 
 const AcessLogin: FunctionComponent = () => {
   const [userData, setUserData] = useState({ user: "", password: "" });
@@ -21,22 +22,48 @@ const AcessLogin: FunctionComponent = () => {
       router.push("/derecho");
     }
   };
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setUserDataGlobalState();
-  };
-  useEffect(() => {
-    if (
-      userData.user !== "valeCorrea@gmail.com" ||
-      userData.password !== "valeCorrea@gmail.com123"
-    ) {
-      setError(true);
-    } else {
-      setUserLogin(true);
-      setError(false);
-    }
-  }, [userData]);
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   setUserDataGlobalState();
+  // };
+  // useEffect(() => {
+  //   if (
+  //     userData.user !== "valeCorrea@gmail.com" ||
+  //     userData.password !== "valeCorrea@gmail.com123"
+  //   ) {
+  //     setError(true);
+  //   } else {
+  //     setUserLogin(true);
+  //     setError(false);
+  //   }
+  // }, [userData]);
 
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: userData.user,
+          password: userData.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+
+      const data = await response.json();
+      window.localStorage.setItem("access_token", data.access_token); // Guardar el token
+      setUserLogin(true);
+      router.push("/derecho"); // Redirigir después de un inicio de sesión exitoso
+    } catch (error) {
+      setError(true); // Mostrar error si el login falla
+    }
+  };
   return (
     <div className="flex flex-col items-center justify-center h-screen ">
       <form

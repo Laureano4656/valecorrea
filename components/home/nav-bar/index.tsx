@@ -33,28 +33,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
     { label: "bienestar", href: "bienestar" },
     { label: "inspiración ", href: "inspiracion" },
   ];
-  // useEffect(() => {
-  //   if (
-  //     router.pathname.includes("derecho") &&
-  //     router?.pathname !== "/derecho/[ID]"
-  //   ) {
-  //     setSubcategory([
-  //       {
-  //         id: 0,
-  //         category: "derecho",
-  //         sub: [
-  //           { id: 0, item: "salud" },
-  //           { id: 1, item: "penal" },
-  //           { id: 2, item: "otros" },
-  //         ],
-  //       },
-  //     ]);
-  //   }
-  // }, [selectedCategory, router.pathname, router.query.ID]);
 
-  useEffect(() => {
-    setSelectedSubcategory("salud");
-  }, []);
 
   return (
     <div

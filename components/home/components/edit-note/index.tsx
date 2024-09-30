@@ -29,8 +29,9 @@ const EditNote: FunctionComponent = () => {
   const noteId = router.query.ID;
   const { createNote } = useCreateNote();
 
-  const [viewImage1, setViewImage1] = useState(createNote.image);
-  const [viewImage2, setViewImage2] = useState(createNote.image2);
+  const [viewImage1, setViewImage1] = useState({ event: null, upload: null });
+  const [viewImage2, setViewImage2] = useState({ event: null, upload: null });
+
   const [initialForm, setInitialForm] = useState({
     id: "",
     title: "",
@@ -50,23 +51,30 @@ const EditNote: FunctionComponent = () => {
     const formData = new FormData();
     formData.append("title", form.title ? form.title : "");
     formData.append("subTitle", form.subTitle ? form.subTitle : "");
-    formData.append("subCategory", router.query.ID.toString());
+    formData.append("subCategory", initialForm.subCategory);
     formData.append("year", form.year ? form.year.toString() : "");
     formData.append("comment", form.comment ? form.comment : "");
     formData.append("category", form.category ? form.category : "");
-    formData.append("active", saveNote ? "0" : "1");
+    formData.append("image1", viewImage1?.upload ? viewImage1.upload : "");
+    formData.append("image2", viewImage2?.upload ? viewImage2.upload : "");
+    formData.append("active", saveNote ? "1" : "0");
     formData.append("video", form.video ? form.video : "");
 
     if (noteId) {
       axios
         .put(`${BASE_URL}/notes/${noteId}`, formData)
         .then((response) => {
-          if (response.data.image) {
-            setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
-          }
-          if (response.data.image2) {
-            setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
-          }
+          setViewImage1({
+            ...viewImage1,
+            event: `${BASE_URL}/uploads/${response.data.image}`,
+            upload: null,
+          });
+          setViewImage2({
+            ...viewImage2,
+            event: `${BASE_URL}/uploads/${response.data.image2}`,
+            upload: null,
+          });
+          router.back();
         })
         .catch((error) => {});
     } else {
@@ -87,14 +95,20 @@ const EditNote: FunctionComponent = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
 
     const reader = new FileReader();
-    setImageSrc(file);
-    if (e.target.name.includes("image2")) {
-      form.image2 = file;
-    } else {
-      form.image = file;
-    }
+
+    reader.onloadend = () => {
+      const result = reader.result as string; // Casting result to string
+      if (e.target.name === "image2") {
+        setViewImage2({ event: result, upload: file });
+      } else {
+        setViewImage1({ event: result, upload: file });
+      }
+    };
+
+    reader.readAsDataURL(file);
   };
   const getVideoId = (url) => {
     // Verificar si es un enlace de YouTube
@@ -110,25 +124,27 @@ const EditNote: FunctionComponent = () => {
       .then((response) => {
         setInitialForm(response.data);
         resetForm(response.data);
-        setViewImage1(response.data.image);
-        setViewImage2(response.data.image2);
-        setEditorHtml(createNote.comment);
+        setViewImage1({
+          ...viewImage1,
+          event: `${BASE_URL}/uploads/${response.data.image}`,
+        });
+        setViewImage2({
+          ...viewImage2,
+          event: `${BASE_URL}/uploads/${response.data.image2}`,
+        });
+        setEditorHtml(response.data.comment);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [router]);
-  useEffect(() => {
-    if (form?.image || form?.image2) {
-      createNewNote();
-    }
-  }, [form?.image, form?.image2]);
 
   const handleEditorChange = (html) => {
     form.comment = html;
     setEditorHtml(html);
   };
+
   return (
     <NavBarFooter>
       {!loading && (
@@ -234,7 +250,7 @@ const EditNote: FunctionComponent = () => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image"}
-              imageValue={viewImage1}
+              imageValue={viewImage1.event ? viewImage1.event : ""}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
@@ -251,10 +267,11 @@ const EditNote: FunctionComponent = () => {
           </div>
 
           <div
-            className="relative rounded-[4px] w-full h"
+            className="relative rounded-[4px] w-full text-black"
             style={{ height: "auto" }}
           >
             <ReactQuill
+              className="custom-quill"
               theme="snow"
               value={editorHtml}
               onChange={handleEditorChange}
@@ -267,7 +284,7 @@ const EditNote: FunctionComponent = () => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image2"}
-              imageValue={viewImage2}
+              imageValue={viewImage2.event ? viewImage2.event : ""}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
@@ -305,8 +322,7 @@ const EditNote: FunctionComponent = () => {
           </div>
           <div className="  sm:gap-[3.5vw] gap-7   flex  items-center justify-center ">
             <button
-              // disabled={!form.year || !form.title || !form.comment}
-              onClick={() => createNewNote()}
+              onClick={() => createNewNote(true)}
               className="relative cursor-pointer"
             >
               <div className="p-[15%] w-12 h-12 sm:w-[3vw] sm:h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
@@ -314,23 +330,23 @@ const EditNote: FunctionComponent = () => {
               </div>
               <TextHover title="publicar" />
             </button>
-            <button onClick={() => createNewNote(true)} className="relative ">
-              <Image
-                src={save}
-                alt="close"
-                width={0}
-                height={0}
-                className="sm:w-[3vw] w-12 h-12"
-              />
 
+            <button onClick={() => createNewNote()} className="relative ">
+              <div className="p-[15%] w-12 h-12 sm:w-[3vw] sm:h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
+                <Image
+                  src={save}
+                  alt="close"
+                  width={0}
+                  height={0}
+                  className="sm:w-[3vw] w-12 h-12"
+                />
+              </div>
               <TextHover title="guardar" />
             </button>
-
             <button onClick={() => deleteNote()} className="relative ">
               <div className=" p-[15%] w-12 h-12 sm:w-[3vw] sm:h-[3vw] bg-black rounded-[100%] flex justify-center items-center">
                 <CrossIcon color="#fff" size="90%" />
               </div>
-
               <TextHover title="eliminar" />
             </button>
             <button onClick={() => router.back()} className="relative ">
