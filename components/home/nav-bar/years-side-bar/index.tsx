@@ -29,7 +29,6 @@ const YearSideBar: React.FC = () => {
         )}/${selectedSubcategory}`
       )
       .then((response) => {
-        console.log("hola");
         setCategories(response.data);
         setLoading(false);
       })
@@ -55,7 +54,7 @@ const YearSideBar: React.FC = () => {
             <Year categories={categories} />{" "}
           </>
         ) : (
-          "En este  momento no hay notas en esta sección"
+          <p className="pt-4">En este  momento no hay notas en esta sección</p>
         )}
       </div>
     </div>
