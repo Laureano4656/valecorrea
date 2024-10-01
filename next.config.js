@@ -14,6 +14,11 @@ const nextConfig = {
         hostname: 'example.com', 
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'vale-backend-production.up.railway.app', // Agrega este patrón
+        pathname: '/**', // Esto permite todas las rutas en este dominio
+      },
     ],
   },
 };

@@ -31,8 +31,6 @@ const NoteId: FunctionComponent = () => {
     comment: "",
   });
   const { userLogin } = useUserLoginWithStorage();
-  console.log("userLogin");
-  console.log(userLogin);
 
   const [editorHtml, setEditorHtml] = useState();
 
@@ -47,7 +45,6 @@ const NoteId: FunctionComponent = () => {
         console.log(error);
       });
   }, [allCategories, router]);
-  console.log(content);
 
   return (
     <NavBarFooter>
