@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./styles/years-side-bar.module.css";
 import useCategoryYear from "../../../utils/useCategoryYear";
-import useUserLogin from "../../../utils/useAllCategoriesStore";
+import useUserLogin, { useUserLoginWithStorage } from "../../../utils/useAllCategoriesStore";
 import CheckIcon from "../../../icons/CheckIcon";
 import CrossIcon from "../../../icons/CrossIcon";
 
@@ -14,7 +14,7 @@ interface CategoriesProps {
 const Categories: React.FC<CategoriesProps> = ({ categories }) => {
   const router = useRouter();
   const [categoriesPerYear, setCategoriesPerYear] = useState(categories);
-  const { userLogin } = useUserLogin();
+  const { userLogin } = useUserLoginWithStorage();
   const { selectedYear } = useCategoryYear();
 
   useEffect(() => {

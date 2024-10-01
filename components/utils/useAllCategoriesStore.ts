@@ -1,33 +1,38 @@
 import { create } from "zustand";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 interface CategoryStore {
   userLogin: boolean;
   setUserLogin: (value: boolean) => void;
 }
 
-// Store de Zustand para manejar el estado de inicio de sesión del usuario
 const useUserLogin = create<CategoryStore>((set) => ({
-  userLogin: false, // Valor inicial
-  setUserLogin: (value: boolean) => set({ userLogin: value }), // Función para actualizar el estado
+  userLogin: false,
+  setUserLogin: (value: boolean) => set({ userLogin: value }),
 }));
 
-// Hook personalizado para manejar el estado de inicio de sesión con localStorage
 export const useUserLoginWithStorage = () => {
   const { userLogin, setUserLogin } = useUserLogin();
-  const [mounted, setMounted] = useState(false); 
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    setMounted(true); // Marca que el componente se ha montado
+    setMounted(true);
+    console.log("hola");
+    console.log("window");
+    console.log(window);
+    
     if (typeof window !== "undefined") {
-      // Verifica si hay un token en localStorage
       const storedUserData = window.localStorage.getItem("access_token");
-      // Sincroniza el estado de login con localStorage
-      setUserLogin(storedUserData !== null); 
+      console.log("storedUserData");
+      console.log(storedUserData);
+      
+      setUserLogin(storedUserData !== null);
     }
-  }, [setUserLogin]);
+  }, [setUserLogin, router]);
 
-  return { userLogin, setUserLogin, mounted }; // Devuelve el estado de inicio de sesión y la función para actualizarlo
+  return { userLogin, setUserLogin, mounted };
 };
 
 export default useUserLogin;

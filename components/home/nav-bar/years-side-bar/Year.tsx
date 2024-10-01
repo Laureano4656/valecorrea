@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import useCategoryStore from "../../../utils/useCategoryStore";
 import useCreateNote from "../../../utils/useCreateNote";
 import useAllCategories from "../../../../hooks/useAllCategories";
-import useUserLogin from "../../../utils/useAllCategoriesStore";
+import useUserLogin, { useUserLoginWithStorage } from "../../../utils/useAllCategoriesStore";
 import Modal from "../../components/ui/input-global/modal.tsx/modal";
 import Close from "../../../icons/Close";
 import Image from "next/image";
@@ -31,7 +31,7 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
   const router = useRouter();
   const { selectedYear, setSelectedYear } = useCategoryYear();
   const { selectedCategory } = useCategoryStore();
-  const { userLogin } = useUserLogin();
+  const { userLogin } = useUserLoginWithStorage();
   const [openModal, setOpenModal] = useState(false);
   const [yearDelete, setYearDelete] = useState(0);
   const { setCreateNote } = useCreateNote();

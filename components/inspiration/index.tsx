@@ -1,11 +1,10 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import styles from "./styles/inspiration.module.css";
 import Image from "next/image";
-import useUserLogin from "../utils/useAllCategoriesStore";
+import { useUserLoginWithStorage } from "../utils/useAllCategoriesStore";
 import GlobalInput from "../home/components/ui/input-global";
 import iconAdd from "../../static/icons/SVG/+.svg";
 import FocusImage from "./FocusImage";
-import CrossIcon from "../icons/CrossIcon";
 import Close from "../icons/Close";
 import Modal from "../home/components/ui/input-global/modal.tsx/modal";
 import arrow from "../../static/icons/SVG/arrow.svg";
@@ -15,7 +14,7 @@ import axios from "axios";
 import { BASE_URL } from "../../helpers/env";
 
 const Inspiration: FunctionComponent = () => {
-  const { userLogin } = useUserLogin();
+  const { userLogin } = useUserLoginWithStorage();
   const isMobile = useIsMobile();
   const [imageSrc, setImageSrc] = useState<any>([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -26,7 +25,6 @@ const Inspiration: FunctionComponent = () => {
     axios
       .get(`${BASE_URL}/personal-images`)
       .then((response) => {
-
         setImageSrc(response.data);
       })
       .catch((error) => {
@@ -42,7 +40,6 @@ const Inspiration: FunctionComponent = () => {
     axios
       .post(`${BASE_URL}/personal-images/upload`, formData)
       .then((response) => {
-
         setImageSrc((prevImages) => [
           ...prevImages,
           { fileName: response.data.fileName, id: response.data.id },

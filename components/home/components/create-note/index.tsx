@@ -18,7 +18,7 @@ import Close from "../../../icons/Close";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css"; // Importa el CSS de Quill.js
 import "react-quill/dist/quill.bubble.css"; // Opcional: Importa otro tema de Quill.js si lo prefieres
-import { BASE_URL } from "../../../../helpers/env";
+import { BASE_URL, IMAGE_URL } from "../../../../helpers/env";
 import axios from "axios";
 import { useSubcategory } from "../../../../store/useSubcategory";
 
@@ -70,10 +70,10 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
         .put(`${BASE_URL}/notes/${form.id}`, formData)
         .then((response) => {
           if (response.data.image) {
-            setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
+            setViewImage1(`${IMAGE_URL}/uploads/${response.data.image}`);
           }
           if (response.data.image2) {
-            setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
+            setViewImage2(`${IMAGE_URL}/uploads/${response.data.image2}`);
           }
           router.push(`/${router.query.ID}`);
         })
@@ -114,10 +114,10 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
       .put(`${BASE_URL}/notes/${router.query.ID}`, formData)
       .then((response) => {
         if (response.data.image) {
-          setViewImage1(`${BASE_URL}/uploads/${response.data.image}`);
+          setViewImage1(`${IMAGE_URL}/uploads/${response.data.image}`);
         }
         if (response.data.image2) {
-          setViewImage2(`${BASE_URL}/uploads/${response.data.image2}`);
+          setViewImage2(`${IMAGE_URL}/uploads/${response.data.image2}`);
         }
         router.back();
       })

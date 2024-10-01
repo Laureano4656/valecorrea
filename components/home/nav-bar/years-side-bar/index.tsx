@@ -6,14 +6,16 @@ import axios from "axios";
 import { BASE_URL } from "../../../../helpers/env";
 import Year from "./Year";
 import { useSubcategory } from "../../../../store/useSubcategory";
-import useUserLogin from "../../../utils/useAllCategoriesStore";
+import useUserLogin, {
+  useUserLoginWithStorage,
+} from "../../../utils/useAllCategoriesStore";
 import ButtonAddNote from "../../components/ui/button-add-note";
 
 const YearSideBar: React.FC = () => {
   const [categories, setCategories] = useState([]);
   const { subCategory, selectedSubcategory, setSelectedSubcategory } =
     useSubcategory();
-  const { userLogin } = useUserLogin();
+  const { userLogin } = useUserLoginWithStorage();
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 

@@ -1,14 +1,11 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import NavBarFooter from "../../../navbar-footer";
 import GlobalInput from "../ui/input-global";
-import close from "../../../../static/icons/SVG/close.svg";
 import save from "../../../../static/icons/SVG/save.svg";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import useCreateNote from "../../../utils/useCreateNote";
 import { useForm } from "../../../../hooks/useForm";
-import useAllCategories from "../../../../hooks/useAllCategories";
-import TextArea from "../ui/input-global/textarea";
 import CheckIcon from "../../../icons/CheckIcon";
 import TextHover from "../ui/input-global/TextHover";
 import CrossIcon from "../../../icons/CrossIcon";
@@ -16,12 +13,11 @@ import ButtonPrimary from "../ui/button-primary";
 import Book from "../../../icons/Book";
 import Close from "../../../icons/Close";
 import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css"; // Importa el CSS de Quill.js
-import "react-quill/dist/quill.bubble.css"; // Opcional: Importa otro tema de Quill.js si lo prefieres
-import { BASE_URL } from "../../../../helpers/env";
+import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
+import { BASE_URL, IMAGE_URL } from "../../../../helpers/env";
 import axios from "axios";
-
-// Importa Quill.js de forma dinámica para evitar problemas con SSR
+import Modal from "../ui/input-global/modal.tsx/modal";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const EditNote: FunctionComponent = () => {
@@ -31,6 +27,7 @@ const EditNote: FunctionComponent = () => {
 
   const [viewImage1, setViewImage1] = useState({ event: null, upload: null });
   const [viewImage2, setViewImage2] = useState({ event: null, upload: null });
+  const [errorModal, setErrorModal] = useState(false);
 
   const [initialForm, setInitialForm] = useState({
     id: "",
@@ -48,6 +45,10 @@ const EditNote: FunctionComponent = () => {
   const [loading, setLoading] = useState(true);
 
   const createNewNote = (saveNote?) => {
+    if (form?.year?.length < 1) {
+      setErrorModal(true);
+      return;
+    }
     const formData = new FormData();
     formData.append("title", form.title ? form.title : "");
     formData.append("subTitle", form.subTitle ? form.subTitle : "");
@@ -66,12 +67,12 @@ const EditNote: FunctionComponent = () => {
         .then((response) => {
           setViewImage1({
             ...viewImage1,
-            event: `${BASE_URL}/uploads/${response.data.image}`,
+            event: `${IMAGE_URL}/uploads/${response.data.image}`,
             upload: null,
           });
           setViewImage2({
             ...viewImage2,
-            event: `${BASE_URL}/uploads/${response.data.image2}`,
+            event: `${IMAGE_URL}/uploads/${response.data.image2}`,
             upload: null,
           });
           router.back();
@@ -126,11 +127,11 @@ const EditNote: FunctionComponent = () => {
         resetForm(response.data);
         setViewImage1({
           ...viewImage1,
-          event: `${BASE_URL}/uploads/${response.data.image}`,
+          event: `${IMAGE_URL}/uploads/${response.data.image}`,
         });
         setViewImage2({
           ...viewImage2,
-          event: `${BASE_URL}/uploads/${response.data.image2}`,
+          event: `${IMAGE_URL}/uploads/${response.data.image2}`,
         });
         setEditorHtml(response.data.comment);
         setLoading(false);
@@ -144,11 +145,32 @@ const EditNote: FunctionComponent = () => {
     form.comment = html;
     setEditorHtml(html);
   };
+  console.log("form.year");
+  console.log(form.year);
 
   return (
     <NavBarFooter>
       {!loading && (
         <div className="flex flex-col items-center justify-center sm:w-[55%] w-11/12 pt-6 sm:pt-0 h-full mx-auto my-[50px] sm:max-w-[66.5vw] gap-16 ">
+          <Modal
+            openModal={errorModal}
+            setOpenModal={() => {
+              setErrorModal(false);
+            }}
+          >
+            <p className="font-semibold text-text font-playfairSemiBold">
+              atenti!
+            </p>
+            <p className="leading-none text-center font-playfair text-text ">
+              La nota debe tener un año
+            </p>
+            <button
+              className="flex flex-col items-center justify-center p-2 mb-6 text-sm border border-black border-solid rounded-md font-playfairSemiBold "
+              onClick={() => setErrorModal(false)}
+            >
+              Okey
+            </button>
+          </Modal>
           <GlobalInput
             border
             placeholder=" Acá va el título!"

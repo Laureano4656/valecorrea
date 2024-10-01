@@ -4,14 +4,16 @@ import NavBarFooter from "../../components/navbar-footer";
 import ButtonBack from "../../components/ui/ButtonBack";
 import Book from "../../components/icons/Book";
 import useAllCategories from "../../hooks/useAllCategories";
-import useUserLogin from "../utils/useAllCategoriesStore";
+import useUserLogin, {
+  useUserLoginWithStorage,
+} from "../utils/useAllCategoriesStore";
 import EditIcon from "../icons/EditIcon";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
-import "react-quill/dist/quill.bubble.css"; 
+import "react-quill/dist/quill.bubble.css";
 import styles from "./note-id.module.css";
 import axios from "axios";
-import { BASE_URL } from "../../helpers/env";
+import { BASE_URL, IMAGE_URL } from "../../helpers/env";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const NoteId: FunctionComponent = () => {
@@ -28,7 +30,9 @@ const NoteId: FunctionComponent = () => {
     subCategory: "",
     comment: "",
   });
-  const { userLogin } = useUserLogin();
+  const { userLogin } = useUserLoginWithStorage();
+  console.log("userLogin");
+  console.log(userLogin);
 
   const [editorHtml, setEditorHtml] = useState();
 
@@ -43,6 +47,7 @@ const NoteId: FunctionComponent = () => {
         console.log(error);
       });
   }, [allCategories, router]);
+  console.log(content);
 
   return (
     <NavBarFooter>
@@ -64,7 +69,7 @@ const NoteId: FunctionComponent = () => {
                   objectFit: "cover",
                   width: "100%",
                 }}
-                src={`${BASE_URL}/uploads/${content.image}`}
+                src={`${IMAGE_URL}/uploads/${content.image}`}
                 alt="Imagen"
               />
             )}

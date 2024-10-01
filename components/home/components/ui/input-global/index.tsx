@@ -28,6 +28,7 @@ export interface GlobalInputProps extends ComponentPropsWithoutRef<"input"> {
   zIndex?: string;
   imageValue?: string;
   iconImage?: any;
+  error?: boolean;
 }
 
 const GlobalInput: FunctionComponent<GlobalInputProps> = ({
@@ -60,8 +61,11 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
   zIndex,
   imageValue,
   iconImage,
+  error,
 }) => {
   const [focus, setFocus] = useState(false);
+  console.log("error");
+  console.log(error);
 
   return (
     <div
@@ -69,9 +73,11 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
         zIndex: zIndex,
         ...style,
       }}
-      className={`cursor-pointer  relative    ${styles.container} ${
+      className={`${
+        error ? "border-red-500 border-2 border-solid " : "border-black"
+      } relative cursor-pointer rounded-md ${styles.container} ${
         border && styles.border
-      }   ${className} ${focus && !notBorderFocus && styles.onFocus}  `}
+      } ${className} ${focus && !notBorderFocus && styles.onFocus} `}
       onClick={onClick}
     >
       {label && (
