@@ -52,11 +52,6 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
   const [loading, setLoading] = useState(false);
 
   const createNewNote = () => {
-    console.log("viewImage1");
-    console.log(viewImage1);
-    console.log("viewImage2");
-    console.log(viewImage2);
-
     const formData = new FormData();
     formData.append("title", form.title ? form.title : "");
     formData.append("subTitle", form.subTitle ? form.subTitle : "");
@@ -67,8 +62,8 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     formData.append("category", `${router.query.ID}`);
     formData.append("active", "1");
     formData.append("video", form.video ? form.video : "");
-    formData.append("image1", viewImage1?.upload ? viewImage1.upload : "");
-    formData.append("image2", viewImage2?.upload ? viewImage2.upload : "");
+    if (viewImage1?.upload) formData.append("image1", viewImage1.upload);
+    if (viewImage2?.upload) formData.append("image2", viewImage2.upload);
 
     if (form.id) {
       axios
@@ -88,14 +83,14 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               upload: null,
             });
           }
-          // router.push(`/${router.query.ID}`);
+          router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     } else {
       axios
         .post(`${BASE_URL}/notes`, formData)
         .then((response) => {
-          // router.push(`/${router.query.ID}`);
+          router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     }

@@ -4,7 +4,6 @@ import GlobalInput from "../ui/input-global";
 import save from "../../../../static/icons/SVG/save.svg";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import useCreateNote from "../../../utils/useCreateNote";
 import { useForm } from "../../../../hooks/useForm";
 import CheckIcon from "../../../icons/CheckIcon";
 import TextHover from "../ui/input-global/TextHover";
@@ -23,7 +22,6 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const EditNote: FunctionComponent = () => {
   const router = useRouter();
   const noteId = router.query.ID;
-  const { createNote } = useCreateNote();
 
   const [viewImage1, setViewImage1] = useState({ event: null, upload: null });
   const [viewImage2, setViewImage2] = useState({ event: null, upload: null });
@@ -56,8 +54,9 @@ const EditNote: FunctionComponent = () => {
     formData.append("year", form.year ? form.year.toString() : "");
     formData.append("comment", form.comment ? form.comment : "");
     formData.append("category", form.category ? form.category : "");
-    formData.append("image1", viewImage1?.upload ? viewImage1.upload : "");
-    formData.append("image2", viewImage2?.upload ? viewImage2.upload : "");
+    if (viewImage1?.upload) formData.append("image1", viewImage1.upload);
+    if (viewImage2?.upload) formData.append("image2", viewImage2.upload);
+
     formData.append("active", saveNote ? "1" : "0");
     formData.append("video", form.video ? form.video : "");
 
@@ -75,16 +74,24 @@ const EditNote: FunctionComponent = () => {
             event: `${IMAGE_URL}/${response.data.image2}`,
             upload: null,
           });
-          router.back();
+          // router.back();
+          console.log("response");
+          console.log(response);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       axios
         .post(`${BASE_URL}/notes`, formData)
         .then((response) => {
-          router.back();
+          // router.back();
+          console.log("response");
+          console.log(response);
         })
-        .catch((error) => {});
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
@@ -278,7 +285,7 @@ const EditNote: FunctionComponent = () => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image"}
-              imageValue={viewImage1?.event !== null && viewImage1.event}
+              imageValue={viewImage1?.event && viewImage1.event}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
