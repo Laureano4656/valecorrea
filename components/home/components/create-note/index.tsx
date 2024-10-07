@@ -52,6 +52,9 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
   const [loading, setLoading] = useState(false);
 
   const createNewNote = () => {
+    console.log("viewImage1");
+    console.log(viewImage1);
+
     const formData = new FormData();
     formData.append("title", form.title ? form.title : "");
     formData.append("subTitle", form.subTitle ? form.subTitle : "");
@@ -62,8 +65,19 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     formData.append("category", `${router.query.ID}`);
     formData.append("active", "1");
     formData.append("video", form.video ? form.video : "");
-    if (viewImage1?.upload) formData.append("image1", viewImage1.upload);
-    if (viewImage2?.upload) formData.append("image2", viewImage2.upload);
+    console.log("formData");
+    console.log(formData);
+    if (viewImage1?.upload) {
+      console.log("cargo la primer imagen");
+
+      formData.append("image1", viewImage1.upload);
+    }
+    if (viewImage2?.upload) {
+      console.log("cargo la segunda imagen");
+      formData.append("image2", viewImage2.upload);
+    }
+    console.log("formData");
+    console.log(formData);
 
     if (form.id) {
       axios
@@ -83,14 +97,28 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               upload: null,
             });
           }
-          router.push(`/${router.query.ID}`);
+          // router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     } else {
       axios
         .post(`${BASE_URL}/notes`, formData)
         .then((response) => {
-          router.push(`/${router.query.ID}`);
+          if (response.data.image) {
+            setViewImage1({
+              ...viewImage1,
+              event: `${IMAGE_URL}/uploads/${response.data.image}`,
+              upload: null,
+            });
+          }
+          if (response.data.image2) {
+            setViewImage2({
+              ...viewImage2,
+              event: `${IMAGE_URL}/uploads/${response.data.image2}`,
+              upload: null,
+            });
+          }
+          // router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     }
@@ -155,7 +183,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      const result = reader.result as string; // Casting result to string
+      const result = reader.result as string;
       if (e.target.name === "image2") {
         setViewImage2({ event: result, upload: file });
       } else {
@@ -165,6 +193,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
 
     reader.readAsDataURL(file);
   };
+
   const getVideoId = (url) => {
     // Verificar si es un enlace de YouTube
     form.video = url;
