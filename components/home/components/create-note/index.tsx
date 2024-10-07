@@ -97,7 +97,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               upload: null,
             });
           }
-          // router.push(`/${router.query.ID}`);
+          router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     } else {
@@ -118,7 +118,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
               upload: null,
             });
           }
-          // router.push(`/${router.query.ID}`);
+          router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     }
@@ -163,7 +163,7 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
             upload: null,
           });
         }
-        router.back();
+        router.push(`/derecho`);
       })
       .catch((error) => {});
   };
@@ -171,7 +171,9 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
   const deleteNote = () => {
     axios
       .delete(`${BASE_URL}/notes/${router.query.ID}`)
-      .then((response) => {})
+      .then((response) => {
+        router.push(`/derecho`);
+      })
       .catch((error) => {});
   };
   const [imageSrc, setImageSrc] = useState<any>("");

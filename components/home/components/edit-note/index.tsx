@@ -74,7 +74,7 @@ const EditNote: FunctionComponent = () => {
             event: `${IMAGE_URL}/${response.data.image2}`,
             upload: null,
           });
-          // router.back();
+          router.push(`/${noteId}`);
           console.log("response");
           console.log(response);
         })
@@ -85,7 +85,7 @@ const EditNote: FunctionComponent = () => {
       axios
         .post(`${BASE_URL}/notes`, formData)
         .then((response) => {
-          // router.back();
+          router.push(`/${noteId}`);
           console.log("response");
           console.log(response);
         })
@@ -99,7 +99,7 @@ const EditNote: FunctionComponent = () => {
     axios
       .delete(`${BASE_URL}/notes/${noteId}`)
       .then((response) => {
-        router.back();
+        router.push(`/derecho`);
       })
       .catch((error) => {});
   };
