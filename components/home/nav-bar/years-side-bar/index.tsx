@@ -46,7 +46,7 @@ const YearSideBar: React.FC = () => {
 
   return (
     <div className={styles.yearsSideBar}>
-      <div className="relative sm:w-[49vw] ml-[8vw]">
+      <div className="relative sm:w-[49vw] ml-[8vw] mt-12">
         {userLogin && (
           <div className="hidden sm:block">
             <ButtonAddNote />
