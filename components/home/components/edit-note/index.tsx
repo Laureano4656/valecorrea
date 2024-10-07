@@ -67,12 +67,12 @@ const EditNote: FunctionComponent = () => {
         .then((response) => {
           setViewImage1({
             ...viewImage1,
-            event: `${IMAGE_URL}/uploads/${response.data.image}`,
+            event: `${IMAGE_URL}/${response.data.image}`,
             upload: null,
           });
           setViewImage2({
             ...viewImage2,
-            event: `${IMAGE_URL}/uploads/${response.data.image2}`,
+            event: `${IMAGE_URL}/${response.data.image2}`,
             upload: null,
           });
           router.back();
@@ -81,7 +81,9 @@ const EditNote: FunctionComponent = () => {
     } else {
       axios
         .post(`${BASE_URL}/notes`, formData)
-        .then((response) => {})
+        .then((response) => {
+          router.back();
+        })
         .catch((error) => {});
     }
   };
@@ -89,7 +91,9 @@ const EditNote: FunctionComponent = () => {
   const deleteNote = () => {
     axios
       .delete(`${BASE_URL}/notes/${noteId}`)
-      .then((response) => {})
+      .then((response) => {
+        router.back();
+      })
       .catch((error) => {});
   };
   const [imageSrc, setImageSrc] = useState<any>("");
@@ -127,11 +131,11 @@ const EditNote: FunctionComponent = () => {
         resetForm(response.data);
         setViewImage1({
           ...viewImage1,
-          event: `${IMAGE_URL}/uploads/${response.data.image}`,
+          event: `${IMAGE_URL}/${response.data.image}`,
         });
         setViewImage2({
           ...viewImage2,
-          event: `${IMAGE_URL}/uploads/${response.data.image2}`,
+          event: `${IMAGE_URL}/${response.data.image2}`,
         });
         setEditorHtml(response.data.comment);
         setLoading(false);
@@ -145,8 +149,10 @@ const EditNote: FunctionComponent = () => {
     form.comment = html;
     setEditorHtml(html);
   };
-  console.log("form.year");
-  console.log(form.year);
+  console.log("viewImage1");
+  console.log("viewImage1");
+  console.log("viewImage1");
+  console.log(viewImage1.event);
 
   return (
     <NavBarFooter>
@@ -272,7 +278,7 @@ const EditNote: FunctionComponent = () => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image"}
-              imageValue={viewImage1.event ? viewImage1.event : ""}
+              imageValue={viewImage1?.event !== null && viewImage1.event}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
@@ -306,7 +312,7 @@ const EditNote: FunctionComponent = () => {
               style={{ height: "20vw" }}
               type={"file"}
               name={"image2"}
-              imageValue={viewImage2.event ? viewImage2.event : ""}
+              imageValue={viewImage2.event && viewImage2.event}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />

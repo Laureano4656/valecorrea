@@ -19,15 +19,10 @@ export const useUserLoginWithStorage = () => {
 
   useEffect(() => {
     setMounted(true);
-    console.log("hola");
-    console.log("window");
-    console.log(window);
-    
+
     if (typeof window !== "undefined") {
       const storedUserData = window.localStorage.getItem("access_token");
-      console.log("storedUserData");
-      console.log(storedUserData);
-      
+
       setUserLogin(storedUserData !== null);
     }
   }, [setUserLogin, router]);

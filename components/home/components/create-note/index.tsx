@@ -32,8 +32,8 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
   const router = useRouter();
   const { selectedSubcategory } = useSubcategory();
   const [editorHtml, setEditorHtml] = useState("");
-  const [viewImage1, setViewImage1] = useState<any>("");
-  const [viewImage2, setViewImage2] = useState<any>("");
+  const [viewImage1, setViewImage1] = useState({ event: null, upload: null });
+  const [viewImage2, setViewImage2] = useState({ event: null, upload: null });
   const [initialForm, setInitialForm] = useState({
     id: "",
     title: "",
@@ -52,6 +52,11 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
   const [loading, setLoading] = useState(false);
 
   const createNewNote = () => {
+    console.log("viewImage1");
+    console.log(viewImage1);
+    console.log("viewImage2");
+    console.log(viewImage2);
+
     const formData = new FormData();
     formData.append("title", form.title ? form.title : "");
     formData.append("subTitle", form.subTitle ? form.subTitle : "");
@@ -62,27 +67,35 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
     formData.append("category", `${router.query.ID}`);
     formData.append("active", "1");
     formData.append("video", form.video ? form.video : "");
-    formData.append("image1", form.image ? form.image : "");
-    formData.append("image2", form.imag2 ? form.image2 : "");
+    formData.append("image1", viewImage1?.upload ? viewImage1.upload : "");
+    formData.append("image2", viewImage2?.upload ? viewImage2.upload : "");
 
     if (form.id) {
       axios
         .put(`${BASE_URL}/notes/${form.id}`, formData)
         .then((response) => {
           if (response.data.image) {
-            setViewImage1(`${IMAGE_URL}/uploads/${response.data.image}`);
+            setViewImage1({
+              ...viewImage1,
+              event: `${IMAGE_URL}/uploads/${response.data.image}`,
+              upload: null,
+            });
           }
           if (response.data.image2) {
-            setViewImage2(`${IMAGE_URL}/uploads/${response.data.image2}`);
+            setViewImage2({
+              ...viewImage2,
+              event: `${IMAGE_URL}/uploads/${response.data.image2}`,
+              upload: null,
+            });
           }
-          router.push(`/${router.query.ID}`);
+          // router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     } else {
       axios
         .post(`${BASE_URL}/notes`, formData)
         .then((response) => {
-          router.push(`/${router.query.ID}`);
+          // router.push(`/${router.query.ID}`);
         })
         .catch((error) => {});
     }
@@ -114,10 +127,18 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
       .put(`${BASE_URL}/notes/${router.query.ID}`, formData)
       .then((response) => {
         if (response.data.image) {
-          setViewImage1(`${IMAGE_URL}/uploads/${response.data.image}`);
+          setViewImage1({
+            ...viewImage1,
+            event: `${IMAGE_URL}/uploads/${response.data.image}`,
+            upload: null,
+          });
         }
         if (response.data.image2) {
-          setViewImage2(`${IMAGE_URL}/uploads/${response.data.image2}`);
+          setViewImage2({
+            ...viewImage2,
+            event: `${IMAGE_URL}/uploads/${response.data.image2}`,
+            upload: null,
+          });
         }
         router.back();
       })
@@ -134,20 +155,20 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
 
-    // Leer la imagen y establecer la URL en el estado
     reader.onloadend = () => {
-      if (e.target.name.includes("image2")) {
-        setViewImage2(reader.result); // Guardar la URL de la imagen
+      const result = reader.result as string; // Casting result to string
+      if (e.target.name === "image2") {
+        setViewImage2({ event: result, upload: file });
       } else {
-        setViewImage1(reader.result); // Guardar la URL de la imagen
+        setViewImage1({ event: result, upload: file });
       }
     };
 
-    if (file) {
-      reader.readAsDataURL(file); // Leer como URL
-    }
+    reader.readAsDataURL(file);
   };
   const getVideoId = (url) => {
     // Verificar si es un enlace de YouTube
@@ -261,10 +282,10 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
             <GlobalInput
               border
               placeholder="Insertar"
-              style={{ height: "20vw" }}
+              style={{ height: "20vh" }}
               type={"file"}
               name={"image"}
-              imageValue={viewImage1}
+              imageValue={viewImage1.event ? viewImage1.event : ""}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />
@@ -294,10 +315,10 @@ const CreateNote: FunctionComponent<Props> = ({ noteId }) => {
             <GlobalInput
               border
               placeholder="Te gustaría  cargar una segunda imagen ?"
-              style={{ height: "20vw" }}
+              style={{ height: "20vh" }}
               type={"file"}
               name={"image2"}
-              imageValue={viewImage2}
+              imageValue={viewImage2.event ? viewImage2.event : ""}
               onChange={handleImageChange}
               className={"p-[0!important]"}
             />

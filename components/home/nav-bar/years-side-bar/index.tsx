@@ -6,37 +6,43 @@ import axios from "axios";
 import { BASE_URL } from "../../../../helpers/env";
 import Year from "./Year";
 import { useSubcategory } from "../../../../store/useSubcategory";
-import useUserLogin, {
-  useUserLoginWithStorage,
-} from "../../../utils/useAllCategoriesStore";
+import { useUserLoginWithStorage } from "../../../utils/useAllCategoriesStore";
 import ButtonAddNote from "../../components/ui/button-add-note";
 
 const YearSideBar: React.FC = () => {
   const [categories, setCategories] = useState([]);
-  const { subCategory, selectedSubcategory, setSelectedSubcategory } =
-    useSubcategory();
+  const { selectedSubcategory } = useSubcategory();
   const { userLogin } = useUserLoginWithStorage();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get(
-        `${BASE_URL}/notes/all/${router.asPath.replace(
-          "/",
-          ""
-        )}/${selectedSubcategory}`
-      )
-      .then((response) => {
-        setCategories(response.data);
+    const fetchCategories = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        if (router.asPath && selectedSubcategory) {
+          const response = await axios.get(
+            `${BASE_URL}/notes/all/${router.asPath.replace(
+              "/",
+              ""
+            )}/${selectedSubcategory}`
+          );
+
+          setCategories(response.data);
+        }
+      } catch (err) {
+        console.error("Error fetching categories", err);
+        setError("Hubo un problema al cargar las notas");
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.log("error");
-        console.log(error);
-      });
-  }, [selectedSubcategory, router.asPath, subCategory]);
+      }
+    };
+
+    fetchCategories();
+  }, [router.asPath, selectedSubcategory]);
 
   return (
     <div className={styles.yearsSideBar}>
@@ -48,13 +54,15 @@ const YearSideBar: React.FC = () => {
         )}
         {loading ? (
           "Cargando notas"
+        ) : error ? (
+          <p>{error}</p>
         ) : categories.length > 0 ? (
           <>
             <Categories categories={categories} />
             <Year categories={categories} />{" "}
           </>
         ) : (
-          <p className="pt-4">En este  momento no hay notas en esta sección</p>
+          <p className="pt-4">En este momento no hay notas en esta sección</p>
         )}
       </div>
     </div>

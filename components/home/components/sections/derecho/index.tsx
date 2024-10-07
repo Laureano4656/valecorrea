@@ -20,14 +20,10 @@ const SectionDerecho: FunctionComponent = () => {
         )}/${selectedSubcategory}`
       )
       .then((response) => {
-        console.log(response.data);
         setNoteList(response.data);
         setLoading(false);
       })
-      .catch((error) => {
-        console.log("error");
-        console.log(error);
-      });
+      .catch((error) => {});
   }, [router, selectedSubcategory]);
 
   return <div></div>;

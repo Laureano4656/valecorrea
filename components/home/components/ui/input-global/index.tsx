@@ -64,8 +64,6 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
   error,
 }) => {
   const [focus, setFocus] = useState(false);
-  console.log("error");
-  console.log(error);
 
   return (
     <div
@@ -89,13 +87,15 @@ const GlobalInput: FunctionComponent<GlobalInputProps> = ({
           htmlFor={name}
           className="relative flex flex-col items-center rounded-[4px] justify-center w-full h-full "
         >
-          {imageValue && (
+          {imageValue ? (
             <img
               style={{ width: "100%", height: "100%" }}
               src={imageValue}
               alt="Background"
               className="absolute top-0 left-0 object-cover w-full h-full"
             />
+          ) : (
+            ""
           )}
 
           {iconImage ? iconImage : <Image src={insert} alt="Insertar" />}

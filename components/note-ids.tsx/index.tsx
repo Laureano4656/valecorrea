@@ -41,9 +41,7 @@ const NoteId: FunctionComponent = () => {
         setContent(response.data);
         setEditorHtml(response.data.comment);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, [allCategories, router]);
 
   return (
@@ -63,10 +61,11 @@ const NoteId: FunctionComponent = () => {
             {content.image && (
               <img
                 style={{
+                  height: "50vh",
                   objectFit: "cover",
                   width: "100%",
                 }}
-                src={`${IMAGE_URL}/uploads/${content.image}`}
+                src={`${IMAGE_URL}/${content.image}`}
                 alt="Imagen"
               />
             )}
@@ -112,10 +111,11 @@ const NoteId: FunctionComponent = () => {
             {content.image2 && (
               <img
                 style={{
+                  height: "50vh",
                   objectFit: "cover",
                   width: "100%",
                 }}
-                src={content.image2}
+                src={`${IMAGE_URL}/${content.image2}`}
                 alt="Imagen"
               />
             )}

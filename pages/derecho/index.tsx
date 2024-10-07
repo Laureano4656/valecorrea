@@ -7,7 +7,6 @@ const Derecho: NextPage = () => {
   return (
     <LayoutHScreen>
       <NavSide sideBar />
-      
     </LayoutHScreen>
   );
 };
