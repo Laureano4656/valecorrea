@@ -28,6 +28,14 @@ jobs:
 
     - name: Deploy the frontend
       run: |
-        # Aquí va tu comando para desplegar el frontend, dependiendo de tu entorno
-        # Por ejemplo, si usas Docker:
-        docker-compose -f docker-compose.yml up -d
+          ssh -o StrictHostKeyChecking=no usuario@93.127.212.162 << 'EOF'
+            cd /home/valeriacorrea/frontend
+            git pull origin main
+            # Aquí puedes agregar otros comandos para hacer el despliegue, por ejemplo:
+            # 1. Ejecutar builds si es necesario
+            # 2. Reiniciar servicios como Nginx o Apache si es necesario
+            # 3. Instalar dependencias (si aplica)
+            # 4. Reiniciar la aplicación (si usas pm2, docker, etc.)
+            # Ejemplo:
+            # pm2 restart your-app-name
+      EOF
