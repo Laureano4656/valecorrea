@@ -28,14 +28,29 @@ jobs:
 
     - name: Deploy the frontend
       run: |
-          ssh -o StrictHostKeyChecking=no usuario@93.127.212.162 << 'EOF'
-            cd /home/valeriacorrea/frontend
-            git pull origin main
-            # Aquí puedes agregar otros comandos para hacer el despliegue, por ejemplo:
-            # 1. Ejecutar builds si es necesario
-            # 2. Reiniciar servicios como Nginx o Apache si es necesario
-            # 3. Instalar dependencias (si aplica)
-            # 4. Reiniciar la aplicación (si usas pm2, docker, etc.)
-            # Ejemplo:
-            # pm2 restart your-app-name
+        ssh -o StrictHostKeyChecking=no usuario@93.127.212.162 << 'EOF'
+          cd /home/valeriacorrea/frontend
+          
+          # Hacer git pull para obtener los últimos cambios
+          git pull origin main
+
+          # Instalar dependencias si es necesario en el servidor
+          npm install
+
+          # Construir nuevamente el proyecto si es necesario
+          npm run build
+
+          # Construir y ejecutar los contenedores Docker
+          # Esto garantiza que se reconstruyan los contenedores con los últimos cambios
+          docker-compose -f /home/valeriacorrea/docker-compose.yml up --build -d
+
+          # Si quieres detener los contenedores existentes primero:
+          # docker-compose -f /home/valeriacorrea/docker-compose.yml down
+
+          # También puedes usar pm2 si tienes alguna app Node.js que no sea Dockerizada:
+          # pm2 restart all  # Reinicia todas las aplicaciones administradas por pm2
+          
+          # O recargar Nginx si es necesario:
+          # sudo systemctl reload nginx
+          
       EOF
