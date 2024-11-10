@@ -3,7 +3,7 @@ import Welcome from "../components/home/components/Welcome";
 import { useRouter } from "next/router";
 const Home = () => {
   const router = useRouter();
-  console.log("test");
+  console.log("test 1");
   
   useEffect(() => {
     const timeout = setTimeout(() => {
