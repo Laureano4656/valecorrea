@@ -26,29 +26,40 @@ jobs:
       run: |
         npm run build
 
+    - name: Set up SSH key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
     - name: Deploy the frontend
       run: |
-        ssh -o StrictHostKeyChecking=no usuario@93.127.212.162 << 'EOF'
+        ssh -o StrictHostKeyChecking=no root@93.127.212.162 << 'EOF'
           cd /home/valeriacorrea/frontend
-
+          
+          # Verificar si el directorio existe
+          if [ ! -d "/home/valeriacorrea/frontend" ]; then
+            echo "Error: El directorio no existe."
+            exit 1
+          fi
+          
           # Hacer git pull para obtener los últimos cambios
           git pull origin main
           
-          # Instalar dependencias si es necesario en el servidor
+          # Instalar dependencias si es necesario
           npm install
           
           # Construir nuevamente el proyecto si es necesario
           npm run build
           
-          # Construir y ejecutar los contenedores Docker
-          docker-compose -f /home/valeriacorrea/docker-compose.yml up --build -d
+          # Detener contenedores antiguos
+          docker-compose -f /home/valeriacorrea/docker-compose.yml down
           
-          # Si quieres detener los contenedores existentes primero:
-          # docker-compose -f /home/valeriacorrea/docker-compose.yml down
+          # Construir y ejecutar el contenedor frontend
+          docker-compose -f /home/valeriacorrea/docker-compose.yml up --build -d frontend
           
-          # También puedes usar pm2 si tienes alguna app Node.js que no sea Dockerizada:
-          # pm2 restart all  # Reinicia todas las aplicaciones administradas por pm2
+          # Verificar los contenedores
+          docker-compose -f /home/valeriacorrea/docker-compose.yml ps
           
-          # O recargar Nginx si es necesario:
+          # Si usas Nginx o algún otro servicio
           # sudo systemctl reload nginx
         EOF
