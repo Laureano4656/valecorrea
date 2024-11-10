@@ -3,39 +3,34 @@ name: Deploy Frontend
 on:
   push:
     branches:
-      - main  # O la rama que prefieras para deploy
+      - main
+    paths:
+      - 'frontend/**'  # Solo ejecuta el workflow si hay cambios en el frontend
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'  # Especifica la versión de Node.js que necesitas
+        node-version: '18.x'
 
     - name: Install dependencies
       run: |
-        npm install
+        cd frontend  # Ajusta la ruta si tu frontend está en otro directorio
+        npm install   # O pnpm install si usas pnpm
 
-    - name: Build the frontend
+    - name: Build frontend
       run: |
-        npm run build  # Asegúrate de tener un script de build configurado en package.json
+        cd frontend
+        npm run build  # O el comando que uses para construir tu frontend
 
-    - name: Build Docker image
+    - name: Deploy frontend
       run: |
-        docker build -t valeriacorrea_frontend .  # Este es el comando para crear la imagen Docker
-
-    - name: Push Docker image to Docker Hub (si usas Docker Hub)
-      run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push valeriacorrea_frontend:latest  # Reemplaza con tu nombre de repositorio
-
-    - name: Deploy Frontend
-      run: |
-        docker-compose down  # Detiene el contenedor en ejecución
-        docker-compose up -d  # Levanta el contenedor con la nueva imagen
+        cd frontend
+        # Agrega el comando de despliegue a tu servidor o servicio (por ejemplo, Docker, Firebase, etc.)
