@@ -31,7 +31,6 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.VALESERVER  }}
 
-
     - name: Deploy the frontend
       run: |
         ssh -o StrictHostKeyChecking=no root@93.127.212.162 << 'EOF'
@@ -64,3 +63,15 @@ jobs:
           # Si usas Nginx o algún otro servicio
           # sudo systemctl reload nginx
         EOF
+
+    - name: Send Email Notification
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: 'smtp.gmail.com'
+        server_port: 587
+        username: ${{ secrets.GMAIL_USERNAME }}
+        password: ${{ secrets.GMAIL_PASSWORD }}
+        subject: 'Frontend Deployment Status'
+        to: 'marceloveron76@gmail.com'
+        from: 'marceloveron76@gmail.com'
+        body: 'El despliegue del frontend se ha completado exitosamente.'
