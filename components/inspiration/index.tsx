@@ -132,29 +132,31 @@ const Inspiration: FunctionComponent = () => {
             }
           />
         )} */}
-        <GlobalInput
-          style={{
-            height: "auto",
-            padding: "0",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          type="file"
-          name={"image"}
-          onChange={(e) => handleNewImage(e)}
-          iconImage={
-            // <img src={`${iconAdd}`} alt="Agregar" />
-            <Image
-              src={iconAdd}
-              height={0}
-              width={0}
-              className="w-[40%]"
-              alt="Agregar"
-            />
-            // <p className="leading-none font-playfair text-[150px]">+</p>
-          }
-        />
+        {userLogin && (
+          <GlobalInput
+            style={{
+              height: "auto",
+              padding: "0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            type="file"
+            name={"image"}
+            onChange={(e) => handleNewImage(e)}
+            iconImage={
+              // <img src={`${iconAdd}`} alt="Agregar" />
+              <Image
+                src={iconAdd}
+                height={0}
+                width={0}
+                className="w-[40%]"
+                alt="Agregar"
+              />
+              // <p className="leading-none font-playfair text-[150px]">+</p>
+            }
+          />
+        )}
         {imageSrc.length > 0 &&
           imageSrc
             .slice()
@@ -170,12 +172,12 @@ const Inspiration: FunctionComponent = () => {
                     setFocusImage({ image: `${BASE_URL}/${image.fileName}` });
                   }}
                 >
-                  <Image
+                  <img
                     width={500}
                     height={500}
                     className={`hover:brightness-75  transition duration-300 ease-in-out ${styles.item} w-full`}
-                    src={`${BASE_URL}/${image.fileName}`}
                     alt={"Icon"}
+                    src={`${BASE_URL}/${image.fileName}`}
                   />
 
                   {userLogin && (
