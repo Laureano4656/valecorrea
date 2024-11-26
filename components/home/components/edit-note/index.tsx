@@ -59,6 +59,10 @@ const EditNote: FunctionComponent = () => {
 
     formData.append("active", saveNote ? "1" : "0");
     formData.append("video", form.video ? form.video : "");
+    console.log("initialForm");
+    console.log(initialForm);
+    console.log("form");
+    console.log(form);
 
     if (noteId) {
       axios
@@ -74,9 +78,7 @@ const EditNote: FunctionComponent = () => {
             event: `${IMAGE_URL}/${response.data.image2}`,
             upload: null,
           });
-          router.push(`/${noteId}`);
-          console.log("response");
-          console.log(response);
+          router.push(`/${initialForm.category}/${noteId}`);
         })
         .catch((error) => {
           console.log(error);
@@ -156,10 +158,6 @@ const EditNote: FunctionComponent = () => {
     form.comment = html;
     setEditorHtml(html);
   };
-  console.log("viewImage1");
-  console.log("viewImage1");
-  console.log("viewImage1");
-  console.log(viewImage1.event);
 
   return (
     <NavBarFooter>

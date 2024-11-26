@@ -20,6 +20,12 @@ const NoteId: FunctionComponent = () => {
   const router = useRouter();
 
   const { allCategories } = useAllCategories();
+  console.log("allCategories");
+  console.log("allCategories");
+  console.log("allCategories");
+  console.log("allCategories");
+  console.log(allCategories);
+  
   const [content, setContent] = useState({
     title: "",
     subTitle: "",
