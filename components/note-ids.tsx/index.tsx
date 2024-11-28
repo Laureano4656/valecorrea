@@ -25,7 +25,7 @@ const NoteId: FunctionComponent = () => {
   console.log("allCategories");
   console.log("allCategories");
   console.log(allCategories);
-  
+
   const [content, setContent] = useState({
     title: "",
     subTitle: "",
@@ -68,7 +68,7 @@ const NoteId: FunctionComponent = () => {
               <img
                 style={{
                   height: "50vh",
-                  objectFit: "cover",
+                  objectFit: "contain",
                   width: "100%",
                 }}
                 src={`${IMAGE_URL}/${content.image}`}
