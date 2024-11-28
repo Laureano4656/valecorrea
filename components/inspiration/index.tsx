@@ -64,9 +64,10 @@ const Inspiration: FunctionComponent = () => {
   const handleRight = (id: number) => {
     if (id > 0) {
       const previousImage = imageSrc.find((img) => img.id === id - 1);
+
       if (previousImage) {
         setFocusImage({
-          image: previousImage.image,
+          image: `${BASE_URL}/${previousImage.fileName}`,
           id: previousImage.id,
         });
       }
@@ -74,18 +75,14 @@ const Inspiration: FunctionComponent = () => {
   };
 
   const handleLeft = (id) => {
-    if (id < imageSrc.length - 1) {
-      const nextImage = imageSrc.find((img) => img.id === id + 1);
-      if (nextImage) {
-        setFocusImage({
-          image: nextImage.image,
-          id: nextImage.id,
-        });
-      }
+    const nextImage = imageSrc.find((img) => img.id === id + 1);
+    if (nextImage) {
+      setFocusImage({
+        image: `${BASE_URL}/${nextImage.fileName}`,
+        id: nextImage.id,
+      });
     }
   };
-  console.log("focusImage");
-  console.log(focusImage);
 
   return (
     <div className="flex items-start justify-start  pb-7 pt-[50px] min-h-screen">
@@ -109,31 +106,7 @@ const Inspiration: FunctionComponent = () => {
             </p>
           </div>
         </div>
-        {/* {!userLogin && (
-          <GlobalInput
-            style={{
-              height: "auto",
-              padding: "0",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            type="file"
-            name={"image"}
-            onChange={(e) => handleNewImage(e)}
-            iconImage={
-              // <img src={`${iconAdd}`} alt="Agregar" />
-              <Image
-                src={iconAdd}
-                height={0}
-                width={0}
-                className="w-[40%]"
-                alt="Agregar"
-              />
-              // <p className="leading-none font-playfair text-[150px]">+</p>
-            }
-          />
-        )} */}
+
         {userLogin && (
           <GlobalInput
             style={{
@@ -147,7 +120,6 @@ const Inspiration: FunctionComponent = () => {
             name={"image"}
             onChange={(e) => handleNewImage(e)}
             iconImage={
-              // <img src={`${iconAdd}`} alt="Agregar" />
               <Image
                 src={iconAdd}
                 height={0}
@@ -155,7 +127,6 @@ const Inspiration: FunctionComponent = () => {
                 className="w-[40%]"
                 alt="Agregar"
               />
-              // <p className="leading-none font-playfair text-[150px]">+</p>
             }
           />
         )}
@@ -171,7 +142,10 @@ const Inspiration: FunctionComponent = () => {
                 <div
                   className="relative w-full h-full"
                   onClick={() => {
-                    setFocusImage({ image: `${BASE_URL}/${image.fileName}` });
+                    setFocusImage({
+                      image: `${BASE_URL}/${image.fileName}`,
+                      id: image.id,
+                    });
                   }}
                 >
                   <img
