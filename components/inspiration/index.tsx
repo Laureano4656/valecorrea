@@ -84,6 +84,8 @@ const Inspiration: FunctionComponent = () => {
       }
     }
   };
+  console.log("focusImage");
+  console.log(focusImage);
 
   return (
     <div className="flex items-start justify-start  pb-7 pt-[50px] min-h-screen">
@@ -235,7 +237,7 @@ const Inspiration: FunctionComponent = () => {
           <FocusImage
             handleLeft={() => handleLeft(focusImage.id)}
             handleRigth={() => handleRight(focusImage.id)}
-            src={focusImage.image}
+            src={`${focusImage.image}`}
             closeFocus={() => setFocusImage(null)}
           />
         )}

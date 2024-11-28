@@ -37,8 +37,7 @@ const FocusImage: FunctionComponent<Props> = ({
           onClick={closeFocus}
           className="absolute cursor-pointer object  z-50 -cover w-6 h-6 right-[5%] sm:-right-[15%] sm:top-[0] top-[5%]"
         />
-
-        <Image
+        <img
           src={src && src}
           alt="Image"
           width={2000}
