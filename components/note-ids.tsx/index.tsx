@@ -20,11 +20,6 @@ const NoteId: FunctionComponent = () => {
   const router = useRouter();
 
   const { allCategories } = useAllCategories();
-  console.log("allCategories");
-  console.log("allCategories");
-  console.log("allCategories");
-  console.log("allCategories");
-  console.log(allCategories);
 
   const [content, setContent] = useState({
     title: "",
@@ -68,7 +63,7 @@ const NoteId: FunctionComponent = () => {
               <img
                 style={{
                   height: "50vh",
-                  objectFit: "contain",
+                  objectFit: "cover",
                   width: "100%",
                 }}
                 src={`${IMAGE_URL}/${content.image}`}
