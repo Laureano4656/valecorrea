@@ -44,7 +44,25 @@ const NoteId: FunctionComponent = () => {
       })
       .catch((error) => {});
   }, [allCategories, router]);
+  const [isVertical, setIsVertical] = useState(false);
+  const [isVertical2, setIsVertical2] = useState(false)
 
+  useEffect(() => {
+    if (content.image) {
+      const img = new Image();
+      img.src = `${IMAGE_URL}/${content.image}`;
+      img.onload = () => {
+        setIsVertical(img.height > img.width);
+      };
+    }
+    if (content.image2) {
+      const img = new Image();
+      img.src = `${IMAGE_URL}/${content.image2}`;
+      img.onload = () => {
+        setIsVertical2(img.height > img.width);
+      };
+    }
+  }, [content.image]);
   return (
     <NavBarFooter>
       <div className="flex flex-col justify-between min-h-calcNavFooter gap-14 sm:pt-[5%] pt-[80px] ">
@@ -61,11 +79,11 @@ const NoteId: FunctionComponent = () => {
             </h2>
             {content.image && (
               <img
-                style={{
-                  height: "50vh",
-                  objectFit: "cover",
-                  width: "100%",
-                }}
+                className={`w-full ${
+                  isVertical
+                    ? "h-[75vh]  object-contain"
+                    : "h-[50vh]  object-contain"
+                }`}
                 src={`${IMAGE_URL}/${content.image}`}
                 alt="Imagen"
               />
@@ -111,6 +129,17 @@ const NoteId: FunctionComponent = () => {
             </div>
             {content.image2 && (
               <img
+                className={`w-full ${
+                  isVertical2
+                    ? "h-[75vh]  object-contain"
+                    : "h-[50vh]  object-contain"
+                }`}
+                src={`${IMAGE_URL}/${content.image2}`}
+                alt="Imagen"
+              />
+            )}
+            {/* {content.image2 && (
+              <img
                 style={{
                   height: "50vh",
                   objectFit: "cover",
@@ -119,7 +148,7 @@ const NoteId: FunctionComponent = () => {
                 src={`${IMAGE_URL}/${content.image2}`}
                 alt="Imagen"
               />
-            )}
+            )} */}
           </>
         </div>
         <div className="flex items-center justify-center sm:gap-[3.5vw] gap-8 pb-8">
