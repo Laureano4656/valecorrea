@@ -45,7 +45,7 @@ const NoteId: FunctionComponent = () => {
       .catch((error) => {});
   }, [allCategories, router]);
   const [isVertical, setIsVertical] = useState(false);
-  const [isVertical2, setIsVertical2] = useState(false)
+  const [isVertical2, setIsVertical2] = useState(false);
 
   useEffect(() => {
     if (content.image) {
@@ -79,10 +79,8 @@ const NoteId: FunctionComponent = () => {
             </h2>
             {content.image && (
               <img
-                className={`w-full ${
-                  isVertical
-                    ? "h-[75vh]  object-contain"
-                    : "h-[50vh]  object-contain"
+                className={`w-full max-h-[80vh]  h-full ${
+                  isVertical ? "  object-contain" : "  object-cover"
                 }`}
                 src={`${IMAGE_URL}/${content.image}`}
                 alt="Imagen"
@@ -129,26 +127,13 @@ const NoteId: FunctionComponent = () => {
             </div>
             {content.image2 && (
               <img
-                className={`w-full ${
-                  isVertical2
-                    ? "h-[75vh]  object-contain"
-                    : "h-[50vh]  object-contain"
+                className={`w-full max-h-[80vh]  h-full ${
+                  isVertical2 ? "  object-contain" : "  object-cover"
                 }`}
                 src={`${IMAGE_URL}/${content.image2}`}
                 alt="Imagen"
               />
             )}
-            {/* {content.image2 && (
-              <img
-                style={{
-                  height: "50vh",
-                  objectFit: "cover",
-                  width: "100%",
-                }}
-                src={`${IMAGE_URL}/${content.image2}`}
-                alt="Imagen"
-              />
-            )} */}
           </>
         </div>
         <div className="flex items-center justify-center sm:gap-[3.5vw] gap-8 pb-8">
