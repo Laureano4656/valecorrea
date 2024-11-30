@@ -54,15 +54,21 @@ const EditNote: FunctionComponent = () => {
     formData.append("year", form.year ? form.year.toString() : "");
     formData.append("comment", form.comment ? form.comment : "");
     formData.append("category", form.category ? form.category : "");
-    if (viewImage1?.upload) formData.append("image1", viewImage1.upload);
-    if (viewImage2?.upload) formData.append("image2", viewImage2.upload);
+    
+    if (viewImage1.upload) {
+      formData.append("image1", viewImage1.upload);
+    } else {
+      formData.append("image1", null);
+    }
+
+    if (viewImage2.upload) {
+      formData.append("image2", viewImage2.upload);
+    } else if (form.image2 === null) {
+      formData.append("image2", null);
+    }
 
     formData.append("active", saveNote ? "1" : "0");
     formData.append("video", form.video ? form.video : "");
-    console.log("initialForm");
-    console.log(initialForm);
-    console.log("form");
-    console.log(form);
 
     if (noteId) {
       axios
@@ -289,6 +295,7 @@ const EditNote: FunctionComponent = () => {
             />
             <Close
               onClick={() => {
+                setViewImage1({ event: null, upload: null });
                 form.image = "";
                 setInitialForm({ ...initialForm, image: null });
               }}
