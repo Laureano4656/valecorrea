@@ -26,6 +26,12 @@ const EditNote: FunctionComponent = () => {
   const [viewImage1, setViewImage1] = useState({ event: null, upload: null });
   const [viewImage2, setViewImage2] = useState({ event: null, upload: null });
   const [errorModal, setErrorModal] = useState(false);
+  console.log("viewImage1"); 
+  console.log(viewImage1);
+
+  
+  console.log("viewImage2");
+  console.log(viewImage2);
 
   const [initialForm, setInitialForm] = useState({
     id: "",
@@ -54,17 +60,26 @@ const EditNote: FunctionComponent = () => {
     formData.append("year", form.year ? form.year.toString() : "");
     formData.append("comment", form.comment ? form.comment : "");
     formData.append("category", form.category ? form.category : "");
-    
+    console.log("viewImage1");
+    console.log("viewImage1");
+    console.log("viewImage1");
+    console.log(viewImage1);
+
+    console.log("viewImage2");
+    console.log("viewImage2");
+    console.log("viewImage2");
+    console.log(viewImage2);
+    // Si hay nueva imagen, subirla
     if (viewImage1.upload) {
       formData.append("image1", viewImage1.upload);
-    } else {
-      formData.append("image1", null);
+    } else if (viewImage1.event === null && viewImage1.upload === null) {
+      formData.append("image1", "");
     }
 
     if (viewImage2.upload) {
       formData.append("image2", viewImage2.upload);
-    } else if (form.image2 === null) {
-      formData.append("image2", null);
+    } else if (viewImage2.event === null && viewImage2.upload === null) {
+      formData.append("image2", "");
     }
 
     formData.append("active", saveNote ? "1" : "0");

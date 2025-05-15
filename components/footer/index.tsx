@@ -39,13 +39,13 @@ const Footer: React.FC<props> = ({ fixed }) => {
       >
         <div className="flex items-center gap-2">
           <Box size={isMobile ? "16px" : "1.5vw"} />
-          <Link
+          <a
             target="_blank"
             className={`${styles.link} md:text-[1.2vw] text-[12px] font-playfair`}
-            href="valecorreamdq@gmail.com"
+            href={`mailto:valecorreamdq@gmail.com`}
           >
             valecorreamdq@gmail.com
-          </Link>
+          </a>
           {/* <IgSocial size="1.5vw" />
           <Link
             target="_blank"
@@ -55,13 +55,13 @@ const Footer: React.FC<props> = ({ fixed }) => {
             valecorreadmdq
           </Link> */}
         </div>
-        <Link
+        <a
           target="_blank"
           className={`${styles.link} text-[12px] font-playfair`}
-          href={"http://www.productorapomelo.com.ar/"}
+          href={`http://www.productorapomelo.com.ar/`}
         >
           Creator Pomelo I&M
-        </Link>
+        </a>
         {/* <div className="border-white border-solid rounded-full border-border1 absolute left-[5%] -translate-y-1/2 top-1/2">
         <Image src={logoPomelo} alt={"logo pomelo"} width={50} />
       </div> */}
