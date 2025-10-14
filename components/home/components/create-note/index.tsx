@@ -17,13 +17,15 @@ import Book from '../../../icons/Book'
 import Close from '../../../icons/Close'
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css' // Importa el CSS de Quill.js
-import 'react-quill/dist/quill.bubble.css' // Opcional: Importa otro tema de Quill.js si lo prefieres
+
 import { BASE_URL, IMAGE_URL } from '../../../../helpers/env'
 import axios from 'axios'
 import { useSubcategory } from '../../../../store/useSubcategory'
-
+import type { ReactQuillProps } from 'react-quill'
 // Importa Quill.js de forma dinámica para evitar problemas con SSR
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
+const ReactQuill = dynamic<ReactQuillProps>(() => import('react-quill'), {
+	ssr: false
+})
 interface Props {
 	noteId?: string
 }

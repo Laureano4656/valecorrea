@@ -1,104 +1,115 @@
-import React, { FunctionComponent } from "react";
-import NavBar from "../home/nav-bar";
-import Footer from "../footer";
-import Separator from "../ui/separator";
-import styles from "./styles/sobre-mi.module.css";
-import imagenMy from "../../static/images/foto Sobre Mi.png";
-import Image from "next/image";
-const SobreMi: FunctionComponent = () => {
-  return (
-    <>
-      <NavBar />
-      <div
-        className={
-          "relative text-justify  flex md:w-[66.5vw] w-11/12 mx-auto flex-col justify-between gap-8 pb-12 pt-16 sm:pt-0"
-        }
-      >
-        <Image
-          src={imagenMy}
-          alt="imagen"
-          width={0}
-          height={0}
-          className="min-w-[200px] min-h-[200px]  w-[15vw] h-[15vw] object-cover rounded-[100%] mx-auto"
-          style={{ objectPosition: "70%" }}
-        />
+import React, { FunctionComponent, useEffect, useState } from 'react'
+import NavBar from '../home/nav-bar'
+import Footer from '../footer'
+import Separator from '../ui/separator'
+import styles from './styles/sobre-mi.module.css'
+import imagenMy from '../../static/images/foto Sobre Mi.png'
+import Image from 'next/image'
+import { BASE_URL } from '../../helpers/env'
+import axios from 'axios'
 
-        <h1 className="text-center text-titles">VALERIA CORREA</h1>
-        <h2 className="text-center text-subtitles">
-          LA POTENCIA DE LO COLECTIVO ES INFINITA
-        </h2>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading mt-12 ">
-          Soy
-        </h3>
-        <p className="text-left font-playfair text-text sm:text-justify">
-          Nací en Mar del Plata en los años ´80, mi nombre es Valeria Correa;
-          soy abogada y trabajo desde muy joven en el estudio de las áreas del
-          derecho que mayor motivación y compromiso me despiertan: salud,
-          ambiente, perspectiva de género, divulgación de derechos, entre otros
-          intereses. Encuentro un profundo interés en investigar aquellos
-          despliegues jurídicos que nos atraviesan, mediante una atenta
-          observación del ser desde su integralidad, analizando nuestras
-          problemáticas con una mirada humanitaria y proyección hacia la
-          comunidad.
-        </p>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
-          Convicción{" "}
-        </h3>
-        <p className="text-left font-playfair text-text sm:text-justify">
-          Como a muchos estudiantes les sucede, no sabía muy bien que estaba
-          haciendo en el mundo del derecho hasta que una causa relacionada con
-          la salud llegó a mis manos. Cada paso que damos en la construcción de
-          los derechos impacta profunda y directamente en la mejora de la
-          calidad de vida y el bienestar general. Tenemos la posibilidad única
-          de ser agentes activos de pequeños grandes cambios. El contexto
-          regional actual propone un escenario complejo, urgente, para aquellos
-          profesionales involucrados con la realidad, donde todos los esfuerzos
-          parecieran resultar insuficientes. Es allí, donde la vocación y
-          capacitación permanente, se transforman en pilares imprescindibles
-          para reflexionar y accionar con seriedad en el presente.
-        </p>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
-          Forjando el camino
-        </h3>
-        <p className="text-left font-playfair text-text sm:text-justify">
-          He tenido la oportunidad de compartir mis inicios con grandes
-          profesionales, que generosamente abrieron las puertas de sus
-          conocimientos y experiencias. Trabajamos en equipo, a nivel local y
-          nacional. La transversalidad de espacios -congresos, paneles y
-          disertaciones, encuentros en diferentes provincias argentinas- me
-          nutrieron en un intercambio de experiencias sumamente valioso, que
-          forjaron el camino. Sensibilizar la mirada, en red, con otrxs.
-        </p>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
-          Herramientas{" "}
-        </h3>
-        <p className="text-left font-playfair text-text sm:text-justify">
-          Mi potencial mas genuino, mi propia humanidad y profesionalismo, surge
-          a partir de la integración de aquellas disciplinas que trabajan en
-          contacto directo con nuestra historia, tensiones, problemáticas. Con
-          las contradicciones y las aristas mas vulnerables, que también nos
-          conforman.
-          <br />
-          <br />
-          En mi trabajo diario intento trasmitir con entusiasmo algo de los
-          aprendido, tal como hicieron conmigo (impulsando a jóvenes
-          profesionales hacia sus propias búsquedas), elevar la consciencia
-          desde las prácticas diarias (meditación, yoga, psicología, gracias!).
-          Incansablemente , seguir las huellas de la autenticidad. Tender los
-          puentes y animarnos a cruzarlos juntxs*.
-        </p>
-        <h3 className="font-playfairExtraBold md:text-[1.5vw] text-list_heading  ">
-          Hoy
-        </h3>
-        <p className="text-left font-playfair text-text sm:text-justify">
-          Desde el año 2002 trabajo para la Justicia Federal de mi ciudad,
-          actualmente a cargo de una Secretaria Civil y Comercial. En 2021
-          comencé, a generar espacios de divulgación científica sumamente
-          enriquecedores, donde, junto a profesionales de diversas áreas,
-          hacemos foco en tópicos que recorren sensiblemente los derechos
-          humanos.
-        </p>
-        {/* <div className={styles.header}>
+const SobreMi: FunctionComponent = () => {
+	const [loading, setLoading] = useState(true)
+
+	const [sections, setSections] = useState({
+		soy: '',
+		conviccion: '',
+		forjando: '',
+		herramientas: '',
+		hoy: ''
+	})
+
+	useEffect(() => {
+		setLoading(false)
+		axios.get(`${BASE_URL}/notes/aboutMeNote`).then(response => {
+			const data = response.data.comment
+			const regex = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/g
+
+			// 2. Usa matchAll para encontrar todas las coincidencias y conviértelo a un array
+			const matches = Array.from(data.matchAll(regex))
+
+			// 3. Crea un objeto para guardar los resultados limpios
+			const extractedData = {}
+
+			// 4. Recorre las coincidencias y arma el objeto
+			for (const match of matches) {
+				// El título está en el primer grupo de captura (match[1])
+				// El párrafo está en el segundo grupo de captura (match[2])
+
+				// .trim() limpia los espacios y saltos de línea al inicio y final
+				const title = match[1].trim().toLowerCase().replace(' ', '_') // Clave limpia: "forjando_el_camino"
+				const content = match[2].trim()
+
+				// Asigna el contenido al objeto usando el título como clave
+				extractedData[title] = content
+			}
+			console.log(extractedData)
+			// Actualiza el estado con los valores extraídos o cadenas vacías si no se encuentran
+			setSections({
+				soy: extractedData['soy'] || '',
+				conviccion: extractedData["convicción{'_'}"] || '',
+				forjando: extractedData['forjando_el camino'] || '',
+				herramientas: extractedData["herramientas{'_'}"] || '',
+				hoy: extractedData['hoy'] || ''
+			})
+			console.log(sections)
+			setLoading(false)
+		})
+	}, [])
+
+	return (
+		<>
+			<NavBar />
+
+			<div
+				className={
+					'relative text-justify  flex md:w-[66.5vw] w-11/12 mx-auto flex-col justify-between gap-8 pb-12 pt-16 sm:pt-0'
+				}
+			>
+				<Image
+					src={imagenMy}
+					alt='imagen'
+					width={0}
+					height={0}
+					className='min-w-[200px] min-h-[200px]  w-[15vw] h-[15vw] object-cover rounded-[100%] mx-auto'
+					style={{ objectPosition: '70%' }}
+				/>
+
+				<h1 className='text-center text-titles'>VALERIA CORREA</h1>
+				<h2 className='text-center text-subtitles'>
+					LA POTENCIA DE LO COLECTIVO ES INFINITA
+				</h2>
+				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading mt-12 '>
+					Soy
+				</h3>
+				<p className='text-left font-playfair text-text sm:text-justify'>
+					{sections.soy || ''}
+				</p>
+				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
+					Convicción{' '}
+				</h3>
+				<p className='text-left font-playfair text-text sm:text-justify'>
+					{sections.conviccion || ''}
+				</p>
+				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
+					Forjando el camino
+				</h3>
+				<p className='text-left font-playfair text-text sm:text-justify'>
+					{sections.forjando || ''}
+				</p>
+				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
+					Herramientas{' '}
+				</h3>
+				<p className='text-left font-playfair text-text sm:text-justify'>
+					{sections.herramientas || ''}
+				</p>
+				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
+					Hoy
+				</h3>
+				<p className='text-left font-playfair text-text sm:text-justify'>
+					{sections.hoy || ''}
+				</p>
+				{/* <div className={styles.header}>
           <div className="relative flex items-center justify-center h-full w-max ">
             <h1
               className={`${styles.title} w-full text-[4.6vw] py-16 text-center font-playfair font-normal`}
@@ -116,8 +127,8 @@ const SobreMi: FunctionComponent = () => {
             ></div>
           </div>
         </div> */}
-      </div>
-      {/* <p className="w-full max-w-[60.2vw]  text-text text-justify mx-auto  pb-16 font-playfair">
+			</div>
+			{/* <p className="w-full max-w-[60.2vw]  text-text text-justify mx-auto  pb-16 font-playfair">
         Soy Vale Correa, nací en Mar del Plata en los años ´80 y me considero
         una persona muy curiosa y creativa, con profundos intereses en el
         estudio y la investigación.
@@ -161,12 +172,12 @@ const SobreMi: FunctionComponent = () => {
         BRANDIGmodos mas auténticos de narrarnos. Porque aun creo que las cosas
         pueden cambiar.
       </p> */}
-      <ul>
-        <li></li>
-      </ul>
-      <Footer />
-    </>
-  );
-};
+			<ul>
+				<li></li>
+			</ul>
+			<Footer />
+		</>
+	)
+}
 
-export default SobreMi;
+export default SobreMi

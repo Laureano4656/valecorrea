@@ -27,8 +27,14 @@
     "react-use-gesture": "^9.1.3",
     "slick-carousel": "^1.8.1",
     "swiper": "^6.8.4",
-    "tailwind": "^2.2.0",
     "zustand": "^4.5.2"
+  },
+  "overrides": {
+    "amqplib": "^0.10.3",
+    "lodash": "^4.17.21",
+    "jsonwebtoken": "^9.0.2",
+    "qs": "^6.12.1",
+    "express-jwt": "^8.4.1"
   },
   "devDependencies": {
     "@types/node": "^20.16.0",

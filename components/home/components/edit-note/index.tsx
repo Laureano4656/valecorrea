@@ -153,6 +153,7 @@ const EditNote: FunctionComponent = () => {
 
 	useEffect(() => {
 		setLoading(true)
+		console.log(router)
 		axios
 			.get(`${BASE_URL}/notes/byId/${router?.query?.ID}`)
 			.then(response => {
