@@ -87,66 +87,11 @@ const Year: FunctionComponent<Props> = ({ categories }) => {
 									}`}
 									onClick={() => setSelectedYear(year)}
 								>
-									<p className='relative w-max '>
-										{year}
-
-										{userLogin && (
-											<Image
-												onClick={() => {
-													setYearDelete(year)
-													setOpenModal(true)
-												}}
-												src={close}
-												alt='Agregar'
-												className={`${
-													selectedYear === year ? 'w-[2vw]' : 'w-[1.2vw]'
-												} absolute w-[30px] sm:w-[2vw] right-[-25%]   top-[-75%] translate-x-1/2 -translate-y-1/2 ${
-													selectedYear === year
-														? 'right-0 translate-y-0 translate-x-0'
-														: '  '
-												}`}
-											/>
-										)}
-									</p>
+									<p className='relative w-max '>{year}</p>
 								</li>
 							</>
 						))}
 			</ul>
-			<Modal
-				openModal={openModal}
-				setOpenModal={setOpenModal}
-			>
-				<p className='font-semibold text-text font-playfairSemiBold'>atenti!</p>
-				<p className='leading-none text-center font-playfair text-text '>
-					¿estas segura de que
-					<br /> queres borrar <br />
-					esta carpeta completa ?
-				</p>
-				<div className='flex items-center justify-between gap-2 w-[50%] mx-auto '>
-					<button
-						className='flex flex-col items-center text-sm font-playfairSemiBold '
-						onClick={() => setOpenModal(false)}
-					>
-						<img
-							src={arrow.src}
-							alt='Flecha'
-							className='w-9'
-						/>
-						no,volver
-					</button>
-					<button
-						// onClick={() => deleteYear()}
-						className='flex flex-col items-center text-sm font-playfairSemiBold '
-					>
-						<img
-							src={trash.src}
-							alt='Flecha'
-							className='w-9'
-						/>
-						si, eliminar
-					</button>
-				</div>
-			</Modal>
 		</>
 	)
 }

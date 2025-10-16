@@ -46,7 +46,7 @@ const EditSobreMi: FunctionComponent = () => {
 			.then(response => {
 				const data = response.data.comment
 				// 1. Define la expresión regular para encontrar los títulos y párrafos
-				const regex = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/g
+				const regex = /<h3[^>]*>([\s\S]*?)<\/h3>([\s\S]*?)(?=<h3[^>]*>|$)/g
 
 				// 2. Usa matchAll para encontrar todas las coincidencias y conviértelo a un array
 				const matches = Array.from(data.matchAll(regex))
@@ -70,9 +70,9 @@ const EditSobreMi: FunctionComponent = () => {
 				// Actualiza el estado con los valores extraídos o cadenas vacías si no se encuentran
 				setEditorsHtml({
 					soy: extractedData['soy'] || '',
-					conviccion: extractedData["convicción{'_'}"] || '',
+					conviccion: extractedData['convicción'] || '',
 					forjando: extractedData['forjando_el camino'] || '',
-					herramientas: extractedData["herramientas{'_'}"] || '',
+					herramientas: extractedData['herramientas'] || '',
 					hoy: extractedData['hoy'] || ''
 				})
 				console.log(editorsHtml)
@@ -83,6 +83,75 @@ const EditSobreMi: FunctionComponent = () => {
 				console.log(error)
 			})
 	}, [noteId])
+	const saveNote = () => {
+		const editorsData = { ...editorsHtml }
+
+		// Elimina las etiquetas <p> y </p> del inicio y final de cada sección
+		for (const key in editorsData) {
+			if (editorsData.hasOwnProperty(key)) {
+				editorsData[key] = editorsData[key]
+					.replace(/^<p>/, '')
+					.replace(/<\/p>$/, '')
+				// .replace(/<br\s*\/?>/g, '')
+			}
+		}
+
+		// editorsData.soy = editorsData.soy.replace('<p>', '')
+		// const lastIndex = editorsData.soy.lastIndexOf('</p>')
+		// if (lastIndex !== -1) {
+		// 	editorsData.soy =
+		// 		editorsData.soy.substring(0, lastIndex) +
+		// 		editorsData.soy.substring(lastIndex + 4)
+		// }
+		// editorsData.conviccion = editorsData.conviccion.replace('<p>', '')
+		// const lastIndex2 = editorsData.conviccion.lastIndexOf('</p>')
+		// if (lastIndex2 !== -1) {
+		// 	editorsData.conviccion =
+		// 		editorsData.conviccion.substring(0, lastIndex2) +
+		// 		editorsData.conviccion.substring(lastIndex2 + 4)
+		// }
+		// editorsData.forjando = editorsData.forjando.replace('<p>', '')
+		// const lastIndex3 = editorsData.forjando.lastIndexOf('</p>')
+		// if (lastIndex3 !== -1) {
+		// 	editorsData.forjando =
+		// 		editorsData.forjando.substring(0, lastIndex3) +
+		// 		editorsData.forjando.substring(lastIndex3 + 4)
+		// }
+		// editorsData.herramientas = editorsData.herramientas.replace('<p>', '')
+		// const lastIndex4 = editorsData.herramientas.lastIndexOf('</p>')
+		// if (lastIndex4 !== -1) {
+		// 	editorsData.herramientas =
+		// 		editorsData.herramientas.substring(0, lastIndex4) +
+		// 		editorsData.herramientas.substring(lastIndex4 + 4)
+		// }
+		// editorsData.hoy = editorsData.hoy.replace('<p>', '')
+		// const lastIndex5 = editorsData.hoy.lastIndexOf('</p>')
+		// if (lastIndex5 !== -1) {
+		// 	editorsData.hoy =
+		// 		editorsData.hoy.substring(0, lastIndex5) +
+		// 		editorsData.hoy.substring(lastIndex5 + 4)
+		// }
+
+		const formData = new FormData()
+		formData.append('title', 'SOBRE_MI_RESERVED')
+		formData.append('subTitle', '')
+		formData.append('subCategory', '')
+		formData.append('year', '')
+		formData.append(
+			'comment',
+			`<h3>Soy</h3>${editorsData.soy}<h3>Convicción</h3>${editorsData.conviccion}<h3>Forjando el camino</h3>${editorsData.forjando}<h3>Herramientas</h3>${editorsData.herramientas}<h3>Hoy</h3>${editorsData.hoy}`
+		)
+		formData.append('category', '')
+		formData.append('active', '0')
+		formData.append('video', '')
+		axios
+			.put(`${BASE_URL}/notes/${router.query.ID}`, formData)
+			.then(response => {
+				router.push(`/sobre-mi`)
+			})
+			.catch(error => {})
+	}
+
 	return (
 		<NavBarFooter>
 			{!loading && (
@@ -159,7 +228,7 @@ const EditSobreMi: FunctionComponent = () => {
             </button> */}
 
 						<button
-							//onClick={() => createNewNote()}
+							onClick={() => saveNote()}
 							className='relative '
 						>
 							<div className='p-[15%] w-12 h-12 sm:w-[3vw] sm:h-[3vw] bg-black rounded-[100%] flex justify-center items-center'>

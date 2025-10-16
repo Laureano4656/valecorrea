@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, use, useEffect, useState } from 'react'
 import NavBar from '../home/nav-bar'
 import Footer from '../footer'
 import Separator from '../ui/separator'
@@ -7,11 +7,17 @@ import imagenMy from '../../static/images/foto Sobre Mi.png'
 import Image from 'next/image'
 import { BASE_URL } from '../../helpers/env'
 import axios from 'axios'
+import { useUserLoginWithStorage } from '../utils/useAllCategoriesStore'
+import EditIcon from '../icons/EditIcon'
+import TextHover from '../home/components/ui/input-global/TextHover'
+import { useRouter } from 'next/router'
 
 const SobreMi: FunctionComponent = () => {
 	const [loading, setLoading] = useState(true)
-
+	const { userLogin } = useUserLoginWithStorage()
+	const router = useRouter()
 	const [sections, setSections] = useState({
+		id: '',
 		soy: '',
 		conviccion: '',
 		forjando: '',
@@ -23,7 +29,7 @@ const SobreMi: FunctionComponent = () => {
 		setLoading(false)
 		axios.get(`${BASE_URL}/notes/aboutMeNote`).then(response => {
 			const data = response.data.comment
-			const regex = /<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/g
+			const regex = /<h3[^>]*>([\s\S]*?)<\/h3>([\s\S]*?)(?=<h3[^>]*>|$)/g
 
 			// 2. Usa matchAll para encontrar todas las coincidencias y conviértelo a un array
 			const matches = Array.from(data.matchAll(regex))
@@ -46,10 +52,11 @@ const SobreMi: FunctionComponent = () => {
 			console.log(extractedData)
 			// Actualiza el estado con los valores extraídos o cadenas vacías si no se encuentran
 			setSections({
+				id: response.data.id,
 				soy: extractedData['soy'] || '',
-				conviccion: extractedData["convicción{'_'}"] || '',
+				conviccion: extractedData['convicción'] || '',
 				forjando: extractedData['forjando_el camino'] || '',
-				herramientas: extractedData["herramientas{'_'}"] || '',
+				herramientas: extractedData['herramientas'] || '',
 				hoy: extractedData['hoy'] || ''
 			})
 			console.log(sections)
@@ -82,33 +89,38 @@ const SobreMi: FunctionComponent = () => {
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading mt-12 '>
 					Soy
 				</h3>
-				<p className='text-left font-playfair text-text sm:text-justify'>
-					{sections.soy || ''}
-				</p>
+				<p
+					dangerouslySetInnerHTML={{ __html: sections.soy || '' }}
+					className='text-left font-playfair text-text sm:text-justify'
+				></p>
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
-					Convicción{' '}
+					Convicción
 				</h3>
-				<p className='text-left font-playfair text-text sm:text-justify'>
-					{sections.conviccion || ''}
-				</p>
+				<p
+					dangerouslySetInnerHTML={{ __html: sections.conviccion || '' }}
+					className='text-left font-playfair text-text sm:text-justify'
+				></p>
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
 					Forjando el camino
 				</h3>
-				<p className='text-left font-playfair text-text sm:text-justify'>
-					{sections.forjando || ''}
-				</p>
+				<p
+					dangerouslySetInnerHTML={{ __html: sections.forjando || '' }}
+					className='text-left font-playfair text-text sm:text-justify'
+				></p>
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
-					Herramientas{' '}
+					Herramientas
 				</h3>
-				<p className='text-left font-playfair text-text sm:text-justify'>
-					{sections.herramientas || ''}
-				</p>
+				<p
+					dangerouslySetInnerHTML={{ __html: sections.herramientas || '' }}
+					className='text-left font-playfair text-text sm:text-justify'
+				></p>
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
 					Hoy
 				</h3>
-				<p className='text-left font-playfair text-text sm:text-justify'>
-					{sections.hoy || ''}
-				</p>
+				<p
+					dangerouslySetInnerHTML={{ __html: sections.hoy || '' }}
+					className='text-left font-playfair text-text sm:text-justify'
+				></p>
 				{/* <div className={styles.header}>
           <div className="relative flex items-center justify-center h-full w-max ">
             <h1
@@ -128,6 +140,22 @@ const SobreMi: FunctionComponent = () => {
           </div>
         </div> */}
 			</div>
+			{userLogin && (
+				<div className='sm:gap-[3.5vw] gap-7 flex items-center justify-center mb-12'>
+					<button
+						onClick={() => router.push(`/editSobreMi/${sections.id}`)}
+						className='relative '
+					>
+						<div className=' sm:w-[3vw] sm:h-[3vw]  p-[15%] w-12 h-12  bg-black rounded-[100%] flex justify-center items-center'>
+							<EditIcon
+								size='80%'
+								color='#fff'
+							/>
+						</div>
+						<TextHover title='editar' />
+					</button>
+				</div>
+			)}
 			{/* <p className="w-full max-w-[60.2vw]  text-text text-justify mx-auto  pb-16 font-playfair">
         Soy Vale Correa, nací en Mar del Plata en los años ´80 y me considero
         una persona muy curiosa y creativa, con profundos intereses en el
