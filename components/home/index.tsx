@@ -151,8 +151,12 @@ const IconsTouch = () => {
 				setOpenModal={setOpenModal}
 			>
 				<div className='flex items-center flex-col gap-10 align-middle justify-center h-full'>
+					<p className='font-semibold text-text font-playfairSemiBold'>
+						Estamos grabando!
+					</p>
 					<p className='leading-none text-center font-playfair text-text '>
-						Espacio en construcción...
+						Espacio en
+						<br /> construcción
 					</p>
 					<button
 						className='flex flex-col items-center text-sm font-playfairSemiBold '
