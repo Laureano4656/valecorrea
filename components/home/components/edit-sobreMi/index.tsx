@@ -136,7 +136,7 @@ const EditSobreMi: FunctionComponent = () => {
 		formData.append('title', 'SOBRE_MI_RESERVED')
 		formData.append('subTitle', '')
 		formData.append('subCategory', '')
-		formData.append('year', '')
+		formData.append('year', '2025')
 		formData.append(
 			'comment',
 			`<h3>Soy</h3>${editorsData.soy}<h3>Convicción</h3>${editorsData.conviccion}<h3>Forjando el camino</h3>${editorsData.forjando}<h3>Herramientas</h3>${editorsData.herramientas}<h3>Hoy</h3>${editorsData.hoy}`
@@ -149,7 +149,9 @@ const EditSobreMi: FunctionComponent = () => {
 			.then(response => {
 				router.push(`/sobre-mi`)
 			})
-			.catch(error => {})
+			.catch(error => {
+				console.log(error)
+			})
 	}
 
 	return (
