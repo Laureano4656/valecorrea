@@ -91,35 +91,35 @@ const SobreMi: FunctionComponent = () => {
 				</h3>
 				<p
 					dangerouslySetInnerHTML={{ __html: sections.soy || '' }}
-					className='text-left font-playfair text-text sm:text-justify'
+					className=' font-playfair text-text text-justify'
 				></p>
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
 					Convicción
 				</h3>
 				<p
 					dangerouslySetInnerHTML={{ __html: sections.conviccion || '' }}
-					className='text-left font-playfair text-text sm:text-justify'
+					className=' font-playfair text-text text-justify'
 				></p>
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
 					Forjando el camino
 				</h3>
 				<p
 					dangerouslySetInnerHTML={{ __html: sections.forjando || '' }}
-					className='text-left font-playfair text-text sm:text-justify'
+					className=' font-playfair text-text text-justify'
 				></p>
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
 					Herramientas
 				</h3>
 				<p
 					dangerouslySetInnerHTML={{ __html: sections.herramientas || '' }}
-					className='text-left font-playfair text-text sm:text-justify'
+					className=' font-playfair text-text text-justify'
 				></p>
 				<h3 className='font-playfairExtraBold md:text-[1.5vw] text-list_heading  '>
 					Hoy
 				</h3>
 				<p
 					dangerouslySetInnerHTML={{ __html: sections.hoy || '' }}
-					className='text-left font-playfair text-text sm:text-justify'
+					className=' font-playfair text-text text-justify'
 				></p>
 				{/* <div className={styles.header}>
           <div className="relative flex items-center justify-center h-full w-max ">
