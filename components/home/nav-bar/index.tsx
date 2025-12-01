@@ -33,8 +33,7 @@ const NavBar: React.FC<props> = ({ maxWhith }) => {
 		{ label: 'organico', href: 'organico' },
 		{ label: 'filosofía ', href: 'filosofia' },
 		{ label: 'bienestar', href: 'bienestar' },
-		{ label: 'inspiración ', href: 'inspiracion' },
-		{ label: 'login', href: 'access-login' }
+		{ label: 'inspiración ', href: 'inspiracion' }
 	]
 
 	return (
